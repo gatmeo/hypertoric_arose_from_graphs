@@ -1,0 +1,214 @@
+\documentclass[a4paper,final]{article}
+% Add "final" option in the article to remove todo
+\usepackage[common_math_textnormal,todonotes,math_base_note,math_simple]{gatmeo}
+\usepackage{tikz-cd}
+\newcommand{\mynewpage}{\newpage}
+
+\title{\bf{
+Hypertoric Varieties Arose from Graphs
+}}
+
+\newcommand{\ansonlaw}{\FirstBigRestSmallCaps{Sum kiu Law}\thanks{sklaw@math.cuhk.edu.hk}}
+\renewcommand{\omegat}{\FirstBigRestSmallCaps{Nok to Omega Tong}\thanks{onttong@math.cuhk.edu.hk}}
+
+\author{\ansonlaw\ {\small{AND}} \omegat\\\\
+\emph{Department of Mathematics, The Chinese University of Hong Kong, Hong Kong}
+}
+\date{}
+%sklaw@math.cuhk.edu.hk, onttong@math.cuhk.edu.hk\\\\
+
+\newcommand{\noskipline}{\vspace{-1.5em}}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\tikzcdset{
+    cells={font=\everymath\expandafter{\the\everymath\displaystyle}},
+}
+
+% Hypertoric Variety
+\newcommand{\MM}{\mathcal{M}}
+\newcommandx*\Mper[1][1=\Gamma]{\mathcal{M}^{\mathrm{per}}(#1)}
+\newcommandx*\Mperchar[2][2=\Gamma]{\mathcal{M}^{\mathrm{per}}_{#1}(#2)}
+\newcommandx*\Hper[1][1=\Gamma]{\mathcal{A}^{\mathrm{per}}(#1)}
+\newcommandx*\Hperchar[2][2=\Gamma]{\mathcal{A}^{\mathrm{per}}_{#1}(#2)}
+\newcommandx*\Rper[2][1=\bullet, 2=\Gamma]{\mathcal{R}_{\mathrm{per}}^{#1}(#2)}
+\newcommandx*\SRper[2][1=\bullet, 2=\Gamma]{\mathcal{SR}_{\mathrm{per}}^{#1}(#2)}
+\newcommandx*\Mfin[1][1=\Gamma]{\mathcal{M}(#1)}
+\newcommandx*\Mfinchar[2][2=\Gamma]{\mathcal{M}_{#1}(#2)}
+\newcommandx*\Hfinchar[2][2=\Gamma]{\mathcal{A}_{#1}(#2)}
+\newcommandx*\Hfin[1][1=\Gamma]{\mathcal{A}(#1)}
+\newcommandx*\Rfin[2][1=\bullet, 2=\Gamma]{\mathcal{R}^{#1}(#2)}
+\newcommandx*\SR[2][1=\bullet, 2=\Gamma]{\mathcal{SR}^{#1}(#2)}
+\newcommandx*\Mmul[1][1=\Gamma]{\mathcal{M}^{\mathrm{mul}}(#1)}
+\newcommandx*\idealIper[1][1=\Gamma]{I_{\mathrm{per}}(#1)}
+\newcommandx*\idealI[1][1=\Gamma]{I(#1)}
+\newcommand{\opendisc}{\mathbb{D}}
+\newcommandx*\Betti[1][1=\Gamma]{\mathfrak{B}(#1)}
+\newcommandx*\Dolbeault[1][1=\Gamma]{\mathfrak{D}(#1)}
+
+% Core and Toric
+\newcommandx*\corefin[1][1=\Gamma]{\mathcal{L}(#1)}
+\newcommandx*\coreper[1][1=\Gamma]{\mathcal{L}^{\mathrm{per}}(#1)}
+\newcommandx*\toricP[1][1=P]{\mathcal{X}(#1)}
+\newcommandx*\fixptP[1][1=B]{P_{#1}}
+\newcommandx*\toricB[1][1=B]{\mathcal{X}(#1)}
+
+% Complex
+% Group Cohomology Complex
+\newcommand{\pGC}{\mathfrak{C}} 
+\newcommandx*\GC[3][1=\bullet,2=\bullet,3=\Gamma]{\mathfrak{C}^{#1,#2}(#3)} % Our complex: Group Cohomology
+\newcommand{\dGC}{\delta} % Our complex: Group Cohomology
+\newcommand{\dGCbar}{\bar{\delta}} % Our complex: Group Cohomology
+\newcommand{\fGC}{\phi}
+\newcommand{\gGC}{\psi}
+\newcommand{\hGC}{\eta}
+%--- Group Cohomology Complex with e
+\newcommandx*\GCe[4][1=\bullet,2=\bullet,3=\Gamma,4=e]{\mathfrak{C}^{#1,#2}(#3,#4)}
+\newcommand{\dGCe}{\delta_e}
+\newcommand{\fGCe}{\mathfrak{f}}
+\newcommand{\gGCe}{\mathfrak{g}}
+\newcommand{\hGCe}{\mathfrak{h}}
+%--- CKS
+\newcommandx*\GCS[2][1=\bullet,2={\Gamma, S}]{\mathfrak{D}^{#1}(#2)}
+\newcommandx*\dGCS[1][1=S]{\dGC_{#1}}
+\newcommandx*\fGCS[1][1=S]{\fGC_{#1}}
+\newcommandx*\gGCS[1][1=S]{\gGC_{#1}}
+\newcommandx*\hGCS[1][1=S]{\hGC_{#1}}
+\newcommandx*\CKS[4][1=\bullet,2=\bullet,3=\bullet,4=\Gamma]{\mathfrak{C}^{#1,#2,#3}(#4)} % CKS
+\newcommandx*\grCKS[4][1=\bullet,2=\bullet,3=\bullet,4=\Gamma]{I^{#1, #2}\mathfrak{C}^{#3}(#4)} % CKS
+\newcommandx*\CKSdiffgrading[3][1=\bullet,2=\bullet,3=\Gamma]{\mathfrak{C}'^{#1,#2}(#3)} % CKS
+\newcommand{\dCKS}{d} %CKS Complex
+\newcommand{\fCKS}{f}
+\newcommand{\gCKS}{g}
+\newcommand{\hCKS}{h}
+\newcommandx*\HT[3][1=\bullet,2=\bullet,3=\Gamma]{\mathfrak{K}_{\mathrm{per}}^{#1, #2}(#3)}
+\newcommandx*\grHT[3][1=\bullet,2=\bullet,3=\Gamma]{I^{#1}\mathfrak{K}_{\mathrm{per}}^{#2}(#3)}
+\newcommand{\dHT}{\dCKS_{\mathrm{per}}}
+\newcommandx*\HTalt[2][1=\bullet,2=\Gamma]{\tilde{\mathfrak{K}}^{#1}(#2)}
+\newcommand{\dHTalt}{\tilde{\dCKS}_{\mathrm{per}}}
+\newcommand{\fHT}{\fCKS_{\mathrm{per}}}
+\newcommand{\gHT}{\gCKS_{\mathrm{per}}}
+\newcommand{\hHT}{\hCKS_{\mathrm{per}}}
+\newcommandx*\HTfin[3][1=\bullet,2=\bullet,3=\Gamma]{\mathfrak{K}^{#1, #2}(#3)}
+\newcommandx*\grHTfin[3][1=\bullet,2=\bullet,3=\Gamma]{I^{#1}\mathfrak{K}^{#2}(#3)}
+\newcommand{\dHTfin}{\dCKS}
+\newcommand{\fHTfin}{\fCKS}
+\newcommand{\gHTfin}{\gCKS}
+\newcommand{\hHTfin}{\hCKS}
+\newcommandx*\CPX[3][1=\bullet,2=\bullet,3=\Gamma]{\mathfrak{D}^{#1,#2}(#3)} % Intermediate complex
+\newcommandx*\euler[3][3=\Gamma]{\eta^{#1, #2}(#3)}
+
+% Graph and Matroids
+\newcommandx*\Tutte[2][1=\Gamma]{T(#1;\, #2)}
+\newcommandx*\hpoly[2][1=\Gamma]{h(#1;\, #2)}
+\newcommandx*\HTutte[2][1=\Gamma]{H(#1;\, #2)}
+\newcommandx*\seqn[1][1=n]{[-#1,#1]}
+\newcommand{\loopgraph}{{\bigcirc\!\!\bullet}}
+\newcommand{\bridgegraph}{{\bullet\mspace{-7mu}-\mspace{-7mu}\bullet}}
+\newcommand{\supnorm}[1]{\| #1 \|_{\infty}} 
+
+\newcommand{\del}{\setminus}
+\newcommand{\con}{\mathbin{/}}
+\newcommand{\Gammaper}{\Gamma_{\mathrm{per}}}
+\newcommandx*\tree[2][2=\Gamma]{\mathcal{T}_{#2}(#1)}
+\newcommandx*\treefunction[1][1=\Gamma]{\mathcal{T}_{#1}}
+\newcommandx*\cotreefunction[1][1=\Gamma]{\mathcal{T}_{#1}^*}
+\newcommandx*\cotree[2][2=\Gamma]{\mathcal{T}_{#2}^*(#1)}
+\newcommandx*\face[2][1=\bullet,2=\Gamma]{F_{#1}(#2)}
+\newcommandx*\faceshelling[3][2=\bullet,3=\Gamma]{F_{#2}^{(#1)}(#3)}
+\newcommandx*\faceper[2][1=\bullet,2=\Gamma]{F^{\mathrm{per}}_{#1}(#2)}
+\newcommandx*\pair[3][3=\Gamma]{\langle #1, #2 \rangle_{#3}}
+\newcommandx*\cotreein[2][2=\Gamma]{\mathcal{D}_{#2}(#1)}
+\newcommandx*\cotreeinper[2][2=\Gamma]{\mathcal{D}^\per_{#2}(#1)}
+\newcommandx*\cotreeinfunction[1][1=\Gamma]{\mathcal{D}_{#1}}
+\newcommandx*\externalactivity[2][2=\Gamma]{EA_{#2}(#1)}
+\newcommandx*\internalactivity[2][2=\Gamma]{IA_{#2}(#1)}
+\newcommand{\intp}[1]{\iota_{#1}} % interior product
+\newcommandx*\fundcycle[2][2=\Gamma]{C_{#2}(#1)}
+\newcommandx*\fundcyclewithtree[3][2=\Gamma,3=T]{C_{#2}(#3,#1)}
+\newcommandx*\basis[2][1=\bullet,2=\Gamma]{\mathcal{B}_{#1}(#2)}
+\newcommandx*\basisper[2][1=\bullet,2=\Gamma]{\mathcal{B}^\per_{#1}(#2)}
+
+\newcommandx*\SE[3][1=,3=]{
+  \ifstrempty{#3}
+  {\ifstrempty{#1}{E^\bullet_{#2}}{#1_{#2}}}
+  {\ifstrempty{#1}{E_{#2}(#3)}{#1_{#2}}}
+}
+\newcommandx*\HMGZ[2][1=\Gamma,2=\bullet]{H^{#2}(\MM(#1),\mathbb{Z})}
+\newcommand{\hCCC}{\hat{\mathfrak{C}}}
+
+\newcommand{\per}{\mathrm{per}}
+
+% Math Operations
+\newcommand{\HH}{\mathrm{H}}
+\newcommandx*\Ext[1][1=\bullet]{\bigwedge\nolimits^{#1}}
+\newcommandx*\Sym[1][1=\bullet]{\mathrm{Sym}^{#1}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\coker}{\operatorname{coker}}
+\renewcommand{\im}{\operatorname{Im}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\Hom}{\mathrm{Hom}}
+
+% Group Cohomology
+\newcommand{\invar}[1]{\Gamma_{#1}}
+\newcommandx*\Rder[1][1=\bullet]{R^{#1}}
+\newcommandx*\totRder[1][1=\bullet]{\mathbb{R}^{#1}}
+
+% Homotopy Equivalence
+\newcommand{\choice}[1]{[#1]} % choice for HTfin equiv
+\newcommandx*\intord[2][2=S]{[#2]^{#1}} % integration order for GCS equiv
+\newcommandx*\hyppl[2][2=S]{\alpha^{#2}_{#1}} % hyperplane for GCS equiv
+
+\makeatletter
+\newcommand{\GIT}[1][\@nil]{%
+  \def\tmp{#1}%
+  \ifx\tmp\@nnil
+    /\!\!/%
+  \else
+    /\!\!/_{\! #1}%
+  \fi
+}
+\newcommand{\HQ}[1][\@nil]{%
+  \def\tmp{#1}%
+  \ifx\tmp\@nnil
+    /\!\!/\!\!/\!\!/%
+  \else
+    /\!\!/\!\!/\!\!/_{\! #1}%
+  \fi
+}
+\makeatother
+
+\begin{document}
+\maketitle
+\vspace{-3.5em}
+%\input{abstract}
+
+\thispagestyle{empty}
+\tableofcontents
+\listoftodos
+
+\newpage
+\section{Combinatorics of Graphs}
+\section{Hypertoric Varieties}
+\subsection{GIT}
+\subsection{Stability Condition}
+For both $\theta$ and $\lambda$
+\section{GKM Graph of Hypertoric}
+\subsection{Fix Points}
+\subsection{Connecting P1}
+How $\theta$ effects the splitting of $S^+$
+\subsection{Matroid Polytope}
+\subsection{Equivariant Cohomology of Hypertoric}
+\section{Line Bundles on Hypertoric}
+\section{Steinberg Correspondences}
+\subsection{Primitive Coroots and Hyperplane}
+\subsection{Steinberg Varieties}
+
+\section{Comparing Stability Condition with Quiver Varieties}
+
+%\bibliographystyle{alpha}
+%\bibliography{ref}
+
+\end{document}
