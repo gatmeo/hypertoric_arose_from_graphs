@@ -267,35 +267,38 @@ we can translate the above terminology: a hyperplane arrangement is said to be
     \item \vocab{simple} if every $k$ hyperplanes with non-empty intersection intersect at codimension $k$;
     \item \vocab{unimodular} if every collection of $d$ independent vectors in $\{a_i\}$ forms a $\mathbb{Z}$-basis of $\mathbb{Z}^d$.
 \end{itemize}
+Let $\pi:\mathbb{Z}^n\rightarrow \mathbb{Z}^d$ be the $\mathbb{Z}$-linear map which sends the $i$-th basis vector to $a_i$. Unimodularity implies $\pi$ is surjective. Let $\mathbb{Z}^k$ be the kernel of $\pi$ where $k=n-d$, we have the following exact sequence:
+\begin{equation}
+  \label{eq:exact_seq_Z}
+  \begin{tikzcd}[row sep=small]
+    1 \arrow[r] & \mathbb{Z}^k \arrow[r, "\iota"] & \mathbb{Z}^n \arrow[r, "\pi"] & \mathbb{Z}^d \arrow[r] & 1.
+  \end{tikzcd}
+\end{equation}
 
+Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dots|a_n\right]$ for $\pi$ are $0,\pm1$. In fact, one can check that the RREF of $\left[a_1|\dots|a_n\right]$ is totally unimodular, i.e. all minors are $0,\pm1$.
 
 \begin{theorem}{}
-    There is a one-to-one correspondence between Delzant polytopes and symplectic toric manifolds $(M, \omega, \mathbb{T}^d, \mu)$. In particular, $\im(\mu) \subseteq (\mathbb{R}^d)^*$ is a Delzant polytope. 
-    \begin{proof}
-        Idea: Let $n$ be the number of facets of $\Delta$ and let $k=n-d$. Then, $\Delta$ defines a Hamiltonian action $\mathbb{T}^k \acton \mathbb{C}^n$. We then obtain the symplectic toric manifold by $M = \mathbb{C}^n \GIT \mathbb{T}^k$.
-        
-        Let $a_1, \dots, a_n \in \mathbb{R}^d$ and $r_1, \dots, r_n \in \mathbb{R}$ satisfying
-        \begin{equation*}
-            \Delta = \{ x \in (\mathbb{R}^d)^* \mid \langle x, a_i \rangle \leq r_i \  \forall 1 \leq i \leq n \}.
-        \end{equation*}
-        Consider the map $\pi : \mathbb{R}^n \to \mathbb{R}^d$ defined by $e_i \mapsto a_i$. By Lemma~\ref{lem:vd_Delz}, $\pi$ is surjective and maps $\mathbb{Z}^n$ onto $\mathbb{Z}^d$. Hence, there is an induced map $\mathbb{R}^n/\mathbb{Z}^n \cong \mathbb{T}^n \to \mathbb{R}^d/\mathbb{Z}^d \cong \mathbb{T}^d$. Let $\iota : \mathbb{T}^k \to \mathbb{T}^n$ be its kernel, where $k=n-d$. Explicitly, we have the following exact sequences.
-        \begin{equation*}
-            \begin{tikzcd}[row sep=small]
-                1 \arrow[r] & \mathbb{T}^k \arrow[r, "\iota"] & \mathbb{T}^n \arrow[r, "\pi"] & \mathbb{T}^d \arrow[r] & 1 \\
-                0 \arrow[r] & \mathfrak{t}^k \arrow[r, "\ind{\iota}"] & \mathfrak{t}^n \arrow[r, "\ind{\pi}"] & \mathfrak{t}^d \arrow[r] & 0 \\[-2ex]
-                {} & {} & e_i \arrow[r, maps to] & v_i & {} \\
-                0 \arrow[r] & (\mathfrak{t}^d)^* \arrow[r, "(\ind{\pi})^*"] & (\mathfrak{t}^n)^* \arrow[r, "(\ind{\iota})^*"] & (\mathfrak{t}^k)^* \arrow[r] & 0
-            \end{tikzcd}
-        \end{equation*}
-        Consider the standard action $\mathbb{T}^n \acton \mathbb{C}^n$ with moment map (see Example~\ref{exp:Cn_moment}) $\mu : \mathbb{C}^n \to (\mathfrak{t}^n)^*$ defined by
-        \begin{equation*}
-            \mu(z_1, \dots, z_n) = (-\pi|z_1|^2 + r_1, \dots, -\pi|z_n|^2 + r_n).
-        \end{equation*}
-        The inclusion $\iota$ induces an action $\mathbb{T}^k \acton \mathbb{C}^n$, with moment map given by the composite $(\ind{\iota})^* \circ \mu : \mathbb{C}^n \to (\mathfrak{t}^k)^*$. This allows us to define the symplectic reduction $M = \mathbb{C}^n \GIT \mathbb{T}^k$.
-    \end{proof}
-    \begin{remark}
-        $a_i$ controls the action $\mathbb{T}^k \acton \mathbb{C}^n$ and $r_i$ controls the level of the symplectic reduction.
-    \end{remark}
+  There is a one-to-one correspondence between Delzant polytopes and symplectic toric manifolds $(M, \omega, \mathbb{T}^d, \mu)$. In particular, $\im(\mu) \subseteq (\mathbb{R}^d)^*$ is a Delzant polytope. 
+  \begin{proof}
+    With the notation above, we claim that with a Delzant polytope $\Delta$, we can associate a symplectic toric manifold $M=\mathbb{C}^n \GIT \mathbb{T}^k$.
+    \Cref{eq:exact_seq_Z} induces the following exact sequence of tori and lie algebras:
+    \begin{equation*}
+      \begin{tikzcd}[row sep=small]
+        1 \arrow[r] & \mathbb{T}^k \arrow[r, "\iota"] & \mathbb{T}^n \arrow[r, "\pi"] & \mathbb{T}^d \arrow[r] & 1 \\
+        0  & (\mathfrak{t}^k)^* \arrow[l] & (\mathfrak{t}^n)^* \arrow[l, "\pi^*"] & (\mathfrak{t}^d)^* \arrow[l, "\iota^*"] & 0\arrow[l].
+      \end{tikzcd}
+    \end{equation*}
+    Consider the standard action $\mathbb{T}^n $ on $\mathbb{C}^n$ with moment map (\Cref{exp:Cn_moment}) $\mu : \mathbb{C}^n \to (\mathfrak{t}^n)^*$,
+    \begin{equation*}
+      \mu(z_1, \dots, z_n) = (-\pi|z_1|^2 + r_1, \dots, -\pi|z_n|^2 + r_n).
+    \end{equation*}
+    The inclusion $\iota$ induces an action $\mathbb{T}^k$ on $\mathbb{C}^n$, with moment map given by the composite $\iota^* \circ \mu : \mathbb{C}^n \to (\mathfrak{t}^k)^*$. This allows us to define the symplectic reduction $M = \mathbb{C}^n \GIT \mathbb{T}^k$. 
+    \begin{itemize}
+    \item $(\iota^*\circ \mu)^{-1}(0)$ is compact:
+    \item $T^k$ acts freely on $(\iota^*\circ \mu)^{-1}(0)$:
+    \item Moment polytope of $M$ is $\Delta$:
+    \end{itemize}
+  \end{proof}
 \end{theorem}
 
 \subsubsection*{Example Calculation with Delzant Polytope}
