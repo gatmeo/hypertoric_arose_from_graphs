@@ -260,7 +260,7 @@ Such a polytope is said to be
 \end{itemize}
 If we describe $\Delta$ as the intersection of $n$ affine hyperplanes, i.e. there exists normal vectors $a_i\in \mathbb{Z}^d$ and shifts $r_i\in\mathbb{R}$ such that 
 \begin{equation*}
-    \Delta = \{ x \in (\mathbb{R}^d)^* \mid \langle x, a_i \rangle \leq r_i \  \forall 1 \leq i \leq n \},
+    \Delta = \{ x \in (\mathbb{R}^d)^* \mid \langle x, a_i \rangle \leq \theta_i \  \forall 1 \leq i \leq n \},
 \end{equation*}
 we can translate the above terminology: a hyperplane arrangement is said to be
 \begin{itemize}
@@ -285,23 +285,33 @@ Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dot
     \begin{equation*}
       \begin{tikzcd}[row sep=small]
         1 \arrow[r] & \mathbb{T}^k \arrow[r, "\iota"] & \mathbb{T}^n \arrow[r, "\pi"] & \mathbb{T}^d \arrow[r] & 1 \\
-        0  & (\mathfrak{t}^k)^* \arrow[l] & (\mathfrak{t}^n)^* \arrow[l, "\pi^*"] & (\mathfrak{t}^d)^* \arrow[l, "\iota^*"] & 0\arrow[l].
+        0  & (\mathfrak{t}^k)^* \arrow[l] & (\mathfrak{t}^n)^* \arrow[l, "\iota^*"] & (\mathfrak{t}^d)^* \arrow[l, "\pi^*"] & 0\arrow[l].
       \end{tikzcd}
     \end{equation*}
     Consider the standard action $\mathbb{T}^n $ on $\mathbb{C}^n$ with moment map (\Cref{exp:Cn_moment}) $\mu : \mathbb{C}^n \to (\mathfrak{t}^n)^*$,
     \begin{equation*}
-      \mu(z_1, \dots, z_n) = (-\pi|z_1|^2 + r_1, \dots, -\pi|z_n|^2 + r_n).
+      \mu(z_1, \dots, z_n) = (-\pi|z_1|^2 + \theta_1, \dots, -\pi|z_n|^2 + \theta_n).
     \end{equation*}
     The inclusion $\iota$ induces an action $\mathbb{T}^k$ on $\mathbb{C}^n$, with moment map given by the composite $\iota^* \circ \mu : \mathbb{C}^n \to (\mathfrak{t}^k)^*$. This allows us to define the symplectic reduction $M = \mathbb{C}^n \GIT \mathbb{T}^k$. 
     \begin{itemize}
-    \item $(\iota^*\circ \mu)^{-1}(0)$ is compact:
-    \item $T^k$ acts freely on $(\iota^*\circ \mu)^{-1}(0)$:
-    \item Moment polytope of $M$ is $\Delta$:
+      \item $Z:=(\iota^*\circ \mu)^{-1}(0)=\mu^{-1}(\pi^*(\Delta))$ is compact: Consider $\pi^*:(\mathfrak{t}^d)^*\rightarrow (\mathfrak{t}^n)^*$ as the transpose of $\pi$. $\im(\pi^*)=\ker(\iota^*)\subseteq (\mathfrak{t}^n)^*$ is a $d$-dimension linear subspace cut out by the equation of $\iota^*$. Recall $\Delta$ is the intersection of half space $\CB{x\in (\mathfrak{t}^d)^*\mid \AB{x,\pi(e_i)}\leq \theta_i}$. $\pi^*(\Delta)\subseteq \im(\pi^*)$ then equals the intersection of half space $\CB{x\in \im(\pi^*)\subseteq (\mathfrak{t}^n)^*\mid \AB{x,e_i}\leq \theta_i}$. Hence 
+        \[
+          (\iota^*\circ \mu)^{-1}(0)=\mu^{-1}(\ker(\iota^*))=\mu^{-1}(\im(\pi^*))=\mu^{-1}(\pi^*(\Delta))
+        \]
+        is compact as $\mu$ is proper.
+      \item $T^k$ acts freely on $Z$: For $z\in Z$, let $I_z=\CB{i\mid z_i=0}$. The stablelizer 
+        \[
+          T^n_z=\CB{t\in T^n\mid t_i=1\textnormal{ if }i\notin I_z}\simeq T^{I_z}.
+        \]
+        Recall $\mu_i(z)=-\pi|z_i|^2+\theta_i$, $z_i=0$ iff $\AB{\mu(z),e_i}=\theta_i$ iff $\AB{x,\pi(e_i)}=\theta_i$ for some $x\in \Delta$. Hence $I_z$ is the set of hyperplanes where $\mu(z)$ lies on. In particular, $|I_z|\leq d$. Since $\CB{\pi(e_i)\mid i\in I_z}$ is linearly independent, $\pi:T^n_z\rightarrow T^d$ is injective. Hence $T^k$ acts freely on $Z$.
+    \item Moment polytope of $M$ is $\Delta$: The $T^d$ fix points of $M$ by the above discussion is hence the vertices of $\Delta$. 
+      \missing{}
     \end{itemize}
   \end{proof}
+  \begin{remark}
+    The polytope $\pi^*(\Delta)=\ker(\iota^*)\cap \CB{x_i\leq \theta_i}$ can be shifted to the intersection of $\bigcap \CB{x_i\leq 0}$ with a affine subspace $\im(\pi^*-\theta)=\ker(\iota^*+\iota^*(\theta))$. Hence in order to describe $\pi^*(\Delta)$, it is suffice to specify an element $\iota^*(\theta)\in (\mathfrak{t}^k)^*$. The moment map also depends only on $\iota^*(\theta)$ instead of $\theta$.
+  \end{remark}
 \end{theorem}
-
-\subsubsection*{Example Calculation with Delzant Polytope}
 
 \begin{example}{}
     Consider the following polytope.
@@ -317,24 +327,14 @@ Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dot
             a_1 &= 1 & r_1 &= 0
         \end{aligned}
     \end{equation*}
-    Then, the action $\mathbb{T}^1 \acton \mathbb{C}^2$ is given by $\lambda \cdot (z_1, z_2) = (\lambda z_1, \lambda z_2)$. Also, we have the following data.
-    \begin{equation*}
-        \begin{tikzcd}[row sep=0ex]
-            0 \arrow[r] & \mathfrak{t}^1 \arrow[r, "\iota"] & \mathfrak{t}^2 \arrow[r, "\pi"] & \mathfrak{t}^1 \arrow[r] & 0 \\
-            {} & x \arrow[r, maps to] & (x, x) & {} & {} \\
-            0 & (\mathfrak{t}^1)^* \arrow[l] & (\mathfrak{t}^2)^* \arrow[l, "\iota^*"'] & (\mathfrak{t}^1)^* \arrow[l, "\pi^*"'] & 0 \arrow[l] \\
-            {} & x+y & (x, y) \arrow[l, maps to] & {} & {}
-        \end{tikzcd}
-    \end{equation*}
-    Thus, the moment map $\iota^* \circ \mu : \mathbb{C}^2 \to (\mathfrak{t}^1)^*$ is given by
+    $\mathbb{T}^1$ acts on $\mathbb{C}^2$ by $\lambda \cdot (z_1, z_2) = (\lambda z_1, \lambda z_2)$. $\pi=(-1,1)$ and $\iota=(1,1)^T$.
+    The moment map $\iota^* \circ \mu : \mathbb{C}^2 \to (\mathfrak{t}^1)^*$ is given by
     \begin{equation*}
         \iota^*(\mu(z_1, z_2)) = \iota^*(-\pi|z_1|^2+p, -\pi|z_2|^2) = -\pi(|z_1|^2+|z_2|^2) + p.
     \end{equation*}
     Thus, $Z = (\iota^* \circ \mu)^{-1}(0) = \{ z \in \mathbb{C}^2 \mid |z|^2 = p/\pi \}$. Thinking $Z$ as $\mathbb{C}^2 / \mathbb{R}_{>0}$, $Z/\mathbb{T}^1 \cong \mathbb{P}^1$.
-\end{example}
 
-\begin{example}{}
-    Denote the standard basis of $\mathbb{R}^n$ by $e_i$. Consider the following polytope.
+    For $\mathbb{P}^n$, consider the polytope
     \begin{equation*}
         \mathrm{conv}(\{ 0, e_1, \dots, e_n \})
         \implies
@@ -343,24 +343,44 @@ Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dot
             a_i &= e_i & r_i &= 0 \quad \forall 1 \leq i \leq n
         \end{aligned}
     \end{equation*}
-    Then, the action $\mathbb{T} \acton \mathbb{C}^{n+1}$ is given by $\lambda \cdot (z_0, \dots, z_n) = (\lambda z_0, \dots, \lambda z_n)$. Also, we have the following data.
-    \begin{equation*}
-        \begin{tikzcd}[row sep=0ex]
-            0 \arrow[r] & \mathfrak{t}^1 \arrow[r, "\iota"] & \mathfrak{t}^{n+1} \arrow[r, "\pi"] & \mathfrak{t}^n \arrow[r] & 0 \\
-            {} & x \arrow[r, maps to] & (x, \dots, x) & {} & {} \\
-            0 & (\mathfrak{t}^1)^* \arrow[l] & (\mathfrak{t}^{n+1})^* \arrow[l, "\iota^*"'] & (\mathfrak{t}^n)^* \arrow[l, "\pi^*"'] & 0 \arrow[l] \\
-            {} & x_0 + \cdots + x_n & (x_0, \dots, x_n) \arrow[l, maps to] & {} & {}
-        \end{tikzcd}
-    \end{equation*}
-    Thus, the moment map $\iota^* \circ \mu : \mathbb{C}^3 \to (\mathfrak{t}^1)^*$ of is given by
-    \begin{equation*}
-        \iota^*(\mu(z_0, \dots, z_n)) = \iota^*(-\pi|z_0|^2+p, -\pi|z_1|^2, \dots, \pi|z_n|^2) = -\pi(|z_0|^2+\cdots+|z_n|^2) + p.
-    \end{equation*}
-    Thus, $Z = (\iota^* \circ \mu)^{-1}(0) = \{ z \in \mathbb{C}^{n+1} \mid |z|^2 = p/\pi \}$. Thinking $Z$ as $\mathbb{C}^{n+1} / \mathbb{R}_{>0}$, $Z/\mathbb{T}^1 \cong \mathbb{P}^n$.
+    $\iota=(1,\dots ,1)^T$.
+    Similarly, $\iota^* \circ \mu : \mathbb{C}^3 \to (\mathfrak{t}^1)^*$ is given by
+    $\iota^*(\mu(z_0, \dots, z_n)) = -\pi(|z_0|^2+\cdots+|z_n|^2) + p$.
+    $Z = (\iota^* \circ \mu)^{-1}(0) = \{ z \in \mathbb{C}^{n+1} \mid |z|^2 = p/\pi \}=\mathbb{C}^{n+1} / \mathbb{R}_{>0}/\mathbb{T}^1 \cong \mathbb{P}^n$.
 \end{example}
+\section{Hypertoric Varieties}
+Hypertoric varieties is defined similar to the symplectic reduction construction for toric varieties $\mathbb{C}^n\GIT T_\mathbb{R}^k$. However, the fundamental building block changed to complex torus $T=\mathbb{C}^*$ acting on $T^*\mathbb{C}$ instead of $T_\mathbb{R}$ acting on $\mathbb{C}$; we use hyperplane arrangement instead of polytope.
+\begin{example}[exp:]{$(\mathbb{C^*})^n\acton T^*\mathbb{C}^n$}
+  The $T$-action on $T^*\mathbb{C}^n$ is given by $(t_iz_i,t^{-1}w_i)_{i=1}^{n}$. Let $X_i\in \mathfrak{t}^n$,
+  \begin{alignat*}{1}
+    (\ind{X_i})_z&=\frac{d}{dt}[e^{t_i}z_i,e^{-t_i}w_i]_{t=0}=(z_i\frac{\partial }{\partial z_i},-w_i\frac{\partial }{\partial w_i}),\\
+    \iota_{\ind{X_i}}\omega&= (\sum_{}^{}dz_i\wedge dw_i)(z_i\partial/\partial z_i - w_i\partial/\partial w_i)=\sum z_idw_i + w_idz_i
+  \end{alignat*}
+  Hence $\mu(z_1,w_1,\dots ,z_n,w_n)=\sum_{}^{}z_iw_i$ is a choice of moment map.
+\end{example}
+
+Given a short exact sequence of complex tori
+\begin{equation*}
+    \begin{tikzcd}
+        1 \arrow[r] & G \arrow[r, "\iota"] & D \arrow[r, "\pi"] & T \arrow[r] & 1
+    \end{tikzcd}
+\end{equation*}
+with $ D \cong (\mathbb{C}^\times)^n $, we consider
+\begin{enumerate}
+    \item the $G$-action on $T^*\mathbb{C}^n$ by $ g \cdot (z, w) = (\iota(g)_iz_i, \iota(g)_i^{-1}w_i)_{i=1}^n $, and
+    \item the moment map $ \mu : T^*\mathbb{C}^n \to \mathfrak{g}^* $ for the $G$-action given by $ (z, w) \mapsto \iota^*((z_iw_i)_{i=1}^n) $.
+\end{enumerate}
+Together with a character $ \chi : G \to \mathbb{C}^\times $ and $ \lambda \in \mathfrak{g}^* $, we define the hypertoric variety associated with these data to be the GIT quotient
+\begin{equation*}
+    \mathcal{M}_{\chi, \lambda} = T^*\mathbb{C}^n \HQ[\chi, \lambda] G = \mu^{-1}(\lambda) \GIT[\chi] G.
+\end{equation*}
+There is a remaining $T$-action on the quotient with a moment map $ \nu : \mathcal{M}_{\chi, \lambda} \to \mathfrak{t}^* $. We will always set $\lambda=0$. In this case, the above data can be assembled into a hyperplane arrangement with $n$ hyperplanes in the affine subspace $ (\iota_{\mathbb{R}}^*)^{-1}(\chi) = \{ x \in \mathfrak{d}_{\mathbb{R}}^* \mid \iota_{\Gamma}^*(x) = \chi \} $ of $\mathfrak{d}_{\mathbb{R}}^*$, where the $i$-th hyperplane is the intersection of $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ with the $i$-th coordinate hyperplane in $\mathfrak{d}_{\mathbb{R}}^*$. Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$, allowing us to identify the affine subspace $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ with $\mathfrak{t}_\mathbb{R}^*$. This gives a hyperplane arrangement
+\begin{equation*}
+    \mathcal{A}_\chi = \{ H_i = \{ x \in \mathfrak{t}_{\mathbb{R}}^* \mid \pi^*(x)_i = \theta_i \} \}_{i=1}^n.
+\end{equation*}
+Different choices of lifts give the same hyperplane arrangement up to translations.
 \section{Combinatorics of Graphs}
 
-\section{Hypertoric Varieties}
 \subsection{GIT}
 \subsection{Stability Condition}
 For both $\theta$ and $\lambda$
