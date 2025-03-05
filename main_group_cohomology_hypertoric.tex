@@ -333,7 +333,7 @@ In fact, the polytope $\pi^*(\Delta)=\ker(\iota^*)\cap \CB{x_i\leq \theta_i}$ ca
     $Z = (\iota^* \circ \mu)^{-1}(0) = \{ z \in \mathbb{C}^{n+1} \mid |z|^2 = p/\pi \}=\mathbb{C}^{n+1} / \mathbb{R}_{>0}/\mathbb{T}^1 \cong \mathbb{P}^n$.
 \end{example}
 
-\subsection{Equivalent Definition as GIT Quotient}
+\subsection{Toric as GIT Quotient}
 
 \label{sec:symplectic_reduction_as_git}
 
@@ -374,10 +374,10 @@ The reason why it is geometric is because of the following theorem:
 \end{theorem}
 
 \begin{example}[exp:]{}
-  Back to \Cref{exp:GIT_P1_Proj},  for $\chi:G\rightarrow \mathbb{C}^\times $ be the identity, every points $p$ except $(0,0)$ exists a homogeous function $f:(x,y)\mapsto x+y$ and $r=1$ that does not vanish at $p$.
+  Back to \Cref{exp:GIT_P1_Proj},  for $\chi:G\rightarrow \mathbb{C}^\times $ be the identity, every points $p$ except $(0,0)$ exists a homogeous function $f:(x,y)\mapsto x+y$ and $r=1$ that does not vanish at $p$. One need to then check that a good categorical quotient of $\mathbb{C}^2\setminus \{0\}$ is $\mathbb{P}^1$. For trivial $\chi$ on the other hand, constant function serve as the required homogenous function for every point. The categorical quotient on $\mathbb{C}^2$ is $\Spec \mathbb{C}[x_1,x_2]^G=\CB{\textnormal{pt}}$.
 \end{example}
-\missing{Cover by open sets}
 
+\subsection{Relating Symplectic Reduction and GIT}
 
 \missing{Frances Kirwan's thesis}
 %http://www.cms.zju.edu.cn/UploadFiles/AttachFiles/201096185821505.pdf
@@ -418,13 +418,13 @@ Similar to above, $\iota:G\rightarrow D$ and a choice of $ \lambda \in \mathfrak
   Let $G=\mathbb{C}^\times$ and $D=(\mathbb{C}^\times )^{n+1}$ with $\iota:G\rightarrow D$ given by the diagonal map.
     The action $\mathbb{C}^\times$ on $T^*\mathbb{C}^{n+1}$ is given by $\lambda \cdot (z, w) = (\lambda z, \lambda^{-1} w)$. We have
     \begin{align*}
-        \mu^{-1}(0) &= \{ (z, w) \in T^*\mathbb{C}^{n+1} \mid z_0w_0 = z_1w_1 + \cdots + z_nw_n \}.
+        \mu^{-1}(0) &= \{ (z, w) \in T^*\mathbb{C}^{n+1} \mid z_0w_0 + z_1w_1 + \cdots + z_nw_n = 0 \}.
     \end{align*}
     Let $\chi : \lambda \mapsto \lambda^p$ be the character of $G$.
     We now establish the stability of the action. Note that for all $r>0$, the only function $f$ on $T^*\mathbb{C}^{n+1}$ satisfying $f(0, \lambda^{-1}w)=\lambda^{rp} \, f(0, w)$ for all $\lambda \in \mathbb{C}^\times$ is $f=0$. Thus, $(0, w) \notin (T^*\mathbb{C}^{n+1})^\sstab$. Conversely, suppose $z \neq 0$. Then, we may pick $f(z, w) = z^p$, which satisfies the equation $f(\lambda z, \lambda^{-1}w) = \lambda^p \, f(z, w)$ for all $\lambda \in \mathbb{C}^\times$. Thus, $(z, w)$ is semistable. Moreover, the orbit $T \cdot (z, w)$ is closed in the non-vanishing locus of $f$, and the orbit is clearly of dimension 1. Thus, $(z, w)$ is stable. In conclusion, we have
     \begin{enumerate}
         \item $(T^*\mathbb{C}^{n+1})^\sstab = (T^*\mathbb{C}^{n+1})^\stab = T^*\mathbb{C}^{n+1} \setminus \{ z=0 \}$, and
-        \item $\mu^{-1}(0)^\sstab = \mu^{-1}(0)^\stab = \{ (z, w) \mid z_0w_0 = z_1w_1 + \cdots + z_nw_n, z \neq 0 \}$.
+        \item $\mu^{-1}(0)^\sstab = \mu^{-1}(0)^\stab = \{ (z, w) \mid z_0w_0 + z_1w_1 + \cdots + z_nw_n = 0, z \neq 0 \}$.
     \end{enumerate}
 
     After taking quotients, we have the following diagram.
@@ -472,15 +472,42 @@ Similar to above, $\iota:G\rightarrow D$ and a choice of $ \lambda \in \mathfrak
   We can also alternatively use the Proj construction. Using a different convention of action $\mathbb{C}^\times $ on $T^*\mathbb{C}^2$ by $\lambda\cdot (z_0,w_0,z_1,w_1)=(\lambda^{-1}z_0,\lambda w_0,\lambda z_1,\lambda^{-1}w_1)$. $S=\mathbb{C}[z_0w_0=z_1w_1]=\mathbb{C}[z_0,w_0,z_1,w_1]/\AB{z_0w_0=z_1w_1}$, where $S_0=\AB{z_0w_0=z_1w_1, z_0z_1,w_0w_1}$, where $(z_0z_1)(w_0w_1)=(z_0w_0)^2$. $\Proj S$ is covered by $w_0\neq 0$ and $z_1\neq 0$. For $w_0\neq 0$, we get $\Spec \mathbb{C}[z_1/w_0,w_0w_1]$. For $z_1\neq 0$, we get $\Spec\mathbb{C}[w_0/z_1,z_0z_1]$.
 \end{example}
 
+\subsection{Stability Condition}
+
+To check if a point $(z,w)$ is $\chi$-semistable, we need a homogenous function $f$ of degree $\chi$ that does not vanish at $(z,w)$. Note that $f\in \textnormal{Fun}\mu^{-1}(\lambda)$ is affine. Consider monomial $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$, it is homogenous of degree $\iota^*((a_i-b_i))$. Whether $f$ vanishs at $(z,w)$ depends on if $z_i=0$ or $w_i=0$. In particular, if $(z,w)$ is $\chi$-semistable with $f$ being the required function and $z_i=0$ (or $w_i=0$), then $a_i=0$ (or $b_i=0$). Hence we have the following lemma:
+
+\begin{lemma}[lem:stability_condition]{}
+  $(z,w)\in \mu^{-1}(\lambda)$ is $\chi$-semistable iff $\chi\in \sum_{}^{}\mathbb{R}_{\geq 0}|z_i|^2\iota^{*}(u_i)-\sum_{}^{}\mathbb{R}_{\geq 0}|w_i|^2\iota^{*}(u_i)$. Here we treat $\chi$ as an element in $\mathfrak{g}^*_{\mathbb{Z}}$ and $u_i$ the basis vector of $\mathfrak{d}^*$.
+\end{lemma}
+
 \section{Combinatorial Description}
 
 \subsection{Hyperplane Arrangement}
 
-There is a remaining $T$-action on the quotient with a moment map $ \nu : \mathcal{M}_{\chi, \lambda} \to \mathfrak{t}^* $. We will always set $\lambda=0$. In this case, the above data can be assembled into a hyperplane arrangement with $n$ hyperplanes in the affine subspace $ (\iota_{\mathbb{R}}^*)^{-1}(\chi) = \{ x \in \mathfrak{d}_{\mathbb{R}}^* \mid \iota_{\Gamma}^*(x) = \chi \} $ of $\mathfrak{d}_{\mathbb{R}}^*$, where the $i$-th hyperplane is the intersection of $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ with the $i$-th coordinate hyperplane in $\mathfrak{d}_{\mathbb{R}}^*$. Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$, allowing us to identify the affine subspace $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ with $\mathfrak{t}_\mathbb{R}^*$. This gives a hyperplane arrangement
+We often encode the data of the exact sequence of tori and $\chi$ using hyperplane arrangement. And set $\lambda=0$ for simplicity.
+
+Consider the affine subspace $ (\iota_{\mathbb{R}}^*)^{-1}(\chi) = \{ x \in \mathfrak{d}_{\mathbb{R}}^* \mid \iota^*(x) = \chi \} $, the $i$-th coordinate hyperplane $H_i$ in $\mathfrak{d}_\mathbb{R}^*$ intersect $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ giving a hyperplane arrangement. There is a natural notion of half planes 
+\[
+H_i^+=\CB{x\in \mathfrak{d}^*_\mathbb{R}\mid \AB{x,u_i}=x_i\geq 0}
+\textnormal{ and }
+H_i^-=\CB{x\in \mathfrak{d}^*_\mathbb{R}\mid \AB{x,u_i}=x_i\leq 0}.
+\]
+\Cref{lem:stability_condition} translates to the following:
+
+\begin{lemma}[lem:]{}
+  $(z,w)\in \mu^{-1}(\lambda)$ is $\chi$-semistable iff $(\iota_{\mathbb{R}}^*)^{-1}(\chi)\bigcap _{z_i=0}H_i^-\bigcap _{w_i=0}H_i^+$ is nonempty. 
+  \begin{remark}
+    We often abuse notation and denote $H_i^{\pm}$ as the hyperplane in $(\iota^*_{\mathbb{R}})^{-1}(\chi)$, and write the condition as $\bigcap _{z_i=0}H_i^-\bigcap _{w_i=0}H_i^+$ is nonempty. 
+  \end{remark}
+\end{lemma}
+
+Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$, allowing us to identify the affine subspace $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ with $\mathfrak{t}_\mathbb{R}^*$ upon picking a representation $\pi$ given by $\mathfrak{t}^*_\mathbb{R}\rightarrow \mathfrak{d}_\mathbb{R}^*, t\mapsto \pi^*(t)+\theta$. Hence the hyperplane arrangement induced by coordinate hyperplane is the following:
 \begin{equation*}
-    \mathcal{A}_\chi = \{ H_i = \{ x \in \mathfrak{t}_{\mathbb{R}}^* \mid \pi^*(x)_i = \theta_i \} \}_{i=1}^n.
+    \mathcal{A}_\chi = \{ H_i = \{ x \in \mathfrak{t}_{\mathbb{R}}^* \mid \pi^*(x)_i + \theta_i = 0\} \}_{i=1}^n.
 \end{equation*}
 Different choices of lifts give the same hyperplane arrangement up to translations.
+
+There is a remaining $T$-action on the quotient with a moment map $ \nu : \mathcal{M}_{\chi, \lambda} \to \mathfrak{t}^* $.
 
 \subsection{Graph}
 
