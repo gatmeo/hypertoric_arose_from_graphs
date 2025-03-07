@@ -116,8 +116,10 @@ Hypertoric Varieties Arose from Graphs
 \newcommandx*\externalactivity[2][2=\Gamma]{EA_{#2}(#1)}
 \newcommandx*\internalactivity[2][2=\Gamma]{IA_{#2}(#1)}
 \newcommand{\intp}[1]{\iota_{#1}} % interior product
-\newcommandx*\fundcycle[2][2=\Gamma]{C_{#2}(#1)}
-\newcommandx*\fundcyclewithtree[3][2=\Gamma,3=T]{C_{#2}(#3,#1)}
+\newcommandx*\fundcycle[2][2=\Gamma]{\gamma_{#1}}
+\newcommandx*\fundcyclewithtree[3][2=\Gamma,3=B]{\gamma_{#3,#1}}
+\newcommandx*\fundbond[2][2=\Gamma]{\beta_{#1}}
+\newcommandx*\fundbondwithtree[3][2=\Gamma,3=B]{\beta_{#3^*,#1}}
 \newcommandx*\basis[2][1=\bullet,2=\Gamma]{\mathcal{B}_{#1}(#2)}
 \newcommandx*\basisper[2][1=\bullet,2=\Gamma]{\mathcal{B}^\per_{#1}(#2)}
 
@@ -374,7 +376,7 @@ The reason why it is geometric is because of the following theorem:
 \end{theorem}
 
 \begin{example}[exp:]{}
-  Back to \Cref{exp:GIT_P1_Proj},  for $\chi:G\rightarrow \mathbb{C}^\times $ be the identity, every points $p$ except $(0,0)$ exists a homogeous function $f:(x,y)\mapsto x+y$ and $r=1$ that does not vanish at $p$. One need to then check that a good categorical quotient of $\mathbb{C}^2\setminus \{0\}$ is $\mathbb{P}^1$. For trivial $\chi$ on the other hand, constant function serve as the required homogenous function for every point. The categorical quotient on $\mathbb{C}^2$ is $\Spec \mathbb{C}[x_1,x_2]^G=\CB{\textnormal{pt}}$.
+  Back to \Cref{exp:GIT_P1_Proj},  for $\chi:G\rightarrow \mathbb{C}^\times $ be the identity, every points $p$ except $(0,0)$ exists a homogeous function $f:(x,y)\mapsto x+y$ and $r=1$ that does not vanish at $p$. One need to then check that a good categorical quotient of $\mathbb{C}^2\setminus \{0\}$ is $\mathbb{P}^1$. For trivial $\chi$ on the other hand, constant function serve as the required homogenous function for every point. $G$ orbits of in $\mathbb{C}^2$ are lines removing the origin. All their closure intersect at origin. The categorical quotient on $\mathbb{C}^2$ is hence $\Spec \mathbb{C}[x_1,x_2]^G=\CB{\textnormal{pt}}$.
 \end{example}
 
 \subsection{Relating Symplectic Reduction and GIT}
@@ -383,6 +385,8 @@ The reason why it is geometric is because of the following theorem:
 %http://www.cms.zju.edu.cn/UploadFiles/AttachFiles/201096185821505.pdf
 
 \section{Hypertoric Varieties}
+\subsection{As symplectic Reduction}
+
 Hypertoric varieties is defined similar to the symplectic reduction construction for toric varieties $\mathbb{C}^n\GIT T_\mathbb{R}^k$. However, the fundamental building block changed to complex torus $T=\mathbb{C}^*$ acting on $T^*\mathbb{C}$ instead of $T_\mathbb{R}$ acting on $\mathbb{C}$; we consider general hyperplane arrangement instead of those arise from polytope; and the $(\mathbb{C}^*)^k$ action on $\mu^{-1}(0)$ may no longer be free. First, the moment map.
 \begin{example}[exp:]{$(\mathbb{C^*})^n\acton T^*\mathbb{C}^n$}
   The $D=(\mathbb{C}^*)^n$-action on $T^*\mathbb{C}^n$ is given by $(t_iz_i,t^{-1}w_i)_{i=1}^{n}$.
@@ -409,11 +413,6 @@ Similar to above, $\iota:G\rightarrow D$ and a choice of $ \lambda \in \mathfrak
 \begin{equation*}
   \mathcal{M}_{\chi, \lambda} = T^*\mathbb{C}^n \HQ[\chi, \lambda] G = \mu^{-1}(\lambda) \GIT[\chi] G:=\textnormal{Proj}\bigoplus _{r=0}^{\infty }\CB{f\in \textnormal{Fun}(\mu^{-1}(\lambda))\mid f(g\cdot x)=\chi(g)^rf(x)\ \forall\ g}.
 \end{equation*}
-\noskipline
-\begin{remark}
-  Recall in \Cref{sec:symplectic_reduction_as_git} that we can realize the GIT quotient of complex torus as the symplectic reduction of the real torus. One can alternatively define hypertoric varieties as the hyperkahler quotient of $T^*\mathbb{C}^n$ by $G_\mathbb{R}$ at the value $(\chi,\textnormal{Re }\lambda,\textnormal{Im }\lambda)$, which is naturally diffeomorphic to $\MM_{\chi,\lambda}$.
-\end{remark}
-
 \begin{example}{$\mathbb{C}^\times \acton T^*\mathbb{C}^{n+1}$}
   Let $G=\mathbb{C}^\times$ and $D=(\mathbb{C}^\times )^{n+1}$ with $\iota:G\rightarrow D$ given by the diagonal map.
     The action $\mathbb{C}^\times$ on $T^*\mathbb{C}^{n+1}$ is given by $\lambda \cdot (z, w) = (\lambda z, \lambda^{-1} w)$. We have
@@ -472,6 +471,15 @@ Similar to above, $\iota:G\rightarrow D$ and a choice of $ \lambda \in \mathfrak
   We can also alternatively use the Proj construction. Using a different convention of action $\mathbb{C}^\times $ on $T^*\mathbb{C}^2$ by $\lambda\cdot (z_0,w_0,z_1,w_1)=(\lambda^{-1}z_0,\lambda w_0,\lambda z_1,\lambda^{-1}w_1)$. $S=\mathbb{C}[z_0w_0=z_1w_1]=\mathbb{C}[z_0,w_0,z_1,w_1]/\AB{z_0w_0=z_1w_1}$, where $S_0=\AB{z_0w_0=z_1w_1, z_0z_1,w_0w_1}$, where $(z_0z_1)(w_0w_1)=(z_0w_0)^2$. $\Proj S$ is covered by $w_0\neq 0$ and $z_1\neq 0$. For $w_0\neq 0$, we get $\Spec \mathbb{C}[z_1/w_0,w_0w_1]$. For $z_1\neq 0$, we get $\Spec\mathbb{C}[w_0/z_1,z_0z_1]$.
 \end{example}
 
+There is a remaining $T$-action on the quotient with a moment map $ \nu : \mathcal{M}_{\chi, \lambda} \to \mathfrak{t}^* $.
+Indeed, $\mathcal{A}_\chi$ is the real moment map image in the following sense:
+\missing{}
+
+
+\subsection{As Hyperkahler Reduction}
+
+Recall in \Cref{sec:symplectic_reduction_as_git} that we can realize the GIT quotient of complex torus as the symplectic reduction of the real torus. One can alternatively define hypertoric varieties as the hyperkahler quotient of $T^*\mathbb{C}^n$ by $G_\mathbb{R}$ at the value $(\chi,\textnormal{Re }\lambda,\textnormal{Im }\lambda)$, which is naturally diffeomorphic to $\MM_{\chi,\lambda}$.
+
 \subsection{Stability Condition}
 
 To check if a point $(z,w)$ is $\chi$-semistable, we need a homogenous function $f$ of degree $\chi$ that does not vanish at $(z,w)$. Note that $f\in \textnormal{Fun}\mu^{-1}(\lambda)$ is affine. Consider monomial $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$, it is homogenous of degree $\iota^*((a_i-b_i))$. Whether $f$ vanishs at $(z,w)$ depends on if $z_i=0$ or $w_i=0$. In particular, if $(z,w)$ is $\chi$-semistable with $f$ being the required function and $z_i=0$ (or $w_i=0$), then $a_i=0$ (or $b_i=0$). Hence we have the following lemma:
@@ -482,9 +490,11 @@ To check if a point $(z,w)$ is $\chi$-semistable, we need a homogenous function 
 
 \section{Combinatorial Description}
 
-\subsection{Hyperplane Arrangement}
+\subsection{Hyperplane Arrangement: Stability Condition}
 
-We often encode the data of the exact sequence of tori and $\chi$ using hyperplane arrangement. And set $\lambda=0$ for simplicity.
+The $\mathbb{R}_{\geq 0}$ condition in the stability condition is best describe using half planes of hyperplane arrangement.
+\missing{When $\lambda\neq 0$ is generic, all points are semistable.}
+For $\lambda=0$, we often encode the data of the exact sequence of tori and $\chi$ in the hyperplane arrangement. 
 
 Consider the affine subspace $ (\iota_{\mathbb{R}}^*)^{-1}(\chi) = \{ x \in \mathfrak{d}_{\mathbb{R}}^* \mid \iota^*(x) = \chi \} $, the $i$-th coordinate hyperplane $H_i$ in $\mathfrak{d}_\mathbb{R}^*$ intersect $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ giving a hyperplane arrangement. There is a natural notion of half planes 
 \[
@@ -507,11 +517,60 @@ Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$,
 \end{equation*}
 Different choices of lifts give the same hyperplane arrangement up to translations.
 
-There is a remaining $T$-action on the quotient with a moment map $ \nu : \mathcal{M}_{\chi, \lambda} \to \mathfrak{t}^* $.
+\subsection{Graph: Exact Sequence of Tori}
 
-\subsection{Graph}
+The topology of hypertoric variety depends only on the exact sequence of tori given that $\chi$ and $\lambda$ are generic. To be more precise, knowing the matroid assocated to the map $\pi$ is suffice to describe the cohomology ring and many more about the variety. To help visualize the matroid structure, in this paper, we will only focus on exact sequence of tori arising from graphs, and describe the geometry using graph (matroid) terminologies. 
 
-<++>
+By graph, we mean "connected oriented multigraph with loops", consisting of a set of vertices $V$, a set of edges $E$, and functions $h,t:E\rightarrow V$.
+Let $A$ be an abelian group, where $A=\mathbb{C}$ by default, define $ \partial_{\Gamma, A} : A^E \to A^V $ by $ e \mapsto h(e) - t(e) $ for all $ e \in E $, and let $ d_{\Gamma, A} : A^V \to A^E $ be its transpose.
+The graph homology and cohomology of $\Gamma$ with coefficients in $A$ are defined as follows.
+\begin{align*}
+  \HH_0(\Gamma, A) &= \coker(\partial_{\Gamma, A}) & \HH_1(\Gamma, A) &= \ker(\partial_{\Gamma, A}) \\
+  \HH^0(\Gamma, A) &= \ker(d_{\Gamma, A}) & \HH^1(\Gamma, A) &= \coker(d_{\Gamma, A})
+\end{align*}
+Notice that if $A$ is a field, $\partial_\Gamma$ is a representation of $\Gamma$, i.e. if we identify $e\in E$ with its basis vector in $A^E$, then $S\subseteq E$ is contained in a spanning tree if and only if $\partial_\Gamma|_{S}$ is injective and $\partial_\Gamma(S)$ is linearly independent. And by matroid theory, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is a dual representation (replace spanning tree with spanning cotree in the above definition) of $\Gamma$.
+
+The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. On the other hand, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
+
+For $A=\mathbb{C}^\times $, we have the following shot exact sequence
+\begin{equation}
+  \label{eq:exact_sequence_tori_graph}
+    \begin{tikzcd}
+        1 \arrow[r] & \im(d_{\Gamma, \mathbb{C}^\times}) \arrow[r, "\iota_\Gamma"] & (\mathbb{C}^\times)^E \arrow[r, "\pi_\Gamma"] & \HH^1(\Gamma, \mathbb{C}^\times) \arrow[r] & 1
+    \end{tikzcd},
+\end{equation}
+denote by $G_\Gamma,D_\Gamma,T_\Gamma$ respectively, allowing us to define a hypertoric variety $\MM_{\chi,\lambda}(\Gamma)$. We will drop $\Gamma$ when the context is clear. 
+
+There is a canonical isomorphism $\HH_0(\Gamma, A) \cong \HH^0(\Gamma, A) \cong A^{\pi_0(\Gamma)=1} $, where $\pi_0(\Gamma)=1$ is the set of connected components of $\Gamma$, and a noncanonical isomorphism $ \HH_1(\Gamma, A) \cong \HH^1(\Gamma, A) \cong A^{g(\Gamma)} $, where $g(\Gamma)=|E|-|V|+1$ is the genus of $\Gamma$.
+
+Let $k,n,$ and $d$ be the rank of $G_\Gamma,D_\Gamma,$ and $T_\Gamma$ respectively. We have $k=|V|-1$ and $d=|E|-|V|+1$, which equals to the cardinality of a spanning tree and spanning cotree respectively. 
+
+In general for a matroid representable over $\mathbb{Z}$, we can define an exact sequence of tori where $\pi$ and $\iota^*$ are the dual representation and the representation of the matroid respectively. $k$ and $d$ will then be the rank and corank of the matroid.
+
+\subsection{Tree: Fix Point}
+
+The definition of \Cref{eq:exact_sequence_tori_graph} does not depend on a choice of basis of $\im(d_{\Gamma,\mathbb{C}^\times })$ and $\HH^1(\Gamma,\mathbb{C}^\times )$. However, fixing bases allows us to describe a split of the exact sequence, and hence the $T$-fix points.
+
+\begin{definition}[def:]{}
+  Pick a spanning tree (basis of the matroid) $B\in \binom{E}{k}$, any edge $e\in E\del B=:B^*$, the corresponding spanning cotree (cobasis), determines a unique cycle $\fundcyclewithtree{e}\subseteq B\cup e$ that contains $e$, called the \vocab{fundamental cycle}.
+  We will abbreviate $\fundcyclewithtree{e}$ as $\fundcycle{e}$ if the choice of spanning tree is fixed.
+\end{definition}
+By abuse of notation, we denote by $\fundcyclewithtree{e}$ also the corresponding element in $\HH_1(\Gamma)$ whose coefficient of $e$ is $1$, extending to a linear map $ \fundcyclewithtree{-} : \ZZ^{B^*} \to \HH_1(\Gamma) $.
+
+\begin{theorem}[thm:fundamental_cycle_basis_for_graph_homology]{}
+  Fixing a spanning tree $B \subseteq E$, the map $ \fundcycle{-}: \ZZ^{B^*} \to \HH_1(\Gamma) $ is an isomorphism, whose inverse is given by the composite $ \HH_1(\Gamma) \hookrightarrow \ZZ^E \twoheadrightarrow \ZZ^{B^*} $.
+  \begin{remark}
+    In particular, $\{\fundcycle{x}\}_{x \in B^*}$ forms a basis of $\HH_1(\Gamma)$. Dually, $\{[x]\}_{x \in B^*}$ forms a basis of $\HH^1(\Gamma)$.
+  \end{remark}
+\end{theorem}
+
+Hence, upon picking a spanning tree $B\subseteq E$ along with the basis of $\HH^1(\Gamma)$, the map $\pi:D\rightarrow T$ is simply the projection to the coordinate respect to $B$. We can then pick a section $\sigma_B:T\rightarrow D$ of $\pi$ by simply including into the coordinate of $B$.
+
+Consider the dual of the above discussion, for a spanning cotree (cobasis of the matroid) $B^*\in \binom{E}{d}$, denote by $\fundbondwithtree{e}\subseteq B^*\cup e$ the \vocab{fundamental cocycle} associated with $e\in E\del B^*$.
+
+There is a isomorphism $G^*=\HH^1(\Gamma^*)$ spanned by the bonds of the graph $\Gamma$.
+A choice of $B^*$ similarly induce a basis of $G^*$, where $G^*\simeq (\mathbb{C}^\times )^B$, and the map $\iota^*:D^*\rightarrow G^*$ is projection. Since a choice of $B^*=E\del B$ is a choice of $B$, we denote $\rho_B:$<++>
+
 
 \subsection{GIT}
 \subsection{Stability Condition}
