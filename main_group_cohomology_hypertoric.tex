@@ -2,6 +2,7 @@
 % Add "final" option in the article to remove todo
 \usepackage[tight,common_math_textnormal,todonotes,math_base_note,math_simple]{gatmeo}
 \usepackage{tikz-cd}
+\geometry{paperwidth=6.9in, paperheight=9.2in}
 
 \title{\bf{
 Hypertoric Varieties Arose from Graphs
@@ -186,7 +187,11 @@ Hypertoric Varieties Arose from Graphs
 \newcommand{\Proj}{\textnormal{Proj }}
 \newcommand{\Spec}{\textnormal{Spec }}
 \newcommand{\sstab}{\mathrm{ss}}
+\newcommand{\pstab}{\mathrm{ps}}
 \newcommand{\stab}{\mathrm{s}}
+\newcommand{\Stab}{\textnormal{Stab}}
+\newcommand{\cork}{\textnormal{cork}}
+\newcommand{\Chbar}{\mathbb{C}^\times _\hbar}
 
 \begin{document}
 \maketitle
@@ -364,6 +369,7 @@ A geometric way to understand GIT is by stability.
   Fix $G\subseteq (\mathbb{C}^\times )^n$ and character $\chi$ with linearized line bundle $L_\chi$. $p\in \mathbb{C}^n$ is
   \begin{itemize}
     \item semistable if there are $r>0$, $f\in \HH^0(\mathbb{C}^n,L_\chi^r)^G$ s.t. $f(p)\neq 0$,
+    \item polystable if semistable with $G$-orbits closed in the semistable locus,
     \item stable if semistable and $G_p$ is finite with $G$-orbits closed in $\mathbb{C}^n_f=\CB{p\in \mathbb{C}^n\mid f(p)\neq 0}$.
     \item unstable if not semistable.
   \end{itemize}
@@ -393,17 +399,18 @@ Hypertoric varieties is defined similar to the symplectic reduction construction
   There is a canonical complex symplec form on $T^*\mathbb{C}^n$ by $\omega=\sum_{i}^{}dz_i\wedge dw_i$. Let $X_i\in \mathfrak{d}^n$ be a standard basis,
   \begin{alignat*}{1}
     (\ind{X_i})_z&=\frac{d}{dt}[e^{t_i}z_i,e^{-t_i}w_i]_{t=0}=(z_i\frac{\partial }{\partial z_i},-w_i\frac{\partial }{\partial w_i}),\\
-    \iota_{\ind{X_i}}\omega&= (\sum_{}^{}dz_i\wedge dw_i)(z_i\partial/\partial z_i - w_i\partial/\partial w_i)=\sum z_idw_i + w_idz_i
+    \iota_{\ind{X_i}}\omega&= (\sum_{}^{}dz_i\wedge dw_i)(z_i\partial/\partial z_i - w_i\partial/\partial w_i)=\sum z_idw_i + w_idz_i.
   \end{alignat*}
-  Thus, $\intd{\ind{X_i}}\omega = d(z_idw_i+w_idz_i) = d(z_iw_i)$. Hence $\mu(z_1,w_1,\dots ,z_n,w_n)=\sum_{}^{}z_iw_i$ is a moment map.
+  Thus, $\intd{\ind{X_i}}\omega = d(z_idw_i+w_idz_i) = d(z_iw_i)$, $\mu(z_1,w_1,\dots ,z_n,w_n)=\sum_{}^{}z_iw_i$ is a moment map.
 \end{example}
 
 Given a short exact sequence of complex tori
-\begin{equation*}
+\begin{equation}
+  \label{eq:exact_seq_tori}
     \begin{tikzcd}
         1 \arrow[r] & G \arrow[r, "\iota"] & D \arrow[r, "\pi"] & T \arrow[r] & 1
     \end{tikzcd}
-\end{equation*}
+\end{equation}
 with $ D \cong (\mathbb{C}^\times)^n $, we consider
 \begin{enumerate}
     \item the $G$-action on $T^*\mathbb{C}^n$ by $ g \cdot (z, w) = (\iota(g)_iz_i, \iota(g)_i^{-1}w_i)_{i=1}^n $, and
@@ -480,27 +487,111 @@ Indeed, $\mathcal{A}_\chi$ is the real moment map image in the following sense:
 
 Recall in \Cref{sec:symplectic_reduction_as_git} that we can realize the GIT quotient of complex torus as the symplectic reduction of the real torus. One can alternatively define hypertoric varieties as the hyperkahler quotient of $T^*\mathbb{C}^n$ by $G_\mathbb{R}$ at the value $(\chi,\textnormal{Re }\lambda,\textnormal{Im }\lambda)$, which is naturally diffeomorphic to $\MM_{\chi,\lambda}$.
 
-\subsection{Stability Condition}
+\section{Combinatorial Description}
 
-To check if a point $(z,w)$ is $\chi$-semistable, we need a homogenous function $f$ of degree $\chi$ that does not vanish at $(z,w)$. Note that $f\in \textnormal{Fun}\mu^{-1}(\lambda)$ is affine. Consider monomial $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$, it is homogenous of degree $\iota^*((a_i-b_i))$. Whether $f$ vanishs at $(z,w)$ depends on if $z_i=0$ or $w_i=0$. In particular, if $(z,w)$ is $\chi$-semistable with $f$ being the required function and $z_i=0$ (or $w_i=0$), then $a_i=0$ (or $b_i=0$). Hence we have the following lemma:
+To define a hypertoric variety from the exact sequence of complex tori \ref{eq:exact_seq_tori}, it is important to notice that we need not to choose a basis for $G$ and $T$. The construction of the hypertoric variety depends only on the subspace $\iota(G)$ and quotient space $T=D/\iota(G)$ of $D$.
+In fact, we will see that the topology of the hypertoric variety, such as cohomology ring, depends only on the matroid structure associated with \ref{eq:exact_seq_tori}. 
+
+\missing{What is matroid}
+
+In general for a matroid representable over $\mathbb{Z}$, we can define an exact sequence of tori where $\pi$ and $\iota^*$ are the dual representation and the representation of the matroid respectively. $k$ and $d$ will then be the rank and corank of the matroid.
+
+In particular, we associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ is its dual representation.
+
+\subsection{Graph: Exact Sequence of Tori}
+
+When we study hyperkahler geometry, the two main families are hypertoric varieties and quiver varieties (see \Cref{sec:quiver_variety}). They intersect at the case where we can associated with it a graph, or a quiver. One main reason why we used associate with \ref{eq:exact_seq_tori} where $\pi$ is the dual representation is to ensure the hypertoric variety we get agree with the quiver variety associated with the same graph.
+
+On the other hand, it is difficult to visualize representable matroids besides working out the linear algebra of $\pi$. For those who are not familiar with matroids, it is a good idea to focus on exact sequence of tori arising from graphs, and describe the geometry using graph terminologies. 
+
+By graph, we mean "connected oriented multigraph with loops", consisting of a set of vertices $V$, a set of edges $E$, and functions $h,t:E\rightarrow V$.
+Let $A$ be an abelian group, where $A=\mathbb{C}$ by default, define $ \partial_{\Gamma, A} : A^E \to A^V $ by $ e \mapsto h(e) - t(e) $ for all $ e \in E $, and let $ d_{\Gamma, A} : A^V \to A^E $ be its transpose.
+The graph homology and cohomology of $\Gamma$ with coefficients in $A$ are defined as follows.
+\begin{align*}
+  \HH_0(\Gamma, A) &= \coker(\partial_{\Gamma, A}) & \HH_1(\Gamma, A) &= \ker(\partial_{\Gamma, A}) \\
+  \HH^0(\Gamma, A) &= \ker(d_{\Gamma, A}) & \HH^1(\Gamma, A) &= \coker(d_{\Gamma, A})
+\end{align*}
+
+Notice that if $A$ is a field, $\partial_\Gamma$ is a representation of $\Gamma$, i.e. if we identify $e\in E$ with its basis vector in $A^E$, then $S\subseteq E$ is contained in a spanning tree if and only if $\partial_\Gamma|_{S}$ is injective and $\partial_\Gamma(S)$ is linearly independent. And by matroid theory, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is a dual representation (replace spanning tree with spanning cotree in the above definition) of $\Gamma$.
+
+The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. In fact, $\HH_1(\Gamma)$ is generated by cycles.
+Similarly, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
+Since $\pi$ is a dual representation of $\Gamma$, we can identify $\ker(\pi)$ as $\HH_1(\Gamma^*)$ by canonically identifying edges in $\Gamma$ and $\Gamma^*$, generated by bonds, or cocycles.
+
+For $A=\mathbb{C}^\times $, we have the following shot exact sequence
+\begin{equation}
+  \label{eq:exact_sequence_tori_graph}
+    \begin{tikzcd}
+      1 \arrow[r] & \HH_1(\Gamma^*,\mathbb{C}^\times ) \arrow[r, "\iota_\Gamma"] & (\mathbb{C}^\times)^E \arrow[r, "\pi_\Gamma"] & \HH^1(\Gamma, \mathbb{C}^\times) \arrow[r] & 1
+    \end{tikzcd},
+\end{equation}
+denote by $G_\Gamma,D_\Gamma,T_\Gamma$ respectively. This allow us to define a hypertoric variety $\MM_{\chi,\lambda}(\Gamma)$. We will drop $\Gamma$ when the context is clear. 
+
+There is a canonical isomorphism $\HH_0(\Gamma, A) \cong \HH^0(\Gamma, A) \cong A^{\pi_0(\Gamma)=1} $, where $\pi_0(\Gamma)=1$ is the set of connected components of $\Gamma$, and a noncanonical isomorphism $ \HH_1(\Gamma, A) \cong \HH^1(\Gamma, A) \cong A^{g(\Gamma)} $, where $g(\Gamma)=|E|-|V|+1$ is the genus of $\Gamma$.
+
+Let $k,n,$ and $d$ be the rank of $G_\Gamma,D_\Gamma,$ and $T_\Gamma$ respectively. We have $k=|V|-1$ and $d=|E|-|V|+1$, which equals to the cardinality of a spanning tree and spanning cotree respectively. 
+
+
+\section{Stability Condition}
+
+To check if a point $(z,w)$ is $\chi$-semistable, we need a homogenous function $f$ of degree $\chi$ that does not vanish at $(z,w)$. Note that $f\in \textnormal{Fun}\mu^{-1}(\lambda)$ is affine. Consider monomial $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$ where $a_i,b_i\in \mathbb{N}$, it is homogenous of degree $\iota^*((a_i-b_i)_i)$. Whether $f$ vanishs at $(z,w)$ depends on if $z_i=0$ or $w_i=0$. In particular, if $(z,w)$ is $\chi$-semistable with $f$ being the required function and $z_i=0$ (or $w_i=0$), then $a_i=0$ (or $b_i=0$). Hence we have the following lemma:
 
 \begin{lemma}[lem:stability_condition]{}
-  $(z,w)\in \mu^{-1}(\lambda)$ is $\chi$-semistable iff $\chi\in \sum_{}^{}\mathbb{R}_{\geq 0}|z_i|^2\iota^{*}(u_i)-\sum_{}^{}\mathbb{R}_{\geq 0}|w_i|^2\iota^{*}(u_i)$. Here we treat $\chi$ as an element in $\mathfrak{g}^*_{\mathbb{Z}}$ and $u_i$ the basis vector of $\mathfrak{d}^*$.
+  $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\sstab}$  iff $\chi\in \mathbb{R}_{\geq 0}\AB{\iota^{*}(e_i)\mid z_i\neq 0}+\sum_{}^{}\mathbb{R}_{\leq 0}\AB{\iota^{*}(e_i)\mid w_i\neq 0}$. Here we treat $\chi$ as an element in $\mathfrak{g}^*_{\mathbb{Z}}$ and $e_i$ the basis vector of $\mathfrak{d}^*$.
 \end{lemma}
 
-\section{Combinatorial Description}
+Furthermore, we have the following for polystable and stable points.
+
+\begin{proposition}[pps:]{}
+  $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\pstab}$  iff $\chi\in \mathbb{R}_{> 0}\AB{\iota^{*}(e_i)\mid z_i\neq 0}+\sum_{}^{}\mathbb{R}_{< 0}\AB{\iota^{*}(e_i)\mid w_i\neq 0}$.
+  \begin{proof}
+    See Konno, 2008, Lemma 3.4(2).
+  \end{proof}
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+  $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\stab}$ iff $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\pstab}$ and $\CB{i\in [n]\mid z_i=w_i=0}$ is coindependent.
+  \begin{proof}
+    In the case of GIT quotient by complex torus, finite stablelizer means $\dim(\Stab_G)=0$. Let $I=\CB{i\in [n] \mid z_i=w_i=0}$, $\Stab_G(z,w)=\iota^{-1}((\mathbb{C}^\times )^I)$. Since $G=\ker(\pi:D\rightarrow T)$, $\dim\Stab_G(z,w)=|I|-\cork(I)=0$ iff $\cork(I)=|I|$.
+  \end{proof}
+\end{proposition}
+
+A pair of parameters $(\chi,\lambda)\in \mathfrak{g}^*_{\mathbb{Z}}\times \mathfrak{g}^*$ is called generic if $\mu^{-1}(\lambda)^{\chi-\sstab}=\mu^{-1}(\lambda)^{\chi-\stab}$. We call $\chi$ generic if $(\chi,\lambda)$ is for all $\lambda$, and $\lambda$ is generic if $(\chi,\lambda)$ is for all $\chi$. We have the following:
+
+\begin{proposition}[pps:]{}
+  $(\chi,\lambda)$ is generic iff $(\chi,\lambda)\notin \iota^{-1}((\mathbb{Z}\times \mathbb{C})^S)^\perp=\iota^*((\mathbb{Z}\times \mathbb{C})^{E\del S})$ for all bond $S$.
+  \begin{proof}
+    ($\Rightarrow $) Suppose $\chi=\sum_{i\notin S}^{}(a_i-b_i)\iota^*(e_i)$ and $\lambda=\sum_{i\notin S}c_i\iota^*(e_i)$ for some bond $S$, $a_i,b_i\in \mathbb{N}$, and $c_i\in \mathbb{C}$. Define $(z_i,w_i)=(c_i,1)$ for $i\notin S$ and $(0,0)$ for $i\in S$. Then $(z,w)\in \mu^{-1}(\lambda)^{\chi-\sstab}\del\mu^{-1}(\lambda)^{\chi-\stab}$.
+
+    ($\Leftarrow $) Let $(z,w)\in \mu^{-1}(\lambda)^{\chi-\sstab}$, i.e. there exist non fanishing $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$ where $a_i,b_i\in \mathbb{N}$ such that $\chi=\sum_{z_i\neq 0}^{}a_i\iota^*(e_i)-\sum_{w_i\neq 0}^{}b_i\iota^*(e_i)$ and $\lambda=\sum_{}^{}z_i,w_i\iota^*(e_i)$. By assumption, if $\chi\in \iota^*((\mathbb{Z}\times \mathbb{C})^{E\del S})$ for some $S$, then $S$ is coindependent, i.e. 
+    \[
+      \CB{i\in E\mid z_i=w_i=0\textnormal{ or }(z_i\neq 0,w_i=0,a_i=0)\textnormal{ or }(z_i=0,w_i\neq 0,b_i=0)}
+    \]
+    is coindependent.
+    \missing{We can alter a representation of $\chi$}
+  \end{proof}
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+  $\mu^{-1}(\lambda)^{\chi-\sstab}=\mu^{-1}(\lambda)$ for all $\chi\in \mathfrak{g}^*_{\mathbb{Z}}$ iff $\lambda\notin \iota^{-1}(\mathbb{C}^S)^\perp=\iota^*(\mathbb{C}^{E-S})$ for all bond $S$.
+  \begin{proof}
+    ($\Rightarrow $) Suppose $\lambda=\sum_{i\notin S}^{}c_i\iota^*(e_i)$ for some bond $S$. Let $\chi\in (\mathfrak{^*}_\mathbb{R}\setminus \iota^*(\mathbb{R}^{E\del B})) \cap \mathfrak{g}^*_\mathbb{Z}$. Define $(z_i,w_i)=(c_i,1)$ for $i\notin S$, $(0,0)$ for $i\in S$. Then $(z,w)\in \mu^{-1}(\lambda)\setminus \mu^{-1}(\lambda)^{\chi-\sstab}$.
+
+    ($\Leftarrow $) Let $(z,w)\in \mu^{-1}(\lambda)$, i.e. $\lambda=\sum_{}^{}z_iw_i\iota^*(e_i)$. By assumption, $S=\CB{i\in E\mid z_iw_i\neq 0}$ is of full rank, i.e. $S$ contains a spanning tree. $\CB{i\in E\mid z_i=w_i=0}\subseteq E\del S\subseteq E\del T$ is coindependent.
+    \missing{double checki}
+  \end{proof}
+\end{proposition}
 
 \subsection{Hyperplane Arrangement: Stability Condition}
 
-The $\mathbb{R}_{\geq 0}$ condition in the stability condition is best describe using half planes of hyperplane arrangement.
-\missing{When $\lambda\neq 0$ is generic, all points are semistable.}
+There is a pictorial way to describe the $\mathbb{R}_{\geq 0}$ condition in the stability condition using half planes of hyperplane arrangement.
 For $\lambda=0$, we often encode the data of the exact sequence of tori and $\chi$ in the hyperplane arrangement. 
 
 Consider the affine subspace $ (\iota_{\mathbb{R}}^*)^{-1}(\chi) = \{ x \in \mathfrak{d}_{\mathbb{R}}^* \mid \iota^*(x) = \chi \} $, the $i$-th coordinate hyperplane $H_i$ in $\mathfrak{d}_\mathbb{R}^*$ intersect $(\iota_{\mathbb{R}}^*)^{-1}(\chi)$ giving a hyperplane arrangement. There is a natural notion of half planes 
 \[
-H_i^+=\CB{x\in \mathfrak{d}^*_\mathbb{R}\mid \AB{x,u_i}=x_i\geq 0}
+H_i^+=\CB{x\in \mathfrak{d}^*_\mathbb{R}\mid \AB{x,e_i}=x_i\geq 0}
 \textnormal{ and }
-H_i^-=\CB{x\in \mathfrak{d}^*_\mathbb{R}\mid \AB{x,u_i}=x_i\leq 0}.
+H_i^-=\CB{x\in \mathfrak{d}^*_\mathbb{R}\mid \AB{x,e_i}=x_i\leq 0}.
 \]
 \Cref{lem:stability_condition} translates to the following:
 
@@ -528,18 +619,21 @@ The graph homology and cohomology of $\Gamma$ with coefficients in $A$ are defin
   \HH_0(\Gamma, A) &= \coker(\partial_{\Gamma, A}) & \HH_1(\Gamma, A) &= \ker(\partial_{\Gamma, A}) \\
   \HH^0(\Gamma, A) &= \ker(d_{\Gamma, A}) & \HH^1(\Gamma, A) &= \coker(d_{\Gamma, A})
 \end{align*}
+
 Notice that if $A$ is a field, $\partial_\Gamma$ is a representation of $\Gamma$, i.e. if we identify $e\in E$ with its basis vector in $A^E$, then $S\subseteq E$ is contained in a spanning tree if and only if $\partial_\Gamma|_{S}$ is injective and $\partial_\Gamma(S)$ is linearly independent. And by matroid theory, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is a dual representation (replace spanning tree with spanning cotree in the above definition) of $\Gamma$.
 
-The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. On the other hand, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
+The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. In fact, $\HH_1(\Gamma)$ is generated by cycles.
+Similarly, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
+Since $\pi$ is a dual representation of $\Gamma$, we can identify $\ker(\pi)$ as $\HH_1(\Gamma^*)$ by canonically identifying edges in $\Gamma$ and $\Gamma^*$, generated by bonds, or cocycles.
 
 For $A=\mathbb{C}^\times $, we have the following shot exact sequence
 \begin{equation}
   \label{eq:exact_sequence_tori_graph}
     \begin{tikzcd}
-        1 \arrow[r] & \im(d_{\Gamma, \mathbb{C}^\times}) \arrow[r, "\iota_\Gamma"] & (\mathbb{C}^\times)^E \arrow[r, "\pi_\Gamma"] & \HH^1(\Gamma, \mathbb{C}^\times) \arrow[r] & 1
+      1 \arrow[r] & \HH_1(\Gamma^*,\mathbb{C}^\times ) \arrow[r, "\iota_\Gamma"] & (\mathbb{C}^\times)^E \arrow[r, "\pi_\Gamma"] & \HH^1(\Gamma, \mathbb{C}^\times) \arrow[r] & 1
     \end{tikzcd},
 \end{equation}
-denote by $G_\Gamma,D_\Gamma,T_\Gamma$ respectively, allowing us to define a hypertoric variety $\MM_{\chi,\lambda}(\Gamma)$. We will drop $\Gamma$ when the context is clear. 
+denote by $G_\Gamma,D_\Gamma,T_\Gamma$ respectively. This allow us to define a hypertoric variety $\MM_{\chi,\lambda}(\Gamma)$. We will drop $\Gamma$ when the context is clear. 
 
 There is a canonical isomorphism $\HH_0(\Gamma, A) \cong \HH^0(\Gamma, A) \cong A^{\pi_0(\Gamma)=1} $, where $\pi_0(\Gamma)=1$ is the set of connected components of $\Gamma$, and a noncanonical isomorphism $ \HH_1(\Gamma, A) \cong \HH^1(\Gamma, A) \cong A^{g(\Gamma)} $, where $g(\Gamma)=|E|-|V|+1$ is the genus of $\Gamma$.
 
@@ -549,27 +643,122 @@ In general for a matroid representable over $\mathbb{Z}$, we can define an exact
 
 \subsection{Tree: Fix Point}
 
-The definition of \Cref{eq:exact_sequence_tori_graph} does not depend on a choice of basis of $\im(d_{\Gamma,\mathbb{C}^\times })$ and $\HH^1(\Gamma,\mathbb{C}^\times )$. However, fixing bases allows us to describe a split of the exact sequence, and hence the $T$-fix points.
+The definition of \Cref{eq:exact_sequence_tori_graph} does not depend on a choice of basis of $\HH_1(\Gamma^*,\mathbb{C}^\times )$ and $\HH^1(\Gamma,\mathbb{C}^\times )$. However, fixing bases allows us to describe a split of the exact sequence, and hence the $T$-fix points.
 
 \begin{definition}[def:]{}
   Pick a spanning tree (basis of the matroid) $B\in \binom{E}{k}$, any edge $e\in E\del B=:B^*$, the corresponding spanning cotree (cobasis), determines a unique cycle $\fundcyclewithtree{e}\subseteq B\cup e$ that contains $e$, called the \vocab{fundamental cycle}.
   We will abbreviate $\fundcyclewithtree{e}$ as $\fundcycle{e}$ if the choice of spanning tree is fixed.
 \end{definition}
-By abuse of notation, we denote by $\fundcyclewithtree{e}$ also the corresponding element in $\HH_1(\Gamma)$ whose coefficient of $e$ is $1$, extending to a linear map $ \fundcyclewithtree{-} : \ZZ^{B^*} \to \HH_1(\Gamma) $.
+By abuse of notation, we denote by $\fundcyclewithtree{e}$ also the corresponding element in $\HH_1(\Gamma)$ whose coefficient of $e$ is $1$, extending to a linear map $ \fundcyclewithtree{-} : \ZZ^{B^*} \to \HH_1(\Gamma) $. 
 
 \begin{theorem}[thm:fundamental_cycle_basis_for_graph_homology]{}
-  Fixing a spanning tree $B \subseteq E$, the map $ \fundcycle{-}: \ZZ^{B^*} \to \HH_1(\Gamma) $ is an isomorphism, whose inverse is given by the composite $ \HH_1(\Gamma) \hookrightarrow \ZZ^E \twoheadrightarrow \ZZ^{B^*} $.
+  Fixing a spanning tree $B \subseteq E$, the map $ \fundcycle{-}: \ZZ^{B^*} \to \HH_1(\Gamma) $ is an isomorphism, whose inverse is given by the composite $ \HH_1(\Gamma) \hookrightarrow \ZZ^E \twoheadrightarrow \ZZ^{B^*} $. 
+  In particular, $\{\fundcycle{x}\}_{x \in B^*}$ forms a basis of $\HH_1(\Gamma)$. Dually, $\{[x]\}_{x \in B^*}$ forms a basis of $\HH^1(\Gamma)$. 
   \begin{remark}
-    In particular, $\{\fundcycle{x}\}_{x \in B^*}$ forms a basis of $\HH_1(\Gamma)$. Dually, $\{[x]\}_{x \in B^*}$ forms a basis of $\HH^1(\Gamma)$.
+    If one define matroid with a representation $\pi:\mathfrak{d}_\mathbb{Z}\rightarrow \mathfrak{t}_\mathbb{Z}$, this theorem should be treated as the definition of basis for the matroid: $B$ is a basis iff $\pi|_{B^*}$ is an isomorphism.
   \end{remark}
 \end{theorem}
 
-Hence, upon picking a spanning tree $B\subseteq E$ along with the basis of $\HH^1(\Gamma)$, the map $\pi:D\rightarrow T$ is simply the projection to the coordinate respect to $B$. We can then pick a section $\sigma_B:T\rightarrow D$ of $\pi$ by simply including into the coordinate of $B$.
+Hence, picking a spanning tree $B\subseteq E$ induces an isomorphism $\mathfrak{t}_\mathbb{Z}=\HH^1(\Gamma) \xrightarrow[]{\sim }\mathbb{Z}^{B^*}$, we can then extend $\pi$ to $\pi_B:\mathfrak{d}_\mathbb{Z}=\mathbb{Z}^E\xrightarrow[]{\pi} \mathfrak{t}_\mathbb{Z}\rightarrow \mathbb{Z}^{B^*}$, which is simply the projection to the coordinate respect to $B$. Define $\sigma_B:\mathfrak{t}_\mathbb{Z}\rightarrow \mathbb{Z}^{B^*}\rightarrow \mathfrak{d}_\mathbb{Z}$ as a section of $\pi$ induced by $B$, where the second map is the trivial section of $\pi_B$.
+More precisely, if we treat $\fundcycle{x}\in \HH_1(\Gamma)$ as a character of $T=\HH^1(\Gamma,\mathbb{C}^\times )$, $\sigma_B:T\rightarrow D|_{B^*}\hookrightarrow D$ sends $t$ to $\fundcycle{x}(t)\in \mathbb{C}^\times $ at coordinate ${x\in B^*}$ and $1$ on others. And hence a map $\sigma_B^*:\mathfrak{d}^*\rightarrow \mathfrak{t}^*$ as $\alpha\mapsto \sum_{e\in B^*}^{}\alpha_e\fundcyclewithtree{e}$.
 
-Consider the dual of the above discussion, for a spanning cotree (cobasis of the matroid) $B^*\in \binom{E}{d}$, denote by $\fundbondwithtree{e}\subseteq B^*\cup e$ the \vocab{fundamental cocycle} associated with $e\in E\del B^*$.
+Consider the dual of the above discussion, for a spanning cotree (cobasis of the matroid) $B^*\in \binom{E}{d}$, denote by $\fundbondwithtree{e}\subseteq B^*\cup e$ the \vocab{fundamental cocycle}, associated with $e\in E\del B^*$.
+A choice of $B^*$, equivalently a choice of $B$, similarly induce an isomorphism $\mathfrak{g}_\mathbb{Z}^*=\HH^1(\Gamma^*)\simeq \mathbb{Z}^B$, and the map $\iota^*_B:\mathfrak{d}_\mathbb{Z}^*=\mathbb{Z}^E\rightarrow \mathfrak{g}^*_\mathbb{Z}\rightarrow \mathbb{Z}^B$ is the projection. Define $\rho_B^*:\mathfrak{g}_\mathbb{Z}^*\rightarrow \mathbb{Z}^{B}\rightarrow \mathfrak{d}^*_\mathbb{Z}$ as the section of $\iota^*_B$ induced by $B^*$. This gives a torus map $\rho_B:D\rightarrow G$ given by $d\mapsto \prod_{e\in B}^{}\fundbondwithtree{e}(d_e)$.
 
-There is a isomorphism $G^*=\HH^1(\Gamma^*)$ spanned by the bonds of the graph $\Gamma$.
-A choice of $B^*$ similarly induce a basis of $G^*$, where $G^*\simeq (\mathbb{C}^\times )^B$, and the map $\iota^*:D^*\rightarrow G^*$ is projection. Since a choice of $B^*=E\del B$ is a choice of $B$, we denote $\rho_B:$<++>
+Hence picking a spanning tree $B\subseteq E$, equivalently a spanning cotree $B^*$, we have the following:
+\begin{equation*}
+    \begin{tikzcd}
+      \mathbb{Z}^B\simeq \HH_1(\Gamma^*) \arrow[r, "\iota", yshift=0.3em] & \arrow[l, "\rho_B", yshift=-0.3em]\mathbb{Z}^E \arrow[r, "\pi", yshift=0.3em] & \arrow[l, "\sigma_B", yshift=-0.3em] \HH^1(\Gamma)\simeq \mathbb{Z}^{B^*}\\
+      \mathbb{Z}^B\simeq \HH^1(\Gamma^*) \arrow[r, "\rho^*_B"', yshift=-0.3em] & \arrow[l, "\iota^*"', yshift=+0.3em]\mathbb{Z}^E \arrow[r, "\sigma_B^*"', yshift=-0.3em] & \arrow[l, "\pi^*"', yshift=0.3em] \HH_1(\Gamma)\simeq \mathbb{Z}^{B^*}.
+    \end{tikzcd}
+\end{equation*}
+
+\begin{remark}
+  By the short exactness of the sequence, $\pi^*(\mathfrak{t}^*)=\iota(\mathfrak{g})^\perp $. Hence $\iota(\fundbondwithtree{e})_f+\pi^*(\fundcyclewithtree,f)_e=0$. In coordinate, the basis for $\HH_1(\Gamma)$ induced by $B$ gives us a matrix representation of $\pi^*$, with the $d\times d$ submatrix on the row labelled by $B^*$ is identity. The $x\in B^*$ column is precisely $\fundcyclewithtree{x}$. Write matrix $\pi^*_B=(I_{B^*}|M)$. The same choice of $B$ gives us a matrix representation $\iota^*_B$, and by the short exactness, $\iota^*_B=(-M^T|I_B)$.
+\end{remark}
+
+\begin{proposition}[pps:]{}
+  $\sigma_B$ gives the coordinate of $B^*$ and $\rho_B$ gives the coordinate of $B$ in $D$. In particular,
+  \[
+    d=\sigma_B(\pi(d))\iota(\rho_B(d))\ \forall\ d\in D.
+  \]
+\end{proposition}
+
+\subsubsection{Fix Point}
+
+For $B\subseteq \binom{E}{k}$ a spanning tree, we partition $B$ by whether the coefficient of $\chi\in \mathfrak{g}_\mathbb{Z}^*$ is positive or not with respect to the basis induced by $B$. Define 
+\[
+B_+=\CB{e\in B\mid \rho^*_B(\chi)_e>0}
+\textnormal{ and }
+B_-=\CB{e\in E\mid \rho^*_B(\chi)_e<0}.
+\]
+We regard points in $\MM_{\chi,\lambda}$ as $G$-equivalent classes in $T^*\mathbb{C}^n$. 
+Define $p_B:=[z_B,w_B]\in \MM_{\chi,\lambda}$ by 
+\[
+  (z_B,w_B)_e=\begin{cases}
+    (1,\rho_B^*(\lambda)_e) & e\in B_+\\
+    (\rho_B^*(\lambda)_e,1) & e\in B_-\\
+    (0,0) & e\notin  B.
+  \end{cases}
+\]
+\begin{proposition}[pps:]{}
+  $p_B$ is a $T\times\Chbar$ fixed point.
+  \begin{proof}
+    $d\cdot (z_B,w_B)=\sigma_B(\pi(d))\iota(\rho_B(d))\cdot (z_B,w_B)$. Since the coordinate of $p_B$ in $B$ is $0$, $\sigma_B$ acts trivially. Hence $d\cdot (z_B,w_B)=\rho_B(z_B,w_B)$ is fixed by $T$.
+
+    For $\kappa\in \Chbar$, $\kappa(z_B,w_B,\lambda)=\rho_B(\kappa_{i\in B_-},1\textnormal{ else })^{-1}(z_B,w_B,\kappa\lambda))$.
+  \end{proof}
+\end{proposition}
+
+Define $U_I:=\CB{[z,w]\in \MM_{\chi,\lambda}\mid z_i\neq 0\ \forall\ i\in I_+, w_j\neq 0\ \forall\ j\in I_-}$.
+Note that $U_I=N_{I_+\cup I^c,I_-\cup I^c}$ when $\lambda=0$.
+
+\begin{proposition}[pps:]{}
+  $\CB{U_B}_{B \textnormal{basis}}$ forms an open cover of $\MM_{\chi,\lambda}$.
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+  $U_B\simeq T^*\mathbb{C}^{B^*}$.
+  \begin{proof}
+    $U_B\rightarrow T^*\mathbb{C}^{B^*}$, $[z,w]\mapsto (\iota(g)_ez_e,\iota^{-1}(g)_ew_i)_{e\in B^*}$, where 
+  \end{proof}
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+  The induced $T\times \Chbar$ action on $T^*\mathbb{C}^{B^*}$ has weights 
+  \[
+    \left(
+      \fundcyclewithtree{e}-\sum_{f\in B_-}^{}\pi^*(\fundcyclewithtree{e})_f\hbar,\qquad 
+    -\fundcyclewithtree{e}+(1+\sum_{f\in B_-}^{}\pi^*(\fundcyclewithtree{e})_f)\hbar
+  \right)_{e\in B^*}.
+  \]
+\end{proposition}
+
+<++>
+
+\subsection{Subvarieties Defined by Polyhedrons}
+
+Let $P\subseteq \iota^{-1}_\mathbb{R}(\chi)$ be a non-empty polyhedron. Define
+\[
+  I=\CB{i\in E\mid P\subseteq H_i^+}
+  \textnormal{ and }
+  J=\CB{j\in E\mid P\subseteq H_j^-}.
+\]
+Note that $I\cup J=E$ and $\dim P=d-|I\cap J|=2d-(|I|+|J|-k)$.
+Define $X_{I,J}=\{[z,w]\in \MM_{\chi,0}\mid w_i=0\ \forall\ i\in I, z_j=0\ \forall\ j\in J\}$ and
+\[
+  N_{I,J}=\CB{[z,w]\in \MM_{\chi,0}\mid \bigcap_{z_i=0}H_i^-\cap \bigcap_{w_j=0}H_j^+\cap P\neq 0}.
+\]
+\begin{proposition}[pps:]{}
+  $X_{I,J}$ is the toric variety defined by $P$, and $N_{I,J}\rightarrow X_{I,J}$ is a $T\times \Chbar$ vector bundle of rank $|I|+|J|-k$.
+\end{proposition}
+
+\begin{theorem}[thm:]{}
+  $N_{I,J}\rightarrow X_{I,J}$ is isomorphic to the normal bundle of $X_{I,J}$ in $\chi_{\chi,0}$ as a $T\times \Chbar$ vector bundle over $X_{I,J}$.
+\end{theorem}
+
+
+
 
 
 \subsection{GIT}
@@ -587,6 +776,7 @@ How $\theta$ effects the splitting of $S^+$
 \subsection{Steinberg Varieties}
 
 \section{Comparing Stability Condition with Quiver Varieties}
+\label{sec:quiver_variety}
 \section{Arxiv}
 
 \begin{example}{$\mathbb{T}^n \acton T^*\mathbb{C}^{n+1}$}
