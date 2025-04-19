@@ -10,6 +10,9 @@ Hypertoric Varieties Arose from Graphs
 
 \newcommand{\noskipline}{\vspace{-1.5em}}
 
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\BB}{\mathcal{B}}
+
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\phi}{\varphi}
 \newcommand{\NN}{\mathbb{N}}
@@ -220,7 +223,7 @@ If $G$ is abelian, then any shift $\mu+\alpha$, $\alpha\in\mathfrak{g}^*$, is al
         (\ind{X_i})_z &= \frac{d}{dt} [e^{2\pi it} z_i]_{t=0}
         = \frac{d}{dt} [(\cos(2\pi t) x_i - \sin(2\pi t) y_i,\sin(2\pi t)x_i + \cos(2\pi t)y_i)]_{t=0} \\
         &= (0, \dots, -2\pi y_i, \dots, 0, 0, \dots, 2\pi x_i, \dots, 0) = -2\pi y_i \left.\frac{\partial}{\partial x_i}\right|_z + 2\pi x_i \left.\frac{\partial}{\partial y_i}\right|_z.\\
-        \intd{\ind{X_i}}\omega_\mathbb{R} &= \biggl(\sum_j dx_j \wedge dy_j\biggr)\left(-2\pi y_i \frac{\partial}{\partial x_i} + 2\pi x_i \frac{\partial}{\partial y_i}\right) = 
+        \intd{\ind{X_i}}\omega_\mathbb{R} &= \biggl(\sum_j dx_j \wedge dy_j\biggr)\left(-2\pi y_i \frac{\partial}{\partial x_i} + 2\pi x_i \frac{\partial}{\partial y_i}\right)
         = -2\pi (x_i \, dx_i + y_i \, dy_i).
     \end{align*}
     Thus, $\intd{\ind{X_i}}\omega_\mathbb{R} = d(-\pi(x_i^2 + y_i^2)) = d(-\pi|z_i|^2)$. Note that $X_i : (\mathfrak{t}^n)^* \to \mathbb{R}$ is regarded as the $i$th coordinate map. It follows that $\mu(z_1, \dots, z_n) = (-\pi|z_1|^2, \dots, -\pi|z_n|^2)$ is a choice of moment map.
@@ -492,15 +495,36 @@ Recall in \Cref{sec:symplectic_reduction_as_git} that we can realize the GIT quo
 To define a hypertoric variety from the exact sequence of complex tori \ref{eq:exact_seq_tori}, it is important to notice that we need not to choose a basis for $G$ and $T$. The construction of the hypertoric variety depends only on the subspace $\iota(G)$ and quotient space $T=D/\iota(G)$ of $D$.
 In fact, we will see that the topology of the hypertoric variety, such as cohomology ring, depends only on the matroid structure associated with \ref{eq:exact_seq_tori}. 
 
-\missing{What is matroid}
+\subsection{Matroids}
 
-In general for a matroid representable over $\mathbb{Z}$, we can define an exact sequence of tori where $\pi$ and $\iota^*$ are the dual representation and the representation of the matroid respectively. $k$ and $d$ will then be the rank and corank of the matroid.
+Matroid has multiple equivalent definitions. One of them uses the basis axiom. 
+\begin{definition}[def:]{}
+  A \vocab{matroid} $M$ is an ordered pair $(E,\BB)$ consisting of a finite set $E$ and a collection $\BB$ of subsets of $E$ having the following properties:
+  \begin{enumerate}
+    \item [B1.] $\BB$ is nonempty.
+    \item [B2.] Let $A$ and $B$ be distinct elements in $\BB$. If $a\in A\del B$, then there exists an element $b\in B\del A$ such that both $(A\del a)\cup b$ and $(B\del b)\cup a$ are in $\BB$.
+  \end{enumerate}
+\end{definition}
+Elements in $\BB$ are called \vocab{bases}, which all have the same cardinality by $B2$. Elements in $\II=\CB{I\mid I\subseteq B\in \BB}$ are called independent sets, and the minimal elements in $2^E\del \II$ are called \vocab{circuits}. The rank of $S\subseteq E$ is defined to be $\max\CB{|I|\mid I\subseteq S\textnormal{ and }I\in \II}$, and we call $\rank(E)$ to be the \vocab{rank} of the matroid, which equals to the the cardinality of a basis. 
+
+One nice feature of matroid is duality. Let $n=|E|$, $k$ be the rank of the matroid, and $\BB\subseteq \binom{E}{k}$ be the bases. We define the dual matroid $M^*$ as the pair $(E,\BB^*)$ with $\BB^*:=\CB{B^*:=E\del B\mid B\in \BB}\subseteq \binom{E}{d}$ where $d=n-k$. One can check that the dual matroid is a matroid.
+
+Matroids capture the essence of linear independence. For example, given a set of vectors, and define $\BB$ to be the set bases of the vector space spanned by the vectors. One can easily check that $\BB$ satisfies the axiom of matroids. Graphs, which we will introduce next section, are also example of matroids.
+
+We will focus on representable matroids, or even regular matroids, i.e. matroids representable over every field.
+Let $F$ be a field and $T$ be a $F$-vector space, a representation of $M$ over $F$ is a $F$-linear map $f:E\rightarrow T$ such that $B\in \BB$ if and only if $f|_B$ is injective and $f(B)$ is linearly independent.
+
+Let $G$ be the kernel of $f:D:=F^E\rightarrow T$, i.e. we have a short exact sequence $0\rightarrow G\xrightarrow[]{g} D\xrightarrow[]{f} T\rightarrow 0$, one can show that for the dual exact sequence $0\rightarrow T^*\xrightarrow[]{f^*}D^*\xrightarrow[]{g^*}G^*\rightarrow 0$, $g^*$ is a representation of $M^*$ over $F$.
+In fact, consider $f:F^E\rightarrow V$, after RREF and some proper rearrangement of $E$, $f$ has a representation $[Id_k\mid K]$ for some matrix $K\in \textnormal{Mat}_{k\times (n-k)}$. The map $g^*$ has a representation of $[-K^T\mid Id_{n-k}]$, which can be easily check to be a representation of $M^*$ over $F$.
+
+In general for a matroid representable over $\mathbb{R}$ with integral representation, we can define an exact sequence of tori \ref{eq:exact_seq_tori} where $\pi:D\rightarrow T$ and $\iota^*:D^*\rightarrow G^*$ are the \emph{dual representation} and the \emph{representation} of the matroid respectively. And vice versa. It is important to use the convention that the exact sequence we start with describe the dual representation of the matroid.
+So $k=\dim(G)$ and $d=\dim(T)$ will then be the rank and corank of the matroid respectively. 
 
 In particular, we associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ is its dual representation.
 
 \subsection{Graph: Exact Sequence of Tori}
 
-When we study hyperkahler geometry, the two main families are hypertoric varieties and quiver varieties (see \Cref{sec:quiver_variety}). They intersect at the case where we can associated with it a graph, or a quiver. One main reason why we used associate with \ref{eq:exact_seq_tori} where $\pi$ is the dual representation is to ensure the hypertoric variety we get agree with the quiver variety associated with the same graph.
+When we study hyperkahler geometry, the two main families are hypertoric varieties and quiver varieties (see \Cref{sec:quiver_variety}). They intersect at the case where we can associated with it a graph, or a quiver. One main reason why we used associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ is the dual representation is to ensure the hypertoric variety we get agree with the quiver variety associated with the same graph.
 
 On the other hand, it is difficult to visualize representable matroids besides working out the linear algebra of $\pi$. For those who are not familiar with matroids, it is a good idea to focus on exact sequence of tori arising from graphs, and describe the geometry using graph terminologies. 
 
@@ -512,11 +536,11 @@ The graph homology and cohomology of $\Gamma$ with coefficients in $A$ are defin
   \HH^0(\Gamma, A) &= \ker(d_{\Gamma, A}) & \HH^1(\Gamma, A) &= \coker(d_{\Gamma, A})
 \end{align*}
 
-Notice that if $A$ is a field, $\partial_\Gamma$ is a representation of $\Gamma$, i.e. if we identify $e\in E$ with its basis vector in $A^E$, then $S\subseteq E$ is contained in a spanning tree if and only if $\partial_\Gamma|_{S}$ is injective and $\partial_\Gamma(S)$ is linearly independent. And by matroid theory, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is a dual representation (replace spanning tree with spanning cotree in the above definition) of $\Gamma$.
+Let $\BB=\CB{B\subseteq E\mid B\textnormal{ is a spanning tree }}$, then $(E,\BB)$ is the matroid associated with $\Gamma$. If $A$ is a field, then $\partial_\Gamma$ is a representation of $\Gamma$. As discussed in the previous section, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is then a dual representation of $\Gamma$, or the representation of the dual graph. The dual graph $\Gamma^*$ of a planer graph $\Gamma$ is a graph that has a vertex for each face of $\Gamma$ and has an edge for each pair of faces in $\Gamma$ that are seperated from each other by an edge. The orientation of the edges in the dual grpah can be determined by the right hand rule upon fixing a global orientation.
 
-The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. In fact, $\HH_1(\Gamma)$ is generated by cycles.
+Cycles in $\Gamma$ are precisely the circuits of the graphic matroid. The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. In fact, $\HH_1(\Gamma)$ is generated by cycles.
 Similarly, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
-Since $\pi$ is a dual representation of $\Gamma$, we can identify $\ker(\pi)$ as $\HH_1(\Gamma^*)$ by canonically identifying edges in $\Gamma$ and $\Gamma^*$, generated by bonds, or cocycles.
+Since $\pi$ is a dual representation of $\Gamma$, we can identify $\ker(\pi)$ as $\HH_1(\Gamma^*)$ by canonically identifying edges in $\Gamma$ and $\Gamma^*$, generated by cycles of $\Gamma^*$. Cycles of $\Gamma^*$ are sometime called cocycles of $\Gamma$, which are precisely the bonds of $\Gamma$, i.e. minimal sets of edges that uppon removal increase the number of connected components of $\Gamma$.
 
 For $A=\mathbb{C}^\times $, we have the following shot exact sequence
 \begin{equation}
@@ -608,38 +632,7 @@ Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$,
 \end{equation*}
 Different choices of lifts give the same hyperplane arrangement up to translations.
 
-\subsection{Graph: Exact Sequence of Tori}
-
-The topology of hypertoric variety depends only on the exact sequence of tori given that $\chi$ and $\lambda$ are generic. To be more precise, knowing the matroid assocated to the map $\pi$ is suffice to describe the cohomology ring and many more about the variety. To help visualize the matroid structure, in this paper, we will only focus on exact sequence of tori arising from graphs, and describe the geometry using graph (matroid) terminologies. 
-
-By graph, we mean "connected oriented multigraph with loops", consisting of a set of vertices $V$, a set of edges $E$, and functions $h,t:E\rightarrow V$.
-Let $A$ be an abelian group, where $A=\mathbb{C}$ by default, define $ \partial_{\Gamma, A} : A^E \to A^V $ by $ e \mapsto h(e) - t(e) $ for all $ e \in E $, and let $ d_{\Gamma, A} : A^V \to A^E $ be its transpose.
-The graph homology and cohomology of $\Gamma$ with coefficients in $A$ are defined as follows.
-\begin{align*}
-  \HH_0(\Gamma, A) &= \coker(\partial_{\Gamma, A}) & \HH_1(\Gamma, A) &= \ker(\partial_{\Gamma, A}) \\
-  \HH^0(\Gamma, A) &= \ker(d_{\Gamma, A}) & \HH^1(\Gamma, A) &= \coker(d_{\Gamma, A})
-\end{align*}
-
-Notice that if $A$ is a field, $\partial_\Gamma$ is a representation of $\Gamma$, i.e. if we identify $e\in E$ with its basis vector in $A^E$, then $S\subseteq E$ is contained in a spanning tree if and only if $\partial_\Gamma|_{S}$ is injective and $\partial_\Gamma(S)$ is linearly independent. And by matroid theory, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is a dual representation (replace spanning tree with spanning cotree in the above definition) of $\Gamma$.
-
-The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. In fact, $\HH_1(\Gamma)$ is generated by cycles.
-Similarly, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
-Since $\pi$ is a dual representation of $\Gamma$, we can identify $\ker(\pi)$ as $\HH_1(\Gamma^*)$ by canonically identifying edges in $\Gamma$ and $\Gamma^*$, generated by bonds, or cocycles.
-
-For $A=\mathbb{C}^\times $, we have the following shot exact sequence
-\begin{equation}
-  \label{eq:exact_sequence_tori_graph}
-    \begin{tikzcd}
-      1 \arrow[r] & \HH_1(\Gamma^*,\mathbb{C}^\times ) \arrow[r, "\iota_\Gamma"] & (\mathbb{C}^\times)^E \arrow[r, "\pi_\Gamma"] & \HH^1(\Gamma, \mathbb{C}^\times) \arrow[r] & 1
-    \end{tikzcd},
-\end{equation}
-denote by $G_\Gamma,D_\Gamma,T_\Gamma$ respectively. This allow us to define a hypertoric variety $\MM_{\chi,\lambda}(\Gamma)$. We will drop $\Gamma$ when the context is clear. 
-
-There is a canonical isomorphism $\HH_0(\Gamma, A) \cong \HH^0(\Gamma, A) \cong A^{\pi_0(\Gamma)=1} $, where $\pi_0(\Gamma)=1$ is the set of connected components of $\Gamma$, and a noncanonical isomorphism $ \HH_1(\Gamma, A) \cong \HH^1(\Gamma, A) \cong A^{g(\Gamma)} $, where $g(\Gamma)=|E|-|V|+1$ is the genus of $\Gamma$.
-
-Let $k,n,$ and $d$ be the rank of $G_\Gamma,D_\Gamma,$ and $T_\Gamma$ respectively. We have $k=|V|-1$ and $d=|E|-|V|+1$, which equals to the cardinality of a spanning tree and spanning cotree respectively. 
-
-In general for a matroid representable over $\mathbb{Z}$, we can define an exact sequence of tori where $\pi$ and $\iota^*$ are the dual representation and the representation of the matroid respectively. $k$ and $d$ will then be the rank and corank of the matroid.
+\section{Toric Fixed Points and Toric Components}
 
 \subsection{Tree: Fix Point}
 
