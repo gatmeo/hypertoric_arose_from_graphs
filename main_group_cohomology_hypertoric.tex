@@ -3,6 +3,7 @@
 \usepackage[tight,common_math_textnormal,todonotes,math_base_note,math_simple]{gatmeo}
 \usepackage{tikz-cd}
 \geometry{paperwidth=6.9in, paperheight=9.2in}
+\newcommand{\mathintitle}[1]{\texorpdfstring{$#1$}{\detokenize{#1}}}
 
 \title{\bf{
 Hypertoric Varieties Arose from Graphs
@@ -121,9 +122,9 @@ Hypertoric Varieties Arose from Graphs
 \newcommandx*\internalactivity[2][2=\Gamma]{IA_{#2}(#1)}
 \newcommand{\intp}[1]{\iota_{#1}} % interior product
 \newcommandx*\fundcycle[2][2=\Gamma]{\gamma_{#1}}
-\newcommandx*\fundcyclewithtree[3][2=\Gamma,3=B]{\gamma_{#3,#1}}
+\newcommandx*\fundcyclewithtree[2][2=B]{\gamma_{#2,#1}}
 \newcommandx*\fundbond[2][2=\Gamma]{\beta_{#1}}
-\newcommandx*\fundbondwithtree[3][2=\Gamma,3=B]{\beta_{#3^*,#1}}
+\newcommandx*\fundbondwithtree[2][2=B]{\beta_{#2^*,#1}}
 \newcommandx*\basis[2][1=\bullet,2=\Gamma]{\mathcal{B}_{#1}(#2)}
 \newcommandx*\basisper[2][1=\bullet,2=\Gamma]{\mathcal{B}^\per_{#1}(#2)}
 
@@ -212,21 +213,23 @@ Hypertoric Varieties Arose from Graphs
 Consider a Lie group $G$ acting on a manifold $M$. For $X\in\mathfrak{g}$, denote $\ind{X}$ the induced vector field on $M$. If we assume $M$ is symplectic and $G$ acts symplectically, i.e. $G$ preserve symplectic form, the action is Hamiltonian if there also exists a moment map $\mu : M \to \mathfrak{g}^*$ such that
 \begin{enumerate}
     \item $\mu$ is $G$-equivariant where $G$ acts on $\mathfrak{g}^*$ by the coadjoint action, and
-    \item for all $X \in \mathfrak{g}$, considered as $X : \mathfrak{g}^* \to \mathbb{R}$, $d(X \circ \mu) = \intd{\ind{X}}\omega$.
+    \item for all $X \in \mathfrak{g}$, considered as $X : \mathfrak{g}^* \to \mathbb{R}$, $d(X \circ \mu) = \omega(\cdot ,\ind{X})=-\intd{\ind{X}}\omega$.
 \end{enumerate}
+Notice that we use the convention that flipped the sign for the interior product.
+
 If $G$ is abelian, then any shift $\mu+\alpha$, $\alpha\in\mathfrak{g}^*$, is also a moment map.
 
 \begin{example}[exp:Cn_moment]{$\mathbb{T}_\mathbb{R}^n \acton \mathbb{C}^n$}
     Consider the real torus $\mathbb{T}_\mathbb{R}^n=(S^1)^n$ acting on $\mathbb{C}^n$ by rotating each coordinate. There is a canonical real symplectic form on $\mathbb{C}^n$ given by $\omega_\mathbb{R}=\sum_jdx_j\wedge dy_j$. Let $X_i\in\mathfrak{t}_\mathbb{R}^n$ be a standard basis vector, 
     the induced vector field $\ind{X_i}$ is given by
     \begin{align*}
-        (\ind{X_i})_z &= \frac{d}{dt} [e^{2\pi it} z_i]_{t=0}
-        = \frac{d}{dt} [(\cos(2\pi t) x_i - \sin(2\pi t) y_i,\sin(2\pi t)x_i + \cos(2\pi t)y_i)]_{t=0} \\
-        &= (0, \dots, -2\pi y_i, \dots, 0, 0, \dots, 2\pi x_i, \dots, 0) = -2\pi y_i \left.\frac{\partial}{\partial x_i}\right|_z + 2\pi x_i \left.\frac{\partial}{\partial y_i}\right|_z.\\
-        \intd{\ind{X_i}}\omega_\mathbb{R} &= \biggl(\sum_j dx_j \wedge dy_j\biggr)\left(-2\pi y_i \frac{\partial}{\partial x_i} + 2\pi x_i \frac{\partial}{\partial y_i}\right)
-        = -2\pi (x_i \, dx_i + y_i \, dy_i).
+        (\ind{X_i})_z &= \frac{d}{dt} [e^{it} z_i]_{t=0}
+        = \frac{d}{dt} [(\cos(t) x_i - \sin(t) y_i,\sin(t)x_i + \cos(t)y_i)]_{t=0}
+        = -2y_i \left.\frac{\partial}{\partial x_i}\right|_z + 2x_i \left.\frac{\partial}{\partial y_i}\right|_z.\\
+        \intd{\ind{X_i}}\omega_\mathbb{R} &= \biggl(\sum_j dx_j \wedge dy_j\biggr)\left(-2 y_i \frac{\partial}{\partial x_i} + 2 x_i \frac{\partial}{\partial y_i}\right)
+        = -2 (x_i \, dx_i + y_i \, dy_i).
     \end{align*}
-    Thus, $\intd{\ind{X_i}}\omega_\mathbb{R} = d(-\pi(x_i^2 + y_i^2)) = d(-\pi|z_i|^2)$. Note that $X_i : (\mathfrak{t}^n)^* \to \mathbb{R}$ is regarded as the $i$th coordinate map. It follows that $\mu(z_1, \dots, z_n) = (-\pi|z_1|^2, \dots, -\pi|z_n|^2)$ is a choice of moment map.
+    Thus, $-\intd{\ind{X_i}}\omega_\mathbb{R} = d(x_i^2 + y_i^2) = d(|z_i|^2)$. Note that $X_i : (\mathfrak{t}^n)^* \to \mathbb{R}$ is regarded as the $i$th coordinate map. It follows that $\mu(z_1, \dots, z_n) = (\pi|z_1|^2, \dots, \pi|z_n|^2)$ is a choice of moment map.
 \end{example}
 
 It is easy to check that $\mu^{-1}(\xi) \subseteq M$ for any $\xi$ in the center of $\mathfrak{g^*}$ is $G$-invariant. Choose $\xi=0$, we define $M\GIT G=\mu^{-1}(0)\GIT G$ to be the symplectic reduction of $M$ by $G$ if $G$ acts on $\mu^{-1}(0)$ is free. In particular, if $G$ is abelian, we can do the reduction at different moment map level $\mu^{-1}(\xi)$.
@@ -253,7 +256,7 @@ Such a polytope is said to be
 \end{itemize}
 If we describe $\Delta$ as the intersection of $n$ affine hyperplanes, i.e. there exists normal vectors $a_i\in \mathbb{Z}^d$ and shifts $r_i\in\mathbb{R}$ such that 
 \begin{equation*}
-    \Delta = \{ x \in (\mathbb{R}^d)^* \mid \langle x, a_i \rangle \leq \theta_i \  \forall 1 \leq i \leq n \},
+    \Delta = \{ x \in (\mathbb{R}^d)^* \mid \langle x, a_i \rangle + \theta_i \leq 0 \  \forall\ 1 \leq i \leq n \},
 \end{equation*}
 we can translate the above terminology: a hyperplane arrangement is said to be
 \begin{itemize}
@@ -283,11 +286,11 @@ Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dot
     \end{equation*}
     Consider the standard action $\mathbb{T}^n $ on $\mathbb{C}^n$ with moment map (\Cref{exp:Cn_moment}) $\mu : \mathbb{C}^n \to (\mathfrak{t}^n)^*$,
     \begin{equation*}
-      \mu(z_1, \dots, z_n) = (-\pi|z_1|^2 + \theta_1, \dots, -\pi|z_n|^2 + \theta_n).
+      \mu(z_1, \dots, z_n) = (|z_1|^2 - \theta_1, \dots, |z_n|^2 - \theta_n).
     \end{equation*}
     The inclusion $\iota$ induces an action $\mathbb{T}^k$ on $\mathbb{C}^n$, with moment map given by the composite $\iota^* \circ \mu : \mathbb{C}^n \to (\mathfrak{t}^k)^*$. This allows us to define the symplectic reduction $M = \mathbb{C}^n \GIT \mathbb{T}^k$. 
     \begin{itemize}
-      \item $Z:=(\iota^*\circ \mu)^{-1}(0)=\mu^{-1}(\pi^*(\Delta))$ is compact: Consider $\pi^*:(\mathfrak{t}^d)^*\rightarrow (\mathfrak{t}^n)^*$ as the transpose of $\pi$. $\im(\pi^*)=\ker(\iota^*)\subseteq (\mathfrak{t}^n)^*$ is a $d$-dimension linear subspace cut out by the equation of $\iota^*$. Recall $\Delta$ is the intersection of half space $\CB{x\in (\mathfrak{t}^d)^*\mid \AB{x,\pi(e_i)}\leq \theta_i}$. $\pi^*(\Delta)\subseteq \im(\pi^*)$ then equals the intersection of half space $\CB{x\in \im(\pi^*)\subseteq (\mathfrak{t}^n)^*\mid \AB{x,e_i}\leq \theta_i}$. Hence 
+      \item $Z:=(\iota^*\circ \mu)^{-1}(0)=\mu^{-1}(\pi^*(\Delta))$ is compact: Consider $\pi^*:(\mathfrak{t}^d)^*\rightarrow (\mathfrak{t}^n)^*$ as the transpose of $\pi$. $\im(\pi^*)=\ker(\iota^*)\subseteq (\mathfrak{t}^n)^*$ is a $d$-dimension linear subspace cut out by the equation of $\iota^*$. Recall $\Delta$ is the intersection of half space $\CB{x\in (\mathfrak{t}^d)^*\mid \AB{x,\pi(e_i)}+\theta_i\leq 0}$. $\pi^*(\Delta)\subseteq \im(\pi^*)$ then equals the intersection of half space $\CB{x\in \im(\pi^*)\subseteq (\mathfrak{t}^n)^*\mid \AB{x,e_i}+\theta_i\leq 0}$. Hence 
         \[
           (\iota^*\circ \mu)^{-1}(0)=\mu^{-1}(\ker(\iota^*))=\mu^{-1}(\im(\pi^*))=\mu^{-1}(\pi^*(\Delta))
         \]
@@ -296,13 +299,13 @@ Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dot
         \[
           T^n_z=\CB{t\in T^n\mid t_i=1\textnormal{ if }i\notin I_z}\simeq T^{I_z}.
         \]
-        Recall $\mu_i(z)=-\pi|z_i|^2+\theta_i$, $z_i=0$ iff $\AB{\mu(z),e_i}=\theta_i$ iff $\AB{x,\pi(e_i)}=\theta_i$ for some $x\in \Delta$. Hence $I_z$ is the set of hyperplanes where $\mu(z)$ lies on. In particular, $|I_z|\leq d$. Since $\CB{\pi(e_i)\mid i\in I_z}$ is linearly independent, $\pi:T^n_z\rightarrow T^d$ is injective. Hence $T^k$ acts freely on $Z$.
+        Recall $\mu_i(z)=|z_i|^2-\theta_i$, $z_i=0$ iff $\AB{\mu(z),e_i}+\theta_i=0$ iff $\AB{x,\pi(e_i)}+\theta_i=0$ for some $x\in \Delta$. Hence $I_z$ is the set of hyperplanes where $\mu(z)$ lies on. In particular, $|I_z|\leq d$. Since $\CB{\pi(e_i)\mid i\in I_z}$ is linearly independent, $\pi:T^n_z\rightarrow T^d$ is injective. Hence $T^k$ acts freely on $Z$.
     \item Moment polytope of $M$ is $\Delta$: The $T^d$ fix points of $M$ by the above discussion is hence the vertices of $\Delta$. We omit the remaining of the proof.
     \end{itemize}
   \end{proof}
 \end{theorem}
 
-In fact, the polytope $\pi^*(\Delta)=\ker(\iota^*)\cap \CB{x_i\leq \theta_i}$ can be shifted to the intersection of $\bigcap \CB{x_i\leq 0}$ with a affine subspace $\im(\pi^*-\theta)=\ker(\iota^*+\iota^*(\theta))$. Hence in order to describe $\pi^*(\Delta)$, it is suffice to specify an element $\iota^*(\theta)\in (\mathfrak{t}^k)^*$. The moment map also depends only on $\iota^*(\theta)$ instead of $\theta$. In other words, to define a symplectic toric variety, we can choose the standard moment map $\mu_\textnormal{std}(z)=(-\pi|z_1|^2, \dots, -\pi|z_d|^2)$, and the reduction is can be defined by $\lambda=-\iota^*(\theta)\in \mathfrak{t}^*$ as
+In fact, the polytope $\pi^*(\Delta)=\ker(\iota^*)\bigcap_i \CB{x_i+\theta_i\leq 0}$ can be shifted to the intersection of $\bigcap_i \CB{x_i\leq 0}$ with a affine subspace $\im(\pi^*+\theta)=\ker(\iota^*-\iota^*(\theta))$. Hence in order to describe $\pi^*(\Delta)$, it is suffice to specify an element $\iota^*(\theta)\in (\mathfrak{t}^k)^*$. The moment map also depends only on $\iota^*(\theta)$ instead of $\theta$. In other words, to define a symplectic toric variety, we can choose the standard moment map $\mu_\textnormal{std}(z)=(|z_1|^2, \dots, |z_d|^2)$, and the reduction is can be defined by $\lambda=\iota^*(\theta)\in \mathfrak{t}^*$ as
 \[
   M = \mathbb{C}^n \GIT \mathbb{T}^k = \mu_\textnormal{std}^{-1}(\lambda).
 \]
@@ -317,30 +320,30 @@ In fact, the polytope $\pi^*(\Delta)=\ker(\iota^*)\cap \CB{x_i\leq \theta_i}$ ca
         \end{tikzpicture}
         \implies
         \begin{aligned}
-            a_0 &= -1 & r_0 &= p \\
-            a_1 &= 1 & r_1 &= 0
+            a_0 &= -1 & \theta_0 &= p \\
+            a_1 &= 1 & \theta_1 &= 0
         \end{aligned}
     \end{equation*}
     $\mathbb{T}^1$ acts on $\mathbb{C}^2$ by $\lambda \cdot (z_1, z_2) = (\lambda z_1, \lambda z_2)$. $\pi=(-1,1)$ and $\iota=(1,1)^T$.
     The moment map $\iota^* \circ \mu : \mathbb{C}^2 \to (\mathfrak{t}^1)^*$ is given by
     \begin{equation*}
-        \iota^*(\mu(z_1, z_2)) = \iota^*(-\pi|z_1|^2+p, -\pi|z_2|^2) = -\pi(|z_1|^2+|z_2|^2) + p.
+        \iota^*(\mu(z_1, z_2)) = \iota^*(|z_1|^2-p, |z_2|^2) = (|z_1|^2+|z_2|^2) - p.
     \end{equation*}
-    Thus, $Z = (\iota^* \circ \mu)^{-1}(0) = (\iota^* \circ \mu_\textnormal{std})^{-1}(-p) = \{ z \in \mathbb{C}^2 \mid |z|^2 = p/\pi \}$. Hence $Z\simeq \mathbb{C}^2 / \mathbb{R}_{>0}$, $Z/\mathbb{T}^1 \cong \mathbb{P}^1$.
+    Thus, $Z = (\iota^* \circ \mu)^{-1}(0) = (\iota^* \circ \mu_\textnormal{std})^{-1}(p) = \{ z \in \mathbb{C}^2 \mid |z|^2 = p\}$. Hence $Z\simeq \mathbb{C}^2 / \mathbb{R}_{>0}$, $Z/\mathbb{T}^1 \cong \mathbb{P}^1$.
 
     For $\mathbb{P}^n$, consider the polytope
     \begin{equation*}
         \mathrm{conv}(\{ 0, e_1, \dots, e_n \})
         \implies
         \begin{aligned}
-            a_0 &= (-1, \dots, -1) & r_0 &= p \in \mathbb{Z}_{>0} \\
-            a_i &= e_i & r_i &= 0 \quad \forall 1 \leq i \leq n
+            a_0 &= (-1, \dots, -1) & \theta_0 &= p \in \mathbb{Z}_{>0} \\
+            a_i &= e_i & \theta_i &= 0 \quad \forall 1 \leq i \leq n
         \end{aligned}
     \end{equation*}
     $\iota=(1,\dots ,1)^T$.
     Similarly, $\iota^* \circ \mu : \mathbb{C}^3 \to (\mathfrak{t}^1)^*$ is given by
-    $\iota^*(\mu(z_0, \dots, z_n)) = -\pi(|z_0|^2+\cdots+|z_n|^2) + p$.
-    $Z = (\iota^* \circ \mu)^{-1}(0) = \{ z \in \mathbb{C}^{n+1} \mid |z|^2 = p/\pi \}=\mathbb{C}^{n+1} / \mathbb{R}_{>0}/\mathbb{T}^1 \cong \mathbb{P}^n$.
+    $\iota^*(\mu(z_0, \dots, z_n)) = (|z_0|^2+\cdots+|z_n|^2) - p$.
+    $Z = (\iota^* \circ \mu)^{-1}(0) = \{ z \in \mathbb{C}^{n+1} \mid |z|^2 = p\}=\mathbb{C}^{n+1} / \mathbb{R}_{>0}/\mathbb{T}^1 \cong \mathbb{P}^n$.
 \end{example}
 
 \subsection{Toric as GIT Quotient}
@@ -399,12 +402,12 @@ The reason why it is geometric is because of the following theorem:
 Hypertoric varieties is defined similar to the symplectic reduction construction for toric varieties $\mathbb{C}^n\GIT T_\mathbb{R}^k$. However, the fundamental building block changed to complex torus $T=\mathbb{C}^*$ acting on $T^*\mathbb{C}$ instead of $T_\mathbb{R}$ acting on $\mathbb{C}$; we consider general hyperplane arrangement instead of those arise from polytope; and the $(\mathbb{C}^*)^k$ action on $\mu^{-1}(0)$ may no longer be free. First, the moment map.
 \begin{example}[exp:]{$(\mathbb{C^*})^n\acton T^*\mathbb{C}^n$}
   The $D=(\mathbb{C}^*)^n$-action on $T^*\mathbb{C}^n$ is given by $(t_iz_i,t^{-1}w_i)_{i=1}^{n}$.
-  There is a canonical complex symplec form on $T^*\mathbb{C}^n$ by $\omega=\sum_{i}^{}dz_i\wedge dw_i$. Let $X_i\in \mathfrak{d}^n$ be a standard basis,
+  There is a canonical complex symplec form on $T^*\mathbb{C}^n$ by $\omega=\sum_{i}^{}dw_i\wedge dz_i$. Let $X_i\in \mathfrak{d}^n$ be a standard basis,
   \begin{alignat*}{1}
-    (\ind{X_i})_z&=\frac{d}{dt}[e^{t_i}z_i,e^{-t_i}w_i]_{t=0}=(z_i\frac{\partial }{\partial z_i},-w_i\frac{\partial }{\partial w_i}),\\
-    \iota_{\ind{X_i}}\omega&= (\sum_{}^{}dz_i\wedge dw_i)(z_i\partial/\partial z_i - w_i\partial/\partial w_i)=\sum z_idw_i + w_idz_i.
+    (\ind{X_i})_z&=\frac{d}{dt}[e^{t_i}z_i,e^{-t_i}w_i]_{t=0}=z_i\frac{\partial }{\partial z_i}-w_i\frac{\partial }{\partial w_i},\\
+    \iota_{\ind{X_i}}\omega&= \left(\sum_{}^{}dw_i\wedge dz_i\right)\left(z_i\frac{\partial }{\partial z_i} - w_i\frac{\partial }{\partial w_i}\right)=-\sum z_idw_i + w_idz_i.
   \end{alignat*}
-  Thus, $\intd{\ind{X_i}}\omega = d(z_idw_i+w_idz_i) = d(z_iw_i)$, $\mu(z_1,w_1,\dots ,z_n,w_n)=\sum_{}^{}z_iw_i$ is a moment map.
+  Thus, $-\intd{\ind{X_i}}\omega = z_idw_i+w_idz_i = d(z_iw_i)$, $\mu(z_1,w_1,\dots ,z_n,w_n)=\sum_{}^{}z_iw_i$ is a moment map.
 \end{example}
 
 Given a short exact sequence of complex tori
@@ -651,7 +654,7 @@ A pair of parameters $(\chi,\lambda)\in \mathfrak{g}^*_{\mathbb{Z}}\times \mathf
   \end{proof}
 \end{proposition}
 
-\subsection{Hyperplane Arrangement: Stability Condition}
+\subsection{Hyperplane Arrangement: Stability Condition \mathintitle{\lambda=0}}
 
 There is a pictorial way to describe the $\mathbb{R}_{\geq 0}$ condition in the stability condition using half planes of hyperplane arrangement.
 For $\lambda=0$, we often encode the data of the exact sequence of tori and $\chi$ in the hyperplane arrangement. 
@@ -677,46 +680,95 @@ Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$,
 \end{equation*}
 Different choices of lifts give the same hyperplane arrangement up to translations.
 
-\section{Toric Fixed Points and Toric Components}
+\section{Toric Fixed Points and Toric Components \mathintitle{\lambda=0}}
 \label{sec:torus_fixed_point_and_component}
 
-\subsubsection{Fix Point}
+When $\lambda=0$, we can use the hyperplane arrangement in the previous section to determine semistable points, and hence some toric components.
 
-For $B\subseteq \binom{E}{k}$ a spanning tree, we partition $B$ by whether the coefficient of $\chi\in \mathfrak{g}_\mathbb{Z}^*$ is positive or not with respect to the basis induced by $B$. Define 
+\subsection{Subvarieties Defined by Polyhedrons \mathintitle{\lambda=0}}
+
+Assume $\lambda=0$.
+Let $P\subseteq \iota^{-1}_\mathbb{R}(\chi)$ be a non-empty (not necessarily full dimensional) polyhedron. Define
 \[
-B_+=\CB{e\in B\mid \rho^*_B(\chi)_e>0}
-\textnormal{ and }
-B_-=\CB{e\in E\mid \rho^*_B(\chi)_e<0}.
+  I=\CB{i\in E\mid P\subseteq H_i^+}
+  \textnormal{ and }
+  J=\CB{j\in E\mid P\subseteq H_j^-}.
 \]
-We regard points in $\MM_{\chi,\lambda}$ as $G$-equivalent classes in $T^*\mathbb{C}^n$. 
-Define $p_B:=[z_B,w_B]\in \MM_{\chi,\lambda}$ by 
-\[
-  (z_B,w_B)_e=\begin{cases}
-    (1,\rho_B^*(\lambda)_e) & e\in B_+\\
-    (\rho_B^*(\lambda)_e,1) & e\in B_-\\
-    (0,0) & e\notin  B.
-  \end{cases}
-\]
+Note that $I\cup J=E$ and $\dim P=d-|I\cap J|=2d-(|I|+|J|-k)$.
+Define 
+\begin{alignat*}{1}
+    X_{I,J}&=\{[z,w]\in \MM_{\chi,0}\mid w_i=0\ \forall\ i\in I, z_j=0\ \forall\ j\in J\},\textnormal{ and }\\
+    N_{I,J}&=\CB{[z,w]\in \MM_{\chi,0}\mid \bigcap_{z_i=0}H_i^-\cap \bigcap_{w_j=0}H_j^+\cap P\neq 0}.
+\end{alignat*}
 \begin{proposition}[pps:]{}
-  $p_B$ is a $T\times\Chbar$ fixed point.
+  $X_{I,J}$ is the toric variety defined by $P$, and $N_{I,J}\rightarrow X_{I,J}$ is a $T\times \Chbar$ vector bundle of rank $|I|+|J|-k$.
   \begin{proof}
-    $d\cdot (z_B,w_B)=\sigma_B(\pi(d))\iota(\rho_B(d))\cdot (z_B,w_B)$. Since the coordinate of $p_B$ in $B$ is $0$, $\sigma_B$ acts trivially. Hence $d\cdot (z_B,w_B)=\rho_B(z_B,w_B)$ is fixed by $T$.
-
-    For $\kappa\in \Chbar$, $\kappa(z_B,w_B,\lambda)=\rho_B(\kappa_{i\in B_-},1\textnormal{ else })^{-1}(z_B,w_B,\kappa\lambda))$.
+      Since $I\cup J=E$, $\mu^{-1}(0)\cap \CB{(z,w)\mid w_i=0\ \forall\ i\in I, z_j=0\ \forall\ j\in J}\simeq \mathbb{C}^{E-I}\times \mathbb{C}^{E-J}$. Quotienting $G$ is precisely the toric description of $P$.
+      \missing{Vibre bundle}
   \end{proof}
 \end{proposition}
 
-Define $U_I:=\CB{[z,w]\in \MM_{\chi,\lambda}\mid z_i\neq 0\ \forall\ i\in I_+, w_j\neq 0\ \forall\ j\in I_-}$.
-Note that $U_I=N_{I_+\cup I^c,I_-\cup I^c}$ when $\lambda=0$.
+\begin{theorem}[thm:]{}
+  $N_{I,J}\rightarrow X_{I,J}$ is isomorphic to the normal bundle of $X_{I,J}$ in $\chi_{\chi,0}$ as a $T\times \Chbar$ vector bundle over $X_{I,J}$.
+  \missing{Proof}
+\end{theorem}
+
+\subsection{Fix Point}
+
+For $B\subseteq \binom{E}{k}$ a spanning tree, we partition $B$ by whether the coefficient of $\chi\in \mathfrak{g}_\mathbb{Z}^*$ is positive or not with respect to the basis induced by $B$. Define 
+\[
+    B^+=\CB{e\in B\mid \rho^*_B(\chi)_e=\AB{\fundbondwithtree{e}}>0}
+\textnormal{ and }
+B^-=\CB{e\in E\mid \rho^*_B(\chi)_e=\AB{\fundbondwithtree{e}}<0}.
+\]
+We regard points in $\MM_{\chi,\lambda}$ as $G$-equivalent classes in $T^*\mathbb{C}^n$. 
+Define $p_{B,\lambda}:=[z_{B,\lambda},w_{B,\lambda}]\in \MM_{\chi,\lambda}$ by 
+\[
+    (z_{B,\lambda},w_{B,\lambda})_e=\begin{cases}
+    (1,\rho_B^*(\lambda)_e) & e\in B^+\\
+    (\rho_B^*(\lambda)_e,1) & e\in B^-\\
+    (0,0) & e\in B^*.
+  \end{cases}
+\]
+By construction, $p_{B,\lambda}$ is $\chi$--semistable as one can define the homogenous function on it by $f=\prod_{i\in B^+}^{}z_i^{\rho_B^*(\chi)_e}\prod_{i\in B^-}^{}w_i^{\rho_B^*(\chi)_e}$.
+Note that when $\lambda=0$, $p_B=X_{B^*\cup B^+,B^*\cup B^-}$.
 
 \begin{proposition}[pps:]{}
-  $\CB{U_B}_{B \textnormal{basis}}$ forms an open cover of $\MM_{\chi,\lambda}$.
+  $p_{B,\lambda}$ is a $T$ fixed point.
+  Moreover, $\kappa\cdot p_{B,\lambda}=p_{B,\kappa\lambda}$ for $\kappa\in \Chbar$. In particular, $p_{B,0}$ is a $T\times \Chbar$ fixed point.
+  \begin{proof}
+    $d\cdot (z_B,w_B)=\sigma_B(\pi(d))\iota(\rho_B(d))\cdot (z_B,w_B)$. Since the coordinate of $p_B$ in $B$ is $0$, $\sigma_B$ acts trivially. Hence $d\cdot (z_B,w_B)=\iota(\rho_B(d))\cdot (z_B,w_B)$ is fixed by $T$.
+
+    For $\kappa\in \Chbar$, $\kappa(z_B,w_B,\lambda)=\rho_B(\kappa_{i\in B^-},1\textnormal{ else })^{-1}(z_B,w_B,\kappa\lambda))$.
+  \end{proof}
+\end{proposition}
+
+Define 
+\[
+U_I:=\CB{[z,w]\in \MM_{\chi,\lambda}\mid z_i\neq 0\ \forall\ i\in I_+, w_j\neq 0\ \forall\ j\in I_-}.
+\]
+Note that when $\lambda=0$, $U_I=N_{I_+\cup I^c,I_-\cup I^c}$ when $\lambda=0$.
+
+\begin{proposition}[pps:]{}
+  $\CB{U_B}_{B \textnormal{ spanning tree}}$ forms an open cover of $\MM_{\chi,\lambda}$.
 \end{proposition}
 
 \begin{proposition}[pps:]{}
   $U_B\simeq T^*\mathbb{C}^{B^*}$.
   \begin{proof}
-    $U_B\rightarrow T^*\mathbb{C}^{B^*}$, $[z,w]\mapsto (\iota(g)_ez_e,\iota^{-1}(g)_ew_i)_{e\in B^*}$, where 
+      Construct isomorphism given by
+      \begin{alignat*}{1}
+          f:U_B\rightarrow T^*\mathbb{C}^{B^*}, \qquad [z,w]&\mapsto (\iota(g)_ez_e,\iota^{-1}(g)_ew_i)_{e\in B^*}\textnormal{, where }g=\prod_{i\in B^+}^{}\fundbondwithtree{e}(z_i)^{-1}\prod_{i\in B^-}^{}\fundbondwithtree{e}(w_i);\\
+          f^*:T^*\mathbb{C}^{B^*}\rightarrow U_B, \qquad (z,w)&\mapsto 
+          \left[
+              \begin{cases}
+                  (z_i,w_i)&i\in B^+\\
+                  (1, \AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j) &i\in B^+\\
+                  (\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j,1) &i\in B^-\\
+              \end{cases}
+          \right]
+      \end{alignat*}
+      By construction, $\iota^*(f^*(z,w))=\lambda$, and $f^*(z,w)$ are $\chi$--semistable with the same homogenous function for $\rho_{B}$. So $f^*$ is indeed a map to $\MM_{\chi,\lambda}$.
   \end{proof}
 \end{proposition}
 
@@ -724,49 +776,142 @@ Note that $U_I=N_{I_+\cup I^c,I_-\cup I^c}$ when $\lambda=0$.
   The induced $T\times \Chbar$ action on $T^*\mathbb{C}^{B^*}$ has weights 
   \[
     \left(
-      \fundcyclewithtree{e}-\sum_{f\in B_-}^{}\pi^*(\fundcyclewithtree{e})_f\hbar,\qquad 
-    -\fundcyclewithtree{e}+(1+\sum_{f\in B_-}^{}\pi^*(\fundcyclewithtree{e})_f)\hbar
-  \right)_{e\in B^*}.
+      \fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar,\qquad 
+    -\fundcyclewithtree{i}+(1+\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j)\hbar
+  \right)_{i\in B^*}.
   \]
+  \begin{proof}
+      Using the isomorphism $T^*\mathbb{C}^{B^*}\simeq U_B$, which $D\times \Chbar$ acts on, we have the following:
+      \begin{alignat*}{1}
+          (d,\kappa)\cdot (z,w)
+          &\mapsto 
+          \left[
+              \begin{cases}
+                  (d_iz_i,\kappa d_i^{-1}w_i)&i\in B^*\\
+                  (d_i, \kappa d_i^{-1}\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j) &i\in B^+\\
+                  (d_i(\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j),\kappa d_i^{-1}) &i\in B^-\\
+              \end{cases}
+          \right]\\
+          &\mapsto
+          \begin{pmatrix}
+              \left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i\right)\left(d_i\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))^{-1}_i\right)z_i, \\
+              \kappa\left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i^{-1}\right)\left(d_i^{-1}\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))_i\right)w_i 
+          \end{pmatrix}
+          _{i\in B^*}
+      \end{alignat*}
+      The proof concludes by noticing $d_i\iota(\rho_B(d))^{-1}_i=d_i\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))^{-1}_i=d_i\prod_{j\in B}^{}\pi^*(\fundcyclewithtree{i})_j=\fundcyclewithtree{i}(d)$, treating $\fundcyclewithtree{i}$ as a character of $D$.
+  \end{proof}
 \end{proposition}
 
-<++>
+\section{Tautological Bundles and Curves}
 
-\subsection{Subvarieties Defined by Polyhedrons}
-
-Let $P\subseteq \iota^{-1}_\mathbb{R}(\chi)$ be a non-empty polyhedron. Define
+Let $\alpha\in \mathfrak{d}^*_\mathbb{Z}$, one can define tautological line bundle on $\MM_{\chi,\lambda}$ as 
 \[
-  I=\CB{i\in E\mid P\subseteq H_i^+}
-  \textnormal{ and }
-  J=\CB{j\in E\mid P\subseteq H_j^-}.
+    L_\alpha:=\mu^{-1}(\lambda)^{\chi-\sstab}\times_G\underline{\mathbb{C}}_{\iota^*(\alpha)},\qquad 
+\left[\iota(g)z,\iota(g)^{-1}w,a\right]=\left[z,w,\alpha(\iota(g))^{-1}a\right].
 \]
-Note that $I\cup J=E$ and $\dim P=d-|I\cap J|=2d-(|I|+|J|-k)$.
-Define $X_{I,J}=\{[z,w]\in \MM_{\chi,0}\mid w_i=0\ \forall\ i\in I, z_j=0\ \forall\ j\in J\}$ and
-\[
-  N_{I,J}=\CB{[z,w]\in \MM_{\chi,0}\mid \bigcap_{z_i=0}H_i^-\cap \bigcap_{w_j=0}H_j^+\cap P\neq 0}.
-\]
+It carries a $(D\times \Chbar)$-action by $(d,\kappa)\cdot [z,w,a]=\left[dz,\kappa d^{-1}w,\alpha(d)a\right]$.
+This construction gives a $\mathbb{Z}$-linear map $\mathfrak{d}^*_\mathbb{Z}\rightarrow \textnormal{Pic}^{T\times \Chbar}(\MM_{\chi,\lambda})$. Write $L_i=L_{e_i}$ for $i\in [n]$.
+We have the following observations.
 \begin{proposition}[pps:]{}
-  $X_{I,J}$ is the toric variety defined by $P$, and $N_{I,J}\rightarrow X_{I,J}$ is a $T\times \Chbar$ vector bundle of rank $|I|+|J|-k$.
+    For $\gamma\in \mathfrak{t}^*_\mathbb{Z}$, $L_{\pi^*(\gamma)}\simeq \underline{\mathbb{C}}_{\gamma}$.
 \end{proposition}
+
+\begin{proposition}[pps:]{}
+  Let $B\in \binom{E}{k}$ be a spanning tree. Then $\left.L_i\right|_{p_B}$ has weight $\fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar$ if $i\in B^*$, $0$ if $i\in B^+$, and $\hbar$ if $i\in B^-$.
+      \begin{proof}
+          One can show by direct calculation:
+          \begin{alignat*}{1}
+              (d,\kappa)\cdot [z_B,w_B,a]
+              &=\left[(0,0)_{i\in B^*}, (d_j,-)_{j\in B^+}, (-,\kappa d_i^{-1})_{i\in B^-}, d_ia\right]\\
+              &= \textstyle\left[z_B,w_B,d_i\iota(\rho_B(d))^{-1}_i\left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i\right)a\right].
+          \end{alignat*}
+      \end{proof}
+      \missing{Is it need $\lambda=0$}
+\end{proposition}
+
+\begin{corollary}[crl:]{}
+    $[T_{\MM_{\chi,\lambda}}]=\left(\sum_{i=1}^{n}[L_i]-k\right)+\hbar\left(\sum_{i=1}^{n}[L_i]^{-1}-k\right)$ in $K_{T\times \Chbar}(\MM_{\chi,\lambda})$.
+    \missing{Proof}
+\end{corollary}
+
+\begin{proposition}[pps:]{}
+    $[z,w]\mapsto [z,w,z_i]$ and $[z,w]\mapsto [z,w,w_i]$ are $(T\times \Chbar)$-equivariant sections of $L_i$ and $L_i\otimes\underline{\mathbb{C}}_{\hbar}$ respectively.
+\end{proposition}
+
+\subsection{Primitive Effective Curve Classes and Bonds}
+
+By the definition of bonds, we have the following:
+\begin{proposition}[pps:]{}
+    If $S\subseteq E$ is a bond, then there exist unique primitive element $\beta_S\in \mathfrak{g}_\mathbb{Z}$ s.t. $\iota(\beta_S)\in (\mathbb{Z}\setminus \CB{0})^I$ and $\AB{\beta_S,\chi}>0$.
+\end{proposition}
+
+For $S$ bond, we can partition $S$ as follows:
+\[
+    S^+=\CB{i\in S\mid \iota(\beta_S)_i>0}\textnormal{ and }S^-=\CB{i\in S\mid \iota(\beta_S)_i<0}.
+\]
+
+%\missing{implies $\bigcap_{i\in S^+}H_i^+\cap \bigcap_{i\in S^-}H_i^-=\emptyset $}
+
+\begin{corollary}[crl:]{}
+    $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\sstab}$ iff $\not\exists$ bond $S\subseteq E$ s.t. $z_i=0\ \forall\ i\in S^+$ and $w_i=0\ \forall\ i\in S^-$.
+    \begin{proof}
+        Assume contrary that there exist $a_i,b_i\in \mathbb{N}$ s.t. $\iota^*(\alpha:=((-b_i)_{i\in S^+},(a_i)_{i\in S^-}))=\chi$. Then
+        \[
+            \AB{\beta_S,\chi}=\AB{\iota(\beta_S),\alpha}=\AB{\iota(\beta_S)|_{S^+},\alpha|_{S^+}}+\AB{\iota(\beta_S)|_{S^-},\alpha|_{S^-}}\leq 0.
+        \]
+    \end{proof}
+\end{corollary}
 
 \begin{theorem}[thm:]{}
-  $N_{I,J}\rightarrow X_{I,J}$ is isomorphic to the normal bundle of $X_{I,J}$ in $\chi_{\chi,0}$ as a $T\times \Chbar$ vector bundle over $X_{I,J}$.
+    $\CB{\beta_S}_{S\textnormal{ bond }}$ is the set of primitive effective curve classes in $\HH_2(\MM_{\chi,0},\mathbb{Z})\simeq \mathfrak{g}_{\mathbb{Z}}$.
+    \missing{Proof/Justification}
 \end{theorem}
 
+\subsection{Curves \mathintitle{\lambda=0}}
 
+\missing{How about seperated curve, what is the assumption here}
+Curves in hypertoric are labelled by a pair of spanning trees differ by an exchange.
+More precisely, when $\lambda=0$, the connecting $\mathbb{P}^1$s can be seen from the hyperplane arrangement: fix points are the intersection points of the hyperplane arrangement and the connecting $\mathbb{P}^1$ are the line segments connecting the intersection points.
 
+Let $B_1,B_2\in \binom{E}{k}$ be distinct spanning trees such that $B_2=B_1\del b_1\cup b_2$ for some $b_1,b_2\in E$. 
+Write $\delta_{1/2}=\left[b_{1/2}\in B_{2/1}^-\right]$ and $\varepsilon_{1/2}=(-1)^{\delta_{1/2}}$. Let $\overline{B}=E\del (B_1\cup B_2)$, $\overline{B}^{\pm}:=B_1^{\pm}\del\{b_2\}=B_2^{\pm}\del\{b_1\}$.
+By matroid axioms, $\fundcyclewithtree{b_2}[B_1]=\fundcyclewithtree{b_1}[B_2]$.
+Define $\gamma:=\varepsilon_2\fundcyclewithtree{b_2}[B_1]=-\varepsilon_1\fundcyclewithtree{b_1}[B_2]$.
+\missing{why}
+We take the sign to ensure the curve is pointing from $B_1$ to $B_2$ in the following sense:
+\missing{}
+\begin{proposition}[pps:]{}
+    $\mathcal{O}_C(p_{B_1})|_{p_{B_1}}$ has weight $\gamma-\left(\sum_{j\in \overline{B}}^{}\pi^*(\gamma)_j+\delta_2-\delta_1\right)\hbar$, and $\mathcal{O}_C(p_{B_2})|_{p_{B_2}}$ has weight $-\gamma+\left(\sum_{j\in \overline{B}}^{}\pi^*(\gamma)_j+\delta_2-\delta_1\right)\hbar$.
+\end{proposition}
 
+\begin{proposition}[pps:]{}
+    $L_i|_{C}$ is isomorphic to
+    \[
+        \begin{cases}
+            \mathcal{O}(\varepsilon_1\iota(\fundbondwithtree{b_1}[B_2])_ip_{B_1})\otimes L_i|_{p_{B_2}} & \textnormal{ if } i\in B_1\cap B_2 \\
+            \mathcal{O}_C(\varepsilon_1p_{B_1})\otimes\underline{\mathbb{C}}_{\delta_1\hbar} & \textnormal{ if } i=b_1\\
+            \mathcal{O}_C(\varepsilon_2p_{B_2})\otimes\underline{\mathbb{C}}_{\delta_2\hbar} & \textnormal{ if } i=b_2\\
+            \underline{\mathbb{C}} & \textnormal{ if } i\in \overline{B}^+\\
+            \underline{\mathbb{C}}_\hbar & \textnormal{ if } i\in \overline{B}^-\\
+        \end{cases}
+        .
+    \]
+\end{proposition}
 
-\subsection{GIT}
-\subsection{Stability Condition}
-For both $\theta$ and $\lambda$
-\section{GKM Graph of Hypertoric}
-\subsection{Fix Points}
-\subsection{Connecting P1}
-How $\theta$ effects the splitting of $S^+$
-\subsection{Matroid Polytope}
+\begin{corollary}[crl:]{}
+    $[C]\in \HH_2(\MM_{\chi,0},\mathbb{Z})$ corresponds to $\varepsilon_1\fundbondwithtree{b_1}[B_2]=\varepsilon_2\fundbondwithtree{b_2}[B_1]\in \mathfrak{g}_\mathbb{Z}$.
+\end{corollary}
+
+\begin{remark}
+    $\varepsilon_1=-1$ iff $b_1\in B_2^-$ iff $\rho^*_{B_2}(\chi)_{B_1}=\AB{\fundbondwithtree{b_1}[B_2],\chi}<0$. So we always have $\AB{\varepsilon_1\fundbondwithtree{b_1}[B_2],\chi}>0$.
+\end{remark}
+
+\subsection{GKM Graph and Matroid Polytope}
+
+\section{Cohomology}
+
 \subsection{Equivariant Cohomology of Hypertoric}
-\section{Line Bundles on Hypertoric}
 \section{Steinberg Correspondences}
 \subsection{Primitive Coroots and Hyperplane}
 \subsection{Steinberg Varieties}
