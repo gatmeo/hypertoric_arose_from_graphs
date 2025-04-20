@@ -507,17 +507,18 @@ Matroid has multiple equivalent definitions. One of them uses the basis axiom.
 \end{definition}
 Elements in $\BB$ are called \vocab{bases}, which all have the same cardinality by $B2$. Elements in $\II=\CB{I\mid I\subseteq B\in \BB}$ are called independent sets, and the minimal elements in $2^E\del \II$ are called \vocab{circuits}. The rank of $S\subseteq E$ is defined to be $\max\CB{|I|\mid I\subseteq S\textnormal{ and }I\in \II}$, and we call $\rank(E)$ to be the \vocab{rank} of the matroid, which equals to the the cardinality of a basis. 
 
-One nice feature of matroid is duality. Let $n=|E|$, $k$ be the rank of the matroid, and $\BB\subseteq \binom{E}{k}$ be the bases. We define the dual matroid $M^*$ as the pair $(E,\BB^*)$ with $\BB^*:=\CB{B^*:=E\del B\mid B\in \BB}\subseteq \binom{E}{d}$ where $d=n-k$. One can check that the dual matroid is a matroid.
+One nice feature of matroid is duality. Let $n=|E|$, $k$ be the rank of the matroid, and $\BB\subseteq \binom{E}{k}$ be the bases. We define the dual matroid $M^*$ as the pair $(E,\BB^*)$ with $\BB^*:=\CB{B^*:=E\del B\mid B\in \BB}\subseteq \binom{E}{d}$ where $d=n-k$. One can check that the dual matroid is a matroid. An element $B^*\in \BB^*$ is called a \vocab{cobasis} of $M$.
 
 Matroids capture the essence of linear independence. For example, given a set of vectors, and define $\BB$ to be the set bases of the vector space spanned by the vectors. One can easily check that $\BB$ satisfies the axiom of matroids. Graphs, which we will introduce next section, are also example of matroids.
 
 We will focus on representable matroids, or even regular matroids, i.e. matroids representable over every field.
-Let $F$ be a field and $T$ be a $F$-vector space, a representation of $M$ over $F$ is a $F$-linear map $f:E\rightarrow T$ such that $B\in \BB$ if and only if $f|_B$ is injective and $f(B)$ is linearly independent.
+Let $F$ be a field and $V$ be a $F$-vector space, a representation of $M$ over $F$ is a $F$-linear map $f:E\rightarrow V$ such that $B\in \BB$ if and only if $f|_B$ is injective and $f(B)$ is linearly independent.
 
-Let $G$ be the kernel of $f:D:=F^E\rightarrow T$, i.e. we have a short exact sequence $0\rightarrow G\xrightarrow[]{g} D\xrightarrow[]{f} T\rightarrow 0$, one can show that for the dual exact sequence $0\rightarrow T^*\xrightarrow[]{f^*}D^*\xrightarrow[]{g^*}G^*\rightarrow 0$, $g^*$ is a representation of $M^*$ over $F$.
-In fact, consider $f:F^E\rightarrow V$, after RREF and some proper rearrangement of $E$, $f$ has a representation $[Id_k\mid K]$ for some matrix $K\in \textnormal{Mat}_{k\times (n-k)}$. The map $g^*$ has a representation of $[-K^T\mid Id_{n-k}]$, which can be easily check to be a representation of $M^*$ over $F$.
+Let $D=F^E$. Let $g^*:D^*\rightarrow G^*$ be a representation of a matroid $M$, and denote by $T^*$ the kernel of $g^*$, i.e. 
+we have a short exact sequence $0\rightarrow T^*\xrightarrow[]{f^*}D^*\xrightarrow[]{g^*}G^*\rightarrow 0$, one can show that for the dual exact sequence $0\rightarrow G\xrightarrow[]{g} D\xrightarrow[]{f} T\rightarrow 0$, $f$ is a representation of $M^*$ over $F$.
+In fact, consider $g^*:D^*\rightarrow G^*$, after RREF and some proper rearrangement of $E$, $g^*$ has a representation $[Id_k\mid K]$ for some matrix $K\in \textnormal{Mat}_{k\times (n-k)}$. The map $f$ has a representation of $[-K^T\mid Id_{n-k}]$, which can be checked to be a representation of $M^*$ over $F$.
 
-In general for a matroid representable over $\mathbb{R}$ with integral representation, we can define an exact sequence of tori \ref{eq:exact_seq_tori} where $\pi:D\rightarrow T$ and $\iota^*:D^*\rightarrow G^*$ are the \emph{dual representation} and the \emph{representation} of the matroid respectively. And vice versa. It is important to use the convention that the exact sequence we start with describe the dual representation of the matroid.
+In general for a matroid representable over $\mathbb{R}$ with integral representation, we can define an exact sequence of tori \ref{eq:exact_seq_tori} where $\pi:D\rightarrow T$ and $\iota^*:D^*\rightarrow G^*$ are the \emph{dual representation} and the \emph{representation} of the matroid respectively. And vice versa. It is important to use the convention that the exact sequence \ref{eq:exact_seq_tori} we start with describe the dual representation of the matroid.
 So $k=\dim(G)$ and $d=\dim(T)$ will then be the rank and corank of the matroid respectively. 
 
 In particular, we associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ is its dual representation.
@@ -536,7 +537,7 @@ The graph homology and cohomology of $\Gamma$ with coefficients in $A$ are defin
   \HH^0(\Gamma, A) &= \ker(d_{\Gamma, A}) & \HH^1(\Gamma, A) &= \coker(d_{\Gamma, A})
 \end{align*}
 
-Let $\BB=\CB{B\subseteq E\mid B\textnormal{ is a spanning tree }}$, then $(E,\BB)$ is the matroid associated with $\Gamma$. If $A$ is a field, then $\partial_\Gamma$ is a representation of $\Gamma$. As discussed in the previous section, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is then a dual representation of $\Gamma$, or the representation of the dual graph. The dual graph $\Gamma^*$ of a planer graph $\Gamma$ is a graph that has a vertex for each face of $\Gamma$ and has an edge for each pair of faces in $\Gamma$ that are seperated from each other by an edge. The orientation of the edges in the dual grpah can be determined by the right hand rule upon fixing a global orientation.
+Let $\BB=\CB{B\subseteq E\mid B\textnormal{ is a spanning tree }}$, then $(E,\BB)$ is the matroid associated with $\Gamma$. If $A$ is a field, then $\partial_\Gamma$ is a representation of $\Gamma$. As discussed in the previous section, the natural projection $\pi_{\Gamma}:A^E\rightarrow \HH^1(\Gamma)$ is then a dual representation of $\Gamma$, or the representation of the dual graph. The dual graph $\Gamma^*$ of a planer graph $\Gamma$ is a graph that has a vertex for each face of $\Gamma$ and has an edge for each pair of faces in $\Gamma$ that are seperated from each other by an edge. The orientation of the edges in the dual grpah can be determined by the right hand rule upon fixing a global orientation. One can check that the matroid structure of $\Gamma^*$ is $(E,\BB^*)$. 
 
 Cycles in $\Gamma$ are precisely the circuits of the graphic matroid. The linear combination of edges (with orientation) in a cycle is in the kernel of $\partial_\Gamma$, hence giving an element in $\HH_1(\Gamma)$. In fact, $\HH_1(\Gamma)$ is generated by cycles.
 Similarly, any edge $e \in E$ gives a class $ [e] \in \HH^1(\Gamma) $ through the projection $ \ZZ^E \to \HH^1(\Gamma) $. 
@@ -555,6 +556,50 @@ There is a canonical isomorphism $\HH_0(\Gamma, A) \cong \HH^0(\Gamma, A) \cong 
 
 Let $k,n,$ and $d$ be the rank of $G_\Gamma,D_\Gamma,$ and $T_\Gamma$ respectively. We have $k=|V|-1$ and $d=|E|-|V|+1$, which equals to the cardinality of a spanning tree and spanning cotree respectively. 
 
+\subsection{Spanning Tree and Graph (Co)Homology}
+
+The benefit of describing the exact sequence of tori using \ref{eq:exact_sequence_tori_graph} is that we do not need to fix a basis for $G$ and $T$.
+Only when working on differet local coordinates (see \Cref{sec:torus_fixed_point_and_component}) of the hypertoric variety requires choosing different bases for $\HH_1(\Gamma^*,\mathbb{C}^\times )$ and $\HH^1(\Gamma,\mathbb{C}^\times )$.
+A chocie of basis depends on a choice of basis (equivalently a cobasis) of $\Gamma$.
+
+\begin{definition}[def:]{}
+  Pick a spanning tree (basis of the matroid) $B\in \binom{E}{k}$, any edge $e\in E\del B=:B^*$, the corresponding spanning cotree (cobasis), determines a unique cycle $\fundcyclewithtree{e}\subseteq B\cup e$ that contains $e$, called the \vocab{fundamental cycle}.
+  We will abbreviate $\fundcyclewithtree{e}$ as $\fundcycle{e}$ if the choice of spanning tree is fixed.
+\end{definition}
+By abuse of notation, we denote by $\fundcyclewithtree{e}$ also the corresponding element in $\HH_1(\Gamma)$ whose coefficient of $e$ is $1$, extending to a linear map $ \fundcyclewithtree{-} : \ZZ^{B^*} \to \HH_1(\Gamma) $. 
+
+By the definition of $\pi:\mathbb{Z}^E\rightarrow \HH^1(\Gamma)$ is the dual representation of $\Gamma$, or one can prove using the matroid axiom, we have the following:
+
+\begin{theorem}[thm:fundamental_cycle_basis_for_graph_homology]{}
+  Fixing a spanning tree $B \subseteq E$, the map $ \fundcycle{-}: \ZZ^{B^*} \to \HH_1(\Gamma) $ is an isomorphism, whose inverse is given by the composite $ \HH_1(\Gamma) \hookrightarrow \ZZ^E \twoheadrightarrow \ZZ^{B^*} $. 
+  In particular, $\{\fundcycle{x}\}_{x \in B^*}$ forms a basis of $\HH_1(\Gamma)$. Dually, $\{[x]\}_{x \in B^*}$ forms a basis of $\HH^1(\Gamma)$. 
+\end{theorem}
+
+Hence, picking a spanning tree $B\subseteq E$ induces an isomorphism $\mathfrak{t}_\mathbb{Z}=\HH^1(\Gamma) \xrightarrow[]{\sim }\mathbb{Z}^{B^*}$, we can then extend $\pi$ to $\pi_B:\mathfrak{d}_\mathbb{Z}=\mathbb{Z}^E\xrightarrow[]{\pi} \mathfrak{t}_\mathbb{Z}\rightarrow \mathbb{Z}^{B^*}$, which is simply the projection to the coordinate respect to $B$. Define $\sigma_B:\mathfrak{t}_\mathbb{Z}\rightarrow \mathbb{Z}^{B^*}\rightarrow \mathfrak{d}_\mathbb{Z}$ as a section of $\pi$ induced by $B$, where the second map is the trivial section of $\pi_B$.
+More precisely, if we treat $\fundcycle{x}\in \HH_1(\Gamma)$ as a character of $T=\HH^1(\Gamma,\mathbb{C}^\times )$, $\sigma_B:T\rightarrow D|_{B^*}\hookrightarrow D$ sends $t$ to $\fundcycle{x}(t)\in \mathbb{C}^\times $ at coordinate ${x\in B^*}$ and $1$ on others. And hence a map $\sigma_B^*:\mathfrak{d}^*\rightarrow \mathfrak{t}^*$ as $\alpha\mapsto \sum_{e\in B^*}^{}\alpha_e\fundcyclewithtree{e}$.
+
+Consider the dual of the above discussion, for a spanning cotree (cobasis of the matroid) $B^*\in \binom{E}{d}$, denote by $\fundbondwithtree{e}\subseteq B^*\cup e$ the \vocab{fundamental cocycle}, associated with $e\in E\del B^*$.
+A choice of $B^*$, equivalently a choice of $B$, similarly induce an isomorphism $\mathfrak{g}_\mathbb{Z}^*=\HH^1(\Gamma^*)\simeq \mathbb{Z}^B$, and the map $\iota^*_B:\mathfrak{d}_\mathbb{Z}^*=\mathbb{Z}^E\rightarrow \mathfrak{g}^*_\mathbb{Z}\rightarrow \mathbb{Z}^B$ is the projection. Define $\rho_B^*:\mathfrak{g}_\mathbb{Z}^*\rightarrow \mathbb{Z}^{B}\rightarrow \mathfrak{d}^*_\mathbb{Z}$ as the section of $\iota^*_B$ induced by $B^*$. If we treat $\fundbondwithtree{e}\in \HH_1(\Gamma^*)=\mathfrak{g}_\mathbb{Z}$ as a cocharacter of $G$, we get a torus map $\rho_B:D\rightarrow G$ given by $d\mapsto \prod_{e\in B}^{}\fundbondwithtree{e}(d_e)$.
+
+Hence picking a spanning tree $B\subseteq E$, equivalently a spanning cotree $B^*$, we have the following:
+\begin{equation*}
+    \begin{tikzcd}
+      \mathbb{Z}^B\simeq \HH_1(\Gamma^*) \arrow[r, "\iota", yshift=0.3em] & \arrow[l, "\rho_B", yshift=-0.3em]\mathbb{Z}^E \arrow[r, "\pi", yshift=0.3em] & \arrow[l, "\sigma_B", yshift=-0.3em] \HH^1(\Gamma)\simeq \mathbb{Z}^{B^*}\\
+      \mathbb{Z}^B\simeq \HH^1(\Gamma^*) \arrow[r, "\rho^*_B"', yshift=-0.3em] & \arrow[l, "\iota^*"', yshift=+0.3em]\mathbb{Z}^E \arrow[r, "\sigma_B^*"', yshift=-0.3em] & \arrow[l, "\pi^*"', yshift=0.3em] \HH_1(\Gamma)\simeq \mathbb{Z}^{B^*}.
+    \end{tikzcd}
+\end{equation*}
+
+\begin{remark}
+  By the short exactness of the sequence, $\pi^*(\mathfrak{t}^*)=\iota(\mathfrak{g})^\perp $. Hence $\iota(\fundbondwithtree{e})_f+\pi^*(\fundcyclewithtree,f)_e=0$.
+  Alternatively, as mentioned above, $\pi^*_B=(I_{B^*}|M)$ and $\iota^*_B=(-M^T|I_B)$ as matrix representation.
+\end{remark}
+
+\begin{proposition}[pps:]{}
+  $\sigma_B$ gives the coordinate of $B^*$ and $\rho_B$ gives the coordinate of $B$ in $D$. In particular,
+  \[
+    d=\sigma_B(\pi(d))\iota(\rho_B(d))\ \forall\ d\in D.
+  \]
+\end{proposition}
 
 \section{Stability Condition}
 
@@ -633,49 +678,7 @@ Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$,
 Different choices of lifts give the same hyperplane arrangement up to translations.
 
 \section{Toric Fixed Points and Toric Components}
-
-\subsection{Tree: Fix Point}
-
-The definition of \Cref{eq:exact_sequence_tori_graph} does not depend on a choice of basis of $\HH_1(\Gamma^*,\mathbb{C}^\times )$ and $\HH^1(\Gamma,\mathbb{C}^\times )$. However, fixing bases allows us to describe a split of the exact sequence, and hence the $T$-fix points.
-
-\begin{definition}[def:]{}
-  Pick a spanning tree (basis of the matroid) $B\in \binom{E}{k}$, any edge $e\in E\del B=:B^*$, the corresponding spanning cotree (cobasis), determines a unique cycle $\fundcyclewithtree{e}\subseteq B\cup e$ that contains $e$, called the \vocab{fundamental cycle}.
-  We will abbreviate $\fundcyclewithtree{e}$ as $\fundcycle{e}$ if the choice of spanning tree is fixed.
-\end{definition}
-By abuse of notation, we denote by $\fundcyclewithtree{e}$ also the corresponding element in $\HH_1(\Gamma)$ whose coefficient of $e$ is $1$, extending to a linear map $ \fundcyclewithtree{-} : \ZZ^{B^*} \to \HH_1(\Gamma) $. 
-
-\begin{theorem}[thm:fundamental_cycle_basis_for_graph_homology]{}
-  Fixing a spanning tree $B \subseteq E$, the map $ \fundcycle{-}: \ZZ^{B^*} \to \HH_1(\Gamma) $ is an isomorphism, whose inverse is given by the composite $ \HH_1(\Gamma) \hookrightarrow \ZZ^E \twoheadrightarrow \ZZ^{B^*} $. 
-  In particular, $\{\fundcycle{x}\}_{x \in B^*}$ forms a basis of $\HH_1(\Gamma)$. Dually, $\{[x]\}_{x \in B^*}$ forms a basis of $\HH^1(\Gamma)$. 
-  \begin{remark}
-    If one define matroid with a representation $\pi:\mathfrak{d}_\mathbb{Z}\rightarrow \mathfrak{t}_\mathbb{Z}$, this theorem should be treated as the definition of basis for the matroid: $B$ is a basis iff $\pi|_{B^*}$ is an isomorphism.
-  \end{remark}
-\end{theorem}
-
-Hence, picking a spanning tree $B\subseteq E$ induces an isomorphism $\mathfrak{t}_\mathbb{Z}=\HH^1(\Gamma) \xrightarrow[]{\sim }\mathbb{Z}^{B^*}$, we can then extend $\pi$ to $\pi_B:\mathfrak{d}_\mathbb{Z}=\mathbb{Z}^E\xrightarrow[]{\pi} \mathfrak{t}_\mathbb{Z}\rightarrow \mathbb{Z}^{B^*}$, which is simply the projection to the coordinate respect to $B$. Define $\sigma_B:\mathfrak{t}_\mathbb{Z}\rightarrow \mathbb{Z}^{B^*}\rightarrow \mathfrak{d}_\mathbb{Z}$ as a section of $\pi$ induced by $B$, where the second map is the trivial section of $\pi_B$.
-More precisely, if we treat $\fundcycle{x}\in \HH_1(\Gamma)$ as a character of $T=\HH^1(\Gamma,\mathbb{C}^\times )$, $\sigma_B:T\rightarrow D|_{B^*}\hookrightarrow D$ sends $t$ to $\fundcycle{x}(t)\in \mathbb{C}^\times $ at coordinate ${x\in B^*}$ and $1$ on others. And hence a map $\sigma_B^*:\mathfrak{d}^*\rightarrow \mathfrak{t}^*$ as $\alpha\mapsto \sum_{e\in B^*}^{}\alpha_e\fundcyclewithtree{e}$.
-
-Consider the dual of the above discussion, for a spanning cotree (cobasis of the matroid) $B^*\in \binom{E}{d}$, denote by $\fundbondwithtree{e}\subseteq B^*\cup e$ the \vocab{fundamental cocycle}, associated with $e\in E\del B^*$.
-A choice of $B^*$, equivalently a choice of $B$, similarly induce an isomorphism $\mathfrak{g}_\mathbb{Z}^*=\HH^1(\Gamma^*)\simeq \mathbb{Z}^B$, and the map $\iota^*_B:\mathfrak{d}_\mathbb{Z}^*=\mathbb{Z}^E\rightarrow \mathfrak{g}^*_\mathbb{Z}\rightarrow \mathbb{Z}^B$ is the projection. Define $\rho_B^*:\mathfrak{g}_\mathbb{Z}^*\rightarrow \mathbb{Z}^{B}\rightarrow \mathfrak{d}^*_\mathbb{Z}$ as the section of $\iota^*_B$ induced by $B^*$. This gives a torus map $\rho_B:D\rightarrow G$ given by $d\mapsto \prod_{e\in B}^{}\fundbondwithtree{e}(d_e)$.
-
-Hence picking a spanning tree $B\subseteq E$, equivalently a spanning cotree $B^*$, we have the following:
-\begin{equation*}
-    \begin{tikzcd}
-      \mathbb{Z}^B\simeq \HH_1(\Gamma^*) \arrow[r, "\iota", yshift=0.3em] & \arrow[l, "\rho_B", yshift=-0.3em]\mathbb{Z}^E \arrow[r, "\pi", yshift=0.3em] & \arrow[l, "\sigma_B", yshift=-0.3em] \HH^1(\Gamma)\simeq \mathbb{Z}^{B^*}\\
-      \mathbb{Z}^B\simeq \HH^1(\Gamma^*) \arrow[r, "\rho^*_B"', yshift=-0.3em] & \arrow[l, "\iota^*"', yshift=+0.3em]\mathbb{Z}^E \arrow[r, "\sigma_B^*"', yshift=-0.3em] & \arrow[l, "\pi^*"', yshift=0.3em] \HH_1(\Gamma)\simeq \mathbb{Z}^{B^*}.
-    \end{tikzcd}
-\end{equation*}
-
-\begin{remark}
-  By the short exactness of the sequence, $\pi^*(\mathfrak{t}^*)=\iota(\mathfrak{g})^\perp $. Hence $\iota(\fundbondwithtree{e})_f+\pi^*(\fundcyclewithtree,f)_e=0$. In coordinate, the basis for $\HH_1(\Gamma)$ induced by $B$ gives us a matrix representation of $\pi^*$, with the $d\times d$ submatrix on the row labelled by $B^*$ is identity. The $x\in B^*$ column is precisely $\fundcyclewithtree{x}$. Write matrix $\pi^*_B=(I_{B^*}|M)$. The same choice of $B$ gives us a matrix representation $\iota^*_B$, and by the short exactness, $\iota^*_B=(-M^T|I_B)$.
-\end{remark}
-
-\begin{proposition}[pps:]{}
-  $\sigma_B$ gives the coordinate of $B^*$ and $\rho_B$ gives the coordinate of $B$ in $D$. In particular,
-  \[
-    d=\sigma_B(\pi(d))\iota(\rho_B(d))\ \forall\ d\in D.
-  \]
-\end{proposition}
+\label{sec:torus_fixed_point_and_component}
 
 \subsubsection{Fix Point}
 
