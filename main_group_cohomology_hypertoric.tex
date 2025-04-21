@@ -193,7 +193,9 @@ Hypertoric Varieties Arose from Graphs
 \newcommand{\sstab}{\mathrm{ss}}
 \newcommand{\pstab}{\mathrm{ps}}
 \newcommand{\stab}{\mathrm{s}}
-\newcommand{\Stab}{\textnormal{Stab}}
+\newcommand{\Stab}{\textnormal{Stab}_{\sigma,\varepsilon}}
+\newcommand{\Attr}{\textnormal{Attr}_\sigma}
+\newcommand{\fAttr}{\textnormal{Attr}^f_\sigma}
 \newcommand{\cork}{\textnormal{cork}}
 \newcommand{\Chbar}{\mathbb{C}^\times _\hbar}
 
@@ -624,7 +626,7 @@ Furthermore, we have the following for polystable and stable points.
 \begin{proposition}[pps:]{}
   $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\stab}$ iff $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\pstab}$ and $\CB{i\in [n]\mid z_i=w_i=0}$ is coindependent.
   \begin{proof}
-    In the case of GIT quotient by complex torus, finite stablelizer means $\dim(\Stab_G)=0$. Let $I=\CB{i\in [n] \mid z_i=w_i=0}$, $\Stab_G(z,w)=\iota^{-1}((\mathbb{C}^\times )^I)$. Since $G=\ker(\pi:D\rightarrow T)$, $\dim\Stab_G(z,w)=|I|-\cork(I)=0$ iff $\cork(I)=|I|$.
+      In the case of GIT quotient by complex torus, finite stablelizer means $\dim(\textnormal{Stab}_G)=0$. Let $I=\CB{i\in [n] \mid z_i=w_i=0}$, $\textnormal{Stab}_G(z,w)=\iota^{-1}((\mathbb{C}^\times )^I)$. Since $G=\ker(\pi:D\rightarrow T)$, $\dim\textnormal{Stab}_G(z,w)=|I|-\cork(I)=0$ iff $\cork(I)=|I|$.
   \end{proof}
 \end{proposition}
 
@@ -817,7 +819,7 @@ We have the following observations.
     For $\gamma\in \mathfrak{t}^*_\mathbb{Z}$, $L_{\pi^*(\gamma)}\simeq \underline{\mathbb{C}}_{\gamma}$.
 \end{proposition}
 
-\begin{proposition}[pps:]{}
+\begin{proposition}[pps:tautological_line_bundle_T_weight]{}
   Let $B\in \binom{E}{k}$ be a spanning tree. Then $\left.L_i\right|_{p_B}$ has weight $\fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar$ if $i\in B^*$, $0$ if $i\in B^+$, and $\hbar$ if $i\in B^-$.
       \begin{proof}
           One can show by direct calculation:
@@ -908,78 +910,121 @@ We take the sign to ensure the curve is pointing from $B_1$ to $B_2$ in the foll
 \end{remark}
 
 \subsection{GKM Graph and Matroid Polytope}
+\missing{}
 
 \section{Cohomology}
+\begin{theorem}[thm:]{}
+    $\HH^*_{T\times \Chbar}(\MM_{\chi,\lambda})\simeq \mathbb{C}[u_1,\dots ,u_n,\hbar]/\AB{\prod_{i\in S_+}^{}u_i\prod_{i\in S^-}^{}(\hbar-u_i)\mid S\subseteq E\textnormal{ bond }}$.
+\begin{remark}
+    Here, 
+    $u_i=c_1(L_i)=[\CB{z_i=0}]$, $\hbar=c_1(\underline{\mathbb{C}}_\hbar)$ are of degree 2.
+\end{remark}
+\begin{remark}
+    $\HH^*_{T\times \Chbar}(pt)\simeq \textnormal{Sym}^*(\mathfrak{t}^*\oplus\mathbb{C}_\hbar)\rightarrow \HH^*_{T\times \Chbar}(\MM_{\chi,\lambda})$ is given by $\gamma\mapsto \sum_{i=1}^{n}\pi^*(\gamma)_iu_i$, $\hbar\mapsto \hbar$.
+\end{remark}
+\end{theorem}
 
-\subsection{Equivariant Cohomology of Hypertoric}
+\subsection{Chambers \mathintitle{\lambda=0}}
+
+Each chamber $P$ in the hyperplane arrangement can be identified with a sign function $\varepsilon: [n]\mapsto \CB{+,-}$ where $\bigcap_{\varepsilon(i)=+}H_i^+\cap \bigcap_{\varepsilon(i)=-}H_i^-=P $.
+Define 
+\[
+    X_{\varepsilon}=X_{\varepsilon^{-1}(+),\varepsilon^{-1}(-)}=\CB{[z,w]\in \MM_{\chi,0} \mid w_i=0\textnormal{ if }\varepsilon(i)=+, z_i=0\textnormal{ if }\varepsilon(i)=-}.
+\]
+The cohomology class for such $X_\varepsilon$ has the following nice description:
+\begin{proposition}[pps:]{}
+    $\hbar^k[X_{\varepsilon}]=\prod_{\varepsilon(i)=-}^{}u_i\prod_{\varepsilon(i)=+}^{}(\hbar-u_i)$, where $k=\dim G$.
+    \begin{proof}
+        By excess intersection formula,
+        \[
+            \prod_{\varepsilon(i)=-}^{}u_i\prod_{\varepsilon(i)=+}^{}(\hbar-u_i)=(\iota_{X_{\varepsilon}})_*\left(\left[c(N_{X_\varepsilon})^{-1}\prod_{\varepsilon(i)=-}^{}c(L_i|_{X_\varepsilon})\prod_{\varepsilon(i)=+}^{}c(L_i^*|_{X_\varepsilon}\otimes\underline{\mathbb{C}}_\hbar)\right]\right).
+        \]
+    \end{proof}
+    \missing{}
+\end{proposition}
+
+\section{Stable Envelope}
+
+We start off with a short introduction to stable envelope.
+
+Let $T\times \Chbar$ acting on $X$ be a conical symplectic resolution. Let $\sigma$ be a generic character of $T$, i.e. $\sigma\in \mathfrak{t}_\mathbb{Z}\del\bigcup_\gamma\gamma^\perp $, where $\gamma$ ranges over the $T$-weights in $N_{X^T}$, the normal bundle of $X^T$ in $X$.
+
+For each $Z\in \pi_0(X^T)$, define the attracting cell of $Z$ by $\Attr(Z):=\CB{x\in X}\mid \lim_{t\to 0}\sigma(t)\cdot x\in Z$.
+One can define a partial order on $\pi_0(X^T)$ by the transitive closure: $\overline{\Attr(Z)}\cap Z'\neq \emptyset $ implies $Z\geq Z'$, and extend transitively.
+Define the \vocab{full attracting cell} of $Z$ by $\fAttr(Z):=\bigsqcup_{Z'\leq Z}\Attr(Z')$.
+
+One can define two ways to decomposte $TX$. The first one uses $\sigma$ to define a sign on the tangent weights. Since we have the short exact sequence $0\rightarrow TZ\rightarrow TX|_Z\rightarrow N_Z\rightarrow 0$, and the $T$ weights on $TZ$ is $0$, we have the following
+\[
+    N^+_:=\bigoplus _{\AB{\sigma,\gamma}>0}\left(N_Z\right)_{\gamma}=\bigoplus _{\AB{\sigma,\gamma}>0}\left(TX|_{Z}\right)_{\gamma}
+    \textnormal{ and }
+    N^-:=\bigoplus _{\AB{\sigma,\gamma}<0}\left(N_Z\right)_{\gamma}=\bigoplus _{\AB{\sigma,\gamma}<0}\left(TX|_{Z}\right)_{\gamma}.
+\]
+\begin{proposition}[pps:]{}
+    For $Z\in \pi_0(X^T)$, $N^-_Z\simeq N^+_Z\otimes\underline{\mathbb{C}}_\hbar$ and $N_{\overline{\Attr(Z)}}|_{Z}=N^-_Z$.
+    \begin{proof}
+        The second equality follows from $T\overline{\Attr(Z)}|_Z=TZ\oplus TX|_Z^+$ since curves flowing to $x\in Z$ as $t\rightarrow 0$ has non-negative weights.
+    \end{proof}
+\end{proposition}
+
+The second way to descompose $TX$ is called \vocab{polarization} as an auxiliary choice. A \vocab{local polarization} at $Z$ is a choice of $\varepsilon_Z\in \HH^*_T(Z)$ such that $\varepsilon_Z^2=(-1)^{\frac{1}{2}\codim Z}e^T(N_Z)$. A \vocab{gloabl polarization} is a choice of $T^{1/2}\in K_{T\times \Chbar}$ such that $[TX]=T^{1/2}+\hbar(T^{1/2})^*$.
+Given a global polarization $T^{1/2}$, one can define $\varepsilon_Z:=e^T(N_{Z}^{1/2})$, where $N_Z^{1/2}:=[N_Z]\cap T^{1/2}|_{Z}$.
+
+A \vocab{stable envelope}, $\Stab:\HH^*_{T\times \Chbar}(X^T)\rightarrow \HH^*_{T\times \Chbar}(X)$, is a map of $\HH^*_{T\times \Chbar}$-modules that satisfies the following properties, stated as a theorem:
+
+\begin{theorem}[thm:stable_envelope]{}
+    There exist unique stable envelope such that for all $Z\in \pi_0(X^T)$, $\alpha\in \HH^*_{T\times \Chbar}(Z)$,
+    \begin{enumerate}
+        \item $\supp(\Stab(\alpha))\subseteq \fAttr(Z)$,
+        \item $\Stab(\alpha)|_Z=\pm e^{T\times \Chbar}(N_Z^-)\alpha$, where $\pm$ satisfies $\varepsilon_Z=\pm e^T(N_Z^-)$,
+        \item $\forall\ Z'<Z$, $\deg_T\Stab(\alpha)|_{Z'}<\frac{1}{2}\dim Z'$, where $\deg_T$ is the composite for any choice of $p\in Z'$
+            \[
+                \HH^*_{T\times \Chbar}(Z')\xrightarrow[]{\hbar\mapsto 0}\HH^*_T(Z')\xrightarrow[]{\iota^*_p}\HH^*_T(\CB{p})\simeq \mathbb{C}[\mathfrak{t}]\xrightarrow[]{\deg}\mathbb{N}.
+            \]
+    \end{enumerate}
+    \begin{remark}
+    Given $T^{1/2}$, i.e. $\varepsilon_Z$, Since both $N_Z^{1/2}$ and $N_Z^-$ span half of $N_Z$, we have $r=\rank([N_Z^+]\cap N_Z^{1/2})=\rank([N_Z^-]\cap (N_Z^{1/2})^*)$. Hence one can compute $\pm$ in (2) as $(-1)^r$.
+    \end{remark}
+\end{theorem}
+
+\begin{theorem}[thm:]{}
+    $\Stab$ becomes an isomorphsim after inverting the $T$-weights in $N_{X^T}$.
+\end{theorem}
+
+\subsection{Stable Envelope for Hypertoric \mathintitle{\lambda=0}}
+
+$\MM_{\chi,0}^T$ are fixed points $p_B$ labelled by spanning trees $B\subseteq \binom{E}{k}$.
+Let $\sigma\in \mathfrak{t}_\mathbb{Z}\setminus \bigcup\fundcyclewithtree{i}^\perp$, union over all spanning tree $B$ and $i\in B^*$. Define $T^{1/2}=\sum_{i=1}^{n}[L_i]-k \in K_{T\times \Chbar}(\MM_{\chi,0})$. Let $B\in \binom{E}{k}$ spanning tree, define a dual splitting on $B^*$ by
+\[
+    B^*_+=\CB{i\in B\mid \AB{\sigma,\fundcyclewithtree{i}}>0}\textnormal{ and }B^*_-=\CB{i\in B\mid \AB{\sigma,\fundcyclewithtree{i}}<0}.
+\]
+Attracting cells of a fixed point $p_B$ is just a cone in the hyperplane arrangement from the vertex $B$:
+\begin{proposition}[pps:]{}
+    $\overline{\Attr(p_B)}=X_{B^*+-\cup B^+,B^*_-\cup B^-}$.    
+    \begin{proof}
+        Recall the isomorphism $U_B\simeq T^*\mathbb{C}^{B^*}$. The $\mathbb{C}^\times $-action on $T^*\mathbb{C}^{B^*}$ induced by $\sigma$ has weights $(\AB{\sigma,\fundcyclewithtree{i}},-\AB{\sigma,\fundcyclewithtree{i}}))_{i\in B}$. Hence $\CB{(z,w)\in T^*\mathbb{C}^{B^*}\mid w_i=0\ \forall\ i\in B^*_+, z_i=0\ \forall\ i\in B^*_-}$ is the attracting cell of $0\in T^*\mathbb{C}^{B^*}$. It follows that 
+        \begin{alignat*}{1}
+            \Attr(p_B)=\{[z,w]\in \MM_{\chi,0}\mid &w_i=0\ \forall\ i\in B^*_+\cup B^+, z_i=0\ \forall\ i\in B^*_-\cup B^-,\\
+                                                     &z_i\neq 0\ \forall\ i\in B^+, w_i\neq 0\ \forall\ i\in B^-\}.
+        \end{alignat*}
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+    $\Stab(p_B)=(-1)^{B^*_+}[X_{B^*_+,B^*_-}]=\prod_{i\in B^*_-}^{}u_i\prod_{i\in B^*_+}^{}(u_i-\hbar)$.
+    \begin{proof}
+        By \Cref{pps:tautological_line_bundle_T_weight}, the $T$-weights of $N^+_{p_B}$ and $N^{1/2}_{p_B}$ are $\CB{\fundcyclewithtree{i}}_{i\in B^*_+}\cup \CB{-\fundcyclewithtree{i}}_{i\in B^*_-}$ and $\CB{\fundcyclewithtree{i}}_{i\in B^*}$ respectively.
+        The proof then follows from (2) in \Cref{thm:stable_envelope} and
+        \missing{$e^{T\times \Chbar}(N_Z^-)=[X_{B^*_+,B^*_-}]$}
+    \end{proof}
+\end{proposition}
+
+
 \section{Steinberg Correspondences}
 \subsection{Primitive Coroots and Hyperplane}
 \subsection{Steinberg Varieties}
 
 \section{Comparing Stability Condition with Quiver Varieties}
 \label{sec:quiver_variety}
-\section{Arxiv}
-
-\begin{example}{$\mathbb{T}^n \acton T^*\mathbb{C}^{n+1}$}
-    Consider the hyperplane arrangement in $\mathbb{R}$ given by the following data.
-    \begin{equation*}
-        \begin{aligned}
-            a_i &= 1 & r_i &= i & \forall 0 \leq i \leq n
-        \end{aligned}
-    \end{equation*}
-    The induced short exact sequences of tori are as follows.
-    \begin{equation*}
-        \begin{tikzcd}[row sep=0ex]
-            0 \arrow[r] & \mathfrak{t}^n \arrow[r, "\iota"] & \mathfrak{t}^{n+1} \arrow[r, "\pi"] & \mathfrak{t}^1 \arrow[r] & 0 \\
-            {} & (x_1, \dots, x_n) \arrow[r, maps to] & (-\sum_i x_i, x_1, \dots, x_n) & {} & {} \\
-            0 & (\mathfrak{t}^n)^* \arrow[l] & (\mathfrak{t}^{n+1})^* \arrow[l, "\iota^*"'] & (\mathfrak{t}^1)^* \arrow[l, "\pi^*"'] & 0 \arrow[l] \\
-            {} & (x_1-x_0, \dots, x_n-x_0) & (x_0, \dots, x_n) \arrow[l, maps to] & {} & {}
-        \end{tikzcd}
-    \end{equation*}
-    The action $\mathbb{T}^n \acton T^*\mathbb{C}^{n+1}$ is as follows.
-    \begin{equation*}
-        (\lambda_1, \dots, \lambda_n) \cdot
-        \begin{bmatrix}
-            z \\
-            w
-        \end{bmatrix}
-        =
-        \begin{bmatrix}
-            \lambda_1^{-1} \dots \lambda_n^{-1} z_0 & \lambda_1z_1 & \cdots & \lambda_nz_n \\
-            \lambda_1 \dots \lambda_n w_0 & \lambda_1^{-1}w_1 & \cdots & \lambda_n^{-1}w_n
-        \end{bmatrix}
-    \end{equation*}
-    The complex moment map $\mu : T^*\mathbb{C}^{n+1} \to (\mathfrak{t}^n)^*$ and its zero locus are as follows.
-    \begin{align*}
-        \mu(z, w) &= (z_1w_1-z_0w_0, \dots, z_nw_n-z_0w_0) \\
-        \mu^{-1}(0) &= \{ (z, w) \in T^*\mathbb{C}^{n+1} \mid z_0w_0 = z_1w_1 = \cdots = z_nw_n \}
-    \end{align*}
-    The character is given by $\alpha : (\lambda_1, \dots, \lambda_n) \mapsto \lambda_1 \lambda_2^2 \cdots \lambda_n^n$.
-
-    Define $U_i = \{ (z, w) \in \mu^{-1}(0) \mid w_0, \dots, w_{i-1}, z_{i+1}, \dots, z_n \neq 0 \}$ for all $0 \leq i \leq n$. We claim that $\mu^{-1}(0)^\sstab = U_0 \cup \cdots \cup U_n$. Indeed, in $U_i$, we can pick the polynomial
-    \begin{align*}
-        f(z, w) = w_0^i w_1^{i-1} \cdots w_{i-1} z_{i+1} z_{i+2}^2 \cdots z_n^{n-i} && \text{satisfying} && f(\lambda \cdot z, \lambda^{-1} \cdot w) = \lambda_1 \lambda_2^2 \cdots \lambda_n^n \, f(z, w).
-    \end{align*}
-    Note that $\mu^{-1}(0) \setminus (U_0 \cup \cdots \cup U_n) = \{ (z, w) \in \mu^{-1}(0) \mid w_j = z_i = 0 \text{ for some } 0 \leq j < i \leq n \}$. Now fix $0 \leq j < i \leq n$ and suppose $w_j = z_i = 0$. Suppose we have a polynomial $f$ satisfying $f(\lambda \cdot z, \lambda^{-1} \cdot w) = \lambda_1^r \lambda_2^{2r} \cdots \lambda_n^{nr} \, f(z, w)$ for some $r>0$. For a positive power of $\lambda_i$ to appear in the RHS, either $f$ has a factor of $z_i$, or $f$ has no factor of $z_i$ but a factor of $w_0^{ir}$. The former case causes $f(z, w)=0$. In the latter case, $f$ must also have a factor of $w_j$ to lower the power of $\lambda_j$, causing $f(z, w)=0$ again. We conclude that $(z, w)$ is indeed not semistable.
-
-    Then, we claim that $\mu^{-1}(0)^\sstab = \mu^{-1}(0)^\stab$. Let $(z, w) \in U_i$. As $w_0, \dots, w_{i-1}, z_{i+1}, \dots, z_n \neq 0$, it is clear that the orbit is of dimension $n$. To show the closedness of the orbit $\mathbb{T}^n \cdot (z, w)$, it suffices to show that for all non-trivial one parameter subgroup. Let $\varphi : \mathbb{C}^\times \to \mathbb{T}^n$ be given by $(\varphi_1, \dots, \varphi_n) \in \mathbb{Z} \setminus \{ 0 \}$. Then, there exists $1 \leq j \leq n$ such that $\varphi_j \neq 0$. Then, as $\lambda \to 0/\infty$, $\lambda^{-1} \cdot w_j \to 0/\infty$ if $j<i$ and $\lambda \cdot z_j \to 0/\infty$ if $j>i$, so that the limit is outside $\mu^{-1}(0)^\sstab$. It remains to consider the case where $\varphi_j=0$ for all $j\neq i$. In this case, when $\lambda \to 0/\infty$, $w_0 \to 0/\infty$, which makes the limit outside $\mu^{-1}(0)^\sstab$ again. We conclude that the orbit is closed. Hence, $\mu^{-1}(0)^\sstab = \mu^{-1}(0)^\stab$.
-
-    With the above arguments, we showed that $T^*\mathbb{C}^{n+1} \HQ[\alpha] \mathbb{T}^n = (U_0 \cup \cdots \cup U_n) / \mathbb{T}^n$. It is clear that $U_i/\mathbb{T}^n \cong T^*\mathbb{C}$ with projections given by
-    \begin{align*}
-        U_i \to T^*\mathbb{C} && (z, w) \mapsto (w_0^{-1} \cdots w_{i-1}^{-1} z_i \cdots z_n, w_0 \cdots w_i z_{i+1}^{-1} \cdots z_n^{-1}).
-    \end{align*}
-    Define $V_i = T^*\mathbb{C}$ for all $0 \leq i \leq n$, thought of as $U_i/\mathbb{T}^n$. Then, $T^*\mathbb{C}^{n+1} \HQ[\alpha] \mathbb{T}^n$ is the union of the $V_i$'s glued together
-    \begin{equation*}
-        \begin{tikzcd}[row sep=tiny, column sep=small, /tikz/column 1/.append style={anchor=base east}]
-            {} & V_j & V_i \\
-            \text{along} & \{ w \neq 0 \} \arrow[u, phantom, "\subseteq" rotate=90] \arrow[r, phantom, "\cong"] & \{ z \neq 0 \} \arrow[u, phantom, "\subseteq" rotate=90] \\
-            \text{using the isomorphisms} & (z, w) \arrow[r, maps to] & (z^{j-i+1}w^{j-i}, z^{i-j}w^{i-j+1}) \\[-1ex]
-            \text{and} & (z^{i-j+1}w^{i-j}, z^{j-i}w^{j-i+1}) & (z, w) \arrow[l, maps to]
-        \end{tikzcd}
-    \end{equation*}
-    for all $0 \leq j < i \leq n$.
-\end{example}
-
 \appendix
 
 
