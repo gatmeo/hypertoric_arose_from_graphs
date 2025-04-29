@@ -16,7 +16,7 @@ Hypertoric Varieties Arose from Graphs
 
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\phi}{\varphi}
-\newcommand{\NN}{\mathbb{N}}
+\newcommand{\NN}{\mathcal{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \tikzcdset{
     cells={font=\everymath\expandafter{\the\everymath\displaystyle}},
@@ -682,6 +682,53 @@ Conventionally, one choose a lift $\theta$ of $\chi$ along $\iota_\mathbb{R}^*$,
 \end{equation*}
 Different choices of lifts give the same hyperplane arrangement up to translations.
 
+\section{Tautological Bundles}
+
+Let $\alpha\in \mathfrak{d}^*_\mathbb{Z}$, one can define tautological line bundle on $\MM_{\chi,\lambda}$ as 
+\[
+    L_\alpha:=\mu^{-1}(\lambda)^{\chi-\sstab}\times_G\underline{\mathbb{C}}_{\iota^*(\alpha)},\qquad 
+\left[\iota(g)z,\iota(g)^{-1}w,a\right]=\left[z,w,\alpha(\iota(g))^{-1}a\right].
+\]
+It carries a $(D\times \Chbar)$-action by $(d,\kappa)\cdot [z,w,a]=\left[dz,\kappa d^{-1}w,\alpha(d)a\right]$.
+This construction gives a $\mathbb{Z}$-linear map $\mathfrak{d}^*_\mathbb{Z}\rightarrow \textnormal{Pic}^{T\times \Chbar}(\MM_{\chi,\lambda})$. Write $L_i=L_{e_i}$ for $i\in 1,\dots ,n$.
+We have the following observations.
+\begin{proposition}[pps:]{}
+    For $\gamma\in \mathfrak{t}^*_\mathbb{Z}$, $L_{\pi^*(\gamma)}\simeq \underline{\mathbb{C}}_{\gamma}$.
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+    $[z,w]\mapsto [z,w,z_i]$ and $[z,w]\mapsto [z,w,w_i]$ are $(T\times \Chbar)$-equivariant sections of $L_i$ and $L_i\otimes\underline{\mathbb{C}}_{\hbar}$ respectively.
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+    $[T{\MM_{\chi,\lambda}}]=\left(\sum_{i=1}^{n}[L_i]-k\right)+\hbar\left(\sum_{i=1}^{n}[L_i]^{-1}-k\right)$ in $K_{T\times \Chbar}(\MM_{\chi,\lambda})$.
+    \begin{proof}
+        Starting with the prequotient, we have
+        \[
+            T(T^*\mathbb{C}^n)=T^*\mathbb{C}^n\oplus T^*\mathbb{C}^n=\bigoplus T^*\mathbb{C}^n\times \underline{\mathbb{C}}_{z_i}\oplus\bigoplus T^*\mathbb{C}^n\times \underline{\mathbb{C}}_{w_i},
+        \]
+        i.e. $[T(T^*\mathbb{C}^n)]=\sum_{}^{}[L_i]+\hbar\sum_{}^{}[L_i]^{-1}$.
+        Note that if we have $f:X\rightarrow Y$ a submersion, i.e. $df$ is surjective. Let $y\in Y$ and pick $x\in f^{-1}(y)$. We have the following exact sequence
+        \[
+            0\rightarrow \ker(df|_x)=T_xf^{-1}(y)\xrightarrow[]{g} T_xX\xrightarrow[]{df}T_yY\rightarrow 0.
+        \]
+        Since we have the above exact sequence for each $x\in f^{-1}(y)$ with $T_yY$, of dimension $\dim Y$, on the right hand side. Hence if extending the above exact sequence over the whole $f^{-1}(y)$, we have
+        \[
+            0\rightarrow Tf^{-1}(y)\xrightarrow[]{}TX|_{f^{-1}y}\xrightarrow[]{}f^{-1}(y)\times T_yY\rightarrow 0.
+        \]
+        Hence $[TX]|_{f^{-1}(y)}=[Tf^{-1}(y))]+(\dim Y)\alpha$ in $K_T(f^{-1}(y))$, where $\alpha$ is the $T$ weight of $T_yY$.
+        In the case of $\mu:T^*\mathbb{C}^n\rightarrow \mathfrak{g}^*$, 
+        \[
+            [T(T^*\mathbb{C}^n)]|_{\mu^{-1}(0)}=[T(\mu^{-1}(0))] + k\hbar \in K_{T\times \Chbar}(\mu^{-1}(0)).
+        \]
+        Similarly, consider $g:X\rightarrow X\GIT G$ as a quotient map. For each $[x]\in X\GIT G$, and for each $x\in [x]$, we have
+        \[
+            0\rightarrow T_x(G\cdot x)\rightarrow T_xX\rightarrow T_{[x]}(X\GIT G)\rightarrow 0.
+        \]
+        <++>
+    \end{proof}
+\end{proposition}
+
 \section{Toric Fixed Points and Toric Components \mathintitle{\lambda=0}}
 \label{sec:torus_fixed_point_and_component}
 
@@ -705,8 +752,9 @@ Define
 \begin{proposition}[pps:]{}
   $X_{I,J}$ is the toric variety defined by $P$, and $N_{I,J}\rightarrow X_{I,J}$ is a $T\times \Chbar$ vector bundle of rank $|I|+|J|-k$.
   \begin{proof}
-      Since $I\cup J=E$, $\mu^{-1}(0)\cap \CB{(z,w)\mid w_i=0\ \forall\ i\in I, z_j=0\ \forall\ j\in J}\simeq \mathbb{C}^{E-I}\times \mathbb{C}^{E-J}$. Quotienting $G$ is precisely the toric description of $P$.
-      \missing{Vibre bundle}
+      For $X_{I,J}$, since $I\cup J=E$, $\mu^{-1}(0)\cap \CB{(z,w)\mid w_i=0\ \forall\ i\in I, z_j=0\ \forall\ j\in J}\simeq \mathbb{C}^{E-I}\times \mathbb{C}^{E-J}$. Quotienting $G$ is precisely the toric description of $P$.
+
+      Define $N_{I,J}\rightarrow X_{I,J}$ by projection to $w_i$ for $i\notin I$ and $z_j$ for $j\notin J$. The preimage of a point is precisely $\mathbb{C}^{I}\oplus\mathbb{C}^J/\mathbb{C}^k$: $\mathbb{C}^I$ and $\mathbb{C}^J$ comes from $w_i$ for $i\in I$ and $z_j$ for $j\in J$ as the value of $w_i$ and $z_j$ will not affect the stability condition, and the quotienting $\mathbb{C}^k$ comes from the moment map condition.
   \end{proof}
 \end{proposition}
 
@@ -872,7 +920,6 @@ For $S$ bond, we can partition $S$ as follows:
 
 \subsection{Curves \mathintitle{\lambda=0}}
 
-\missing{How about seperated curve, what is the assumption here}
 Curves in hypertoric are labelled by a pair of spanning trees differ by an exchange.
 More precisely, when $\lambda=0$, the connecting $\mathbb{P}^1$s can be seen from the hyperplane arrangement: fix points are the intersection points of the hyperplane arrangement and the connecting $\mathbb{P}^1$ are the line segments connecting the intersection points.
 
@@ -913,11 +960,11 @@ We take the sign to ensure the curve is pointing from $B_1$ to $B_2$ in the foll
 \missing{}
 
 \section{Cohomology}
-\begin{theorem}[thm:]{}
+\begin{theorem}[thm:cohomology_hypertoric]{}
     $\HH^*_{T\times \Chbar}(\MM_{\chi,\lambda})\simeq \mathbb{C}[u_1,\dots ,u_n,\hbar]/\AB{\prod_{i\in S_+}^{}u_i\prod_{i\in S^-}^{}(\hbar-u_i)\mid S\subseteq E\textnormal{ bond }}$.
 \begin{remark}
     Here, 
-    $u_i=c_1(L_i)=[\CB{z_i=0}]$, $\hbar=c_1(\underline{\mathbb{C}}_\hbar)$ are of degree 2.
+    $u_i=c_1(L_i)=[\CB{z_i=0}]$, $\hbar=c_1(\underline{\mathbb{C}}_\hbar)$ are of degree 2. And $\hbar-u_i=c_1(L_i^*\otimes\underline{\mathbb{C}}_\hbar)=[\CB{w_i=0}]$.
 \end{remark}
 \begin{remark}
     $\HH^*_{T\times \Chbar}(pt)\simeq \textnormal{Sym}^*(\mathfrak{t}^*\oplus\mathbb{C}_\hbar)\rightarrow \HH^*_{T\times \Chbar}(\MM_{\chi,\lambda})$ is given by $\gamma\mapsto \sum_{i=1}^{n}\pi^*(\gamma)_iu_i$, $\hbar\mapsto \hbar$.
@@ -931,16 +978,41 @@ Define
 \[
     X_{\varepsilon}=X_{\varepsilon^{-1}(+),\varepsilon^{-1}(-)}=\CB{[z,w]\in \MM_{\chi,0} \mid w_i=0\textnormal{ if }\varepsilon(i)=+, z_i=0\textnormal{ if }\varepsilon(i)=-}.
 \]
-The cohomology class for such $X_\varepsilon$ has the following nice description:
+We would like to describe the cohomology class for such $X_\varepsilon$, which requires some background on intersection theory. One reference is \cite{eisenbud20163264}.
+
+Suppose $M$ is a smooth variety with subvarietys $Y_1$ and $Y_2\subseteq M$.
+If $Y_1$ and $Y_2$ intersects generically and transversely, we expect their intersection class $[Y_1][Y_2]$ equals to $[Y_1\cap Y_2]$. The question is how can we calculate the intersection class if they do not intesrsect generally and transversely, for example if $\codim Y_1+\codim Y_2\geq \codim Y_1\cap Y_2$, i.e. $Y_1$ and $Y_2$ intersect "excessively".
+Here we cite the version of Excess Intersection formula for the case where all subvarieties are smooth:
+
+ %a Cartier divisor and $\iota:X\rightarrow M$ the inclusion of a subvariety $X$ in $M$. If 
+\begin{theorem}[thm:]{\cite[Theorem 13.3]{eisenbud20163264}}
+    If $Y_1,Y_2\subseteq M$ are smooth subvarieties of a smooth vraiety $M$ then the intersection class of $Y_1$ and $Y_2$
+    \[
+        [Y_1][Y_2] = \sum_{C}^{}(\iota_C)_*\left(\gamma_C\right) \in \HH^{\codim Y_1+\codim Y_2}(M),
+    \]
+    where 
+    \begin{itemize}
+        \item the sum is taken over the connected components $C$ of $Y_1\cap Y_2$,
+        \item $\iota_C:C\rightarrow M$ is the inclusion with $(\iota_C)_*:\HH(C)\rightarrow \HH(M)$ given by $\alpha\mapsto [C]\cup \alpha$, and
+        \item $\gamma_C=\CB{c(C,M)^{-1}c(\mathcal{N}_{Y_1/M}|_{C})c(\mathcal{N}_{Y_2/M}|_{C})}^k\in \HH^k(C)$, where $k=\codim Y_1+\codim Y_2-\codim C$, the "excpted codimension" of the intersection so that $(\iota_C)_*(\gamma_C)\in \HH^{\codim Y_1+\codim Y_2}(M)$.
+    \end{itemize}
+\end{theorem}
+
+The above theorem can be easily extened to a set of smooth subvarieties $\CB{Y_i}$ in $M$. Allowing us to calculate the cohomology class corresponding to $X_\varepsilon$.
+
 \begin{proposition}[pps:]{}
     $\hbar^k[X_{\varepsilon}]=\prod_{\varepsilon(i)=-}^{}u_i\prod_{\varepsilon(i)=+}^{}(\hbar-u_i)$, where $k=\dim G$.
     \begin{proof}
-        By excess intersection formula,
+        Since $X_\varepsilon$ is defiend to be the intersection of divisors $\CB{w_i=0}$ if $\varepsilon(i)=+$ and $\CB{z_i=0}$ if $\varepsilon(i)=-$, we can apply the excess intersection formula with $Y_i$ be the set of divisors and $C=X_\varepsilon$. By the remark of \cref{thm:cohomology_hypertoric}, $[Y_i]=\hbar-u_i$ if $\varepsilon(i)=+$ and $[Y_i]=u_i$ if $\varepsilon(i)=-$. Notice that $\codim X_\varepsilon=k$ and $\codim Y_i=1$ for all $i$. Hence the excess intersection formula has the form
         \[
-            \prod_{\varepsilon(i)=-}^{}u_i\prod_{\varepsilon(i)=+}^{}(\hbar-u_i)=(\iota_{X_{\varepsilon}})_*\left(\left[c(N_{X_\varepsilon})^{-1}\prod_{\varepsilon(i)=-}^{}c(L_i|_{X_\varepsilon})\prod_{\varepsilon(i)=+}^{}c(L_i^*|_{X_\varepsilon}\otimes\underline{\mathbb{C}}_\hbar)\right]\right).
+            \prod_{\varepsilon(i)=-}^{}u_i\prod_{\varepsilon(i)=+}^{}(\hbar-u_i)=(\iota_{X_{\varepsilon}})_*\left(\gamma_{X_\varepsilon}=\left\{c(\mathcal{N}_{X_\varepsilon})^{-1}\prod_{\varepsilon(i)=-}^{}c(L_i|_{X_\varepsilon})\prod_{\varepsilon(i)=+}^{}c(L_i^*|_{X_\varepsilon}\otimes\underline{\mathbb{C}}_\hbar)\right\}^k\right).
         \]
+    Restrict to a $T$-fixed point $p_B$, we have 
+    \[
+        \mathcal{N}_{X_\varepsilon}|_{p_B}\simeq \bigoplus_{i\in B^*,\varepsilon(i)=-}L_i|_{p_B}\oplus\bigoplus _{i\in B^*,\varepsilon(i)=+}L_i^*|_{p_B}\otimes\underline{\mathbb{C}}_\hbar,
+    \]
+    while for $i\in B$, both $L_i|_{p_B}$ for $\varepsilon(i)=-$ and $L_i^*|_{p_B}\otimes\underline{\mathbb{C}}_\hbar$ for $\varepsilon(i)=+$ have weight $\hbar$. Hence $\gamma_{X_{\varepsilon}}|_{p_B}=\hbar$ for all fixed points $p_B\in X_{\varepsilon}$. Hence $(\iota_{X_\varepsilon})_*(\gamma_{X_\varepsilon})=\hbar[X_\varepsilon]$.
     \end{proof}
-    \missing{}
 \end{proposition}
 
 \section{Stable Envelope}
@@ -953,21 +1025,21 @@ For each $Z\in \pi_0(X^T)$, define the attracting cell of $Z$ by $\Attr(Z):=\CB{
 One can define a partial order on $\pi_0(X^T)$ by the transitive closure: $\overline{\Attr(Z)}\cap Z'\neq \emptyset $ implies $Z\geq Z'$, and extend transitively.
 Define the \vocab{full attracting cell} of $Z$ by $\fAttr(Z):=\bigsqcup_{Z'\leq Z}\Attr(Z')$.
 
-One can define two ways to decomposte $TX$. The first one uses $\sigma$ to define a sign on the tangent weights. Since we have the short exact sequence $0\rightarrow TZ\rightarrow TX|_Z\rightarrow N_Z\rightarrow 0$, and the $T$ weights on $TZ$ is $0$, we have the following
+One can define two ways to decomposte $TX$. The first one uses $\sigma$ to define a sign on the tangent weights. Since we have the short exact sequence $0\rightarrow TZ\rightarrow TX|_Z\rightarrow \NN_Z\rightarrow 0$, and the $T$ weights on $TZ$ is $0$, we have the following
 \[
-    N^+_:=\bigoplus _{\AB{\sigma,\gamma}>0}\left(N_Z\right)_{\gamma}=\bigoplus _{\AB{\sigma,\gamma}>0}\left(TX|_{Z}\right)_{\gamma}
+    \NN^+_:=\bigoplus _{\AB{\sigma,\gamma}>0}\left(\NN_Z\right)_{\gamma}=\bigoplus _{\AB{\sigma,\gamma}>0}\left(TX|_{Z}\right)_{\gamma}
     \textnormal{ and }
-    N^-:=\bigoplus _{\AB{\sigma,\gamma}<0}\left(N_Z\right)_{\gamma}=\bigoplus _{\AB{\sigma,\gamma}<0}\left(TX|_{Z}\right)_{\gamma}.
+    \NN^-:=\bigoplus _{\AB{\sigma,\gamma}<0}\left(\NN_Z\right)_{\gamma}=\bigoplus _{\AB{\sigma,\gamma}<0}\left(TX|_{Z}\right)_{\gamma}.
 \]
-\begin{proposition}[pps:]{}
-    For $Z\in \pi_0(X^T)$, $N^-_Z\simeq N^+_Z\otimes\underline{\mathbb{C}}_\hbar$ and $N_{\overline{\Attr(Z)}}|_{Z}=N^-_Z$.
+\begin{proposition}[pps:attr_nnegative]{}
+    For $Z\in \pi_0(X^T)$, $\NN^-_Z\simeq \NN^+_Z\otimes\underline{\mathbb{C}}_\hbar$ and $\NN_{\overline{\Attr(Z)}}|_{Z}=\NN^-_Z$.
     \begin{proof}
         The second equality follows from $T\overline{\Attr(Z)}|_Z=TZ\oplus TX|_Z^+$ since curves flowing to $x\in Z$ as $t\rightarrow 0$ has non-negative weights.
     \end{proof}
 \end{proposition}
 
-The second way to descompose $TX$ is called \vocab{polarization} as an auxiliary choice. A \vocab{local polarization} at $Z$ is a choice of $\varepsilon_Z\in \HH^*_T(Z)$ such that $\varepsilon_Z^2=(-1)^{\frac{1}{2}\codim Z}e^T(N_Z)$. A \vocab{gloabl polarization} is a choice of $T^{1/2}\in K_{T\times \Chbar}$ such that $[TX]=T^{1/2}+\hbar(T^{1/2})^*$.
-Given a global polarization $T^{1/2}$, one can define $\varepsilon_Z:=e^T(N_{Z}^{1/2})$, where $N_Z^{1/2}:=[N_Z]\cap T^{1/2}|_{Z}$.
+The second way to descompose $TX$ is called \vocab{polarization} as an auxiliary choice. A \vocab{local polarization} at $Z$ is a choice of $\varepsilon_Z\in \HH^*_T(Z)$ such that $\varepsilon_Z^2=(-1)^{\frac{1}{2}\codim Z}e^T(\NN_Z)$. A \vocab{gloabl polarization} is a choice of $T^{1/2}\in K_{T\times \Chbar}$ such that $[TX]=T^{1/2}+\hbar(T^{1/2})^*$.
+Given a global polarization $T^{1/2}$, one can define $\varepsilon_Z:=e^T(\NN_{Z}^{1/2})$, where $\NN_Z^{1/2}:=[\NN_Z]\cap T^{1/2}|_{Z}$.
 
 A \vocab{stable envelope}, $\Stab:\HH^*_{T\times \Chbar}(X^T)\rightarrow \HH^*_{T\times \Chbar}(X)$, is a map of $\HH^*_{T\times \Chbar}$-modules that satisfies the following properties, stated as a theorem:
 
@@ -975,19 +1047,19 @@ A \vocab{stable envelope}, $\Stab:\HH^*_{T\times \Chbar}(X^T)\rightarrow \HH^*_{
     There exist unique stable envelope such that for all $Z\in \pi_0(X^T)$, $\alpha\in \HH^*_{T\times \Chbar}(Z)$,
     \begin{enumerate}
         \item $\supp(\Stab(\alpha))\subseteq \fAttr(Z)$,
-        \item $\Stab(\alpha)|_Z=\pm e^{T\times \Chbar}(N_Z^-)\alpha$, where $\pm$ satisfies $\varepsilon_Z=\pm e^T(N_Z^-)$,
+        \item $\Stab(\alpha)|_Z=\pm e^{T\times \Chbar}(\NN_Z^-)\alpha$, where $\pm$ satisfies $\varepsilon_Z=\pm e^T(\NN_Z^-)$,
         \item $\forall\ Z'<Z$, $\deg_T\Stab(\alpha)|_{Z'}<\frac{1}{2}\dim Z'$, where $\deg_T$ is the composite for any choice of $p\in Z'$
             \[
                 \HH^*_{T\times \Chbar}(Z')\xrightarrow[]{\hbar\mapsto 0}\HH^*_T(Z')\xrightarrow[]{\iota^*_p}\HH^*_T(\CB{p})\simeq \mathbb{C}[\mathfrak{t}]\xrightarrow[]{\deg}\mathbb{N}.
             \]
     \end{enumerate}
     \begin{remark}
-    Given $T^{1/2}$, i.e. $\varepsilon_Z$, Since both $N_Z^{1/2}$ and $N_Z^-$ span half of $N_Z$, we have $r=\rank([N_Z^+]\cap N_Z^{1/2})=\rank([N_Z^-]\cap (N_Z^{1/2})^*)$. Hence one can compute $\pm$ in (2) as $(-1)^r$.
+    Given $T^{1/2}$, i.e. $\varepsilon_Z$, Since both $\NN_Z^{1/2}$ and $\NN_Z^-$ span half of $\NN_Z$, we have $r=\rank([\NN_Z^+]\cap \NN_Z^{1/2})=\rank([\NN_Z^-]\cap (\NN_Z^{1/2})^*)$. Hence one can compute $\pm$ in (2) as $(-1)^r$.
     \end{remark}
 \end{theorem}
 
 \begin{theorem}[thm:]{}
-    $\Stab$ becomes an isomorphsim after inverting the $T$-weights in $N_{X^T}$.
+    $\Stab$ becomes an isomorphsim after inverting the $T$-weights in $\NN_{X^T}$.
 \end{theorem}
 
 \subsection{Stable Envelope for Hypertoric \mathintitle{\lambda=0}}
@@ -1009,12 +1081,24 @@ Attracting cells of a fixed point $p_B$ is just a cone in the hyperplane arrange
     \end{proof}
 \end{proposition}
 
+Before calculating the stable envelope of hypertoric variety, we would like to first relate Gysin maps and Euler class. Let $X,M$ be oriented manifolds of dimensions $n$ and $m$ respectively. Let $f:X\rightarrow M$ be a proper map, there are Gysin maps $f_*:H^iX\rightarrow \HH^{i+m-n}M$, defined as the push forward of Borel-Moore homology:
+\[
+    \HH^iX=\HH^{\text{BM}}_{n-i}X\xrightarrow[]{f_*}\HH^{\text{BM}}_{n-i}M=\HH^{i+m-n}M.
+\]
+The Gysin maps satisfy functoriality and naturality. When $f:X\hookrightarrow M$ is a closed embedding, $f_*$ factors through the thom isomorphism defined by the normal bundle $\mathcal{N}_{X/M}$. Hence the composition $f^*\circ f_*$ is the multiplication by the Euler class $e(\mathcal{N})$.
+
 \begin{proposition}[pps:]{}
     $\Stab(p_B)=(-1)^{B^*_+}[X_{B^*_+,B^*_-}]=\prod_{i\in B^*_-}^{}u_i\prod_{i\in B^*_+}^{}(u_i-\hbar)$.
     \begin{proof}
-        By \Cref{pps:tautological_line_bundle_T_weight}, the $T$-weights of $N^+_{p_B}$ and $N^{1/2}_{p_B}$ are $\CB{\fundcyclewithtree{i}}_{i\in B^*_+}\cup \CB{-\fundcyclewithtree{i}}_{i\in B^*_-}$ and $\CB{\fundcyclewithtree{i}}_{i\in B^*}$ respectively.
-        The proof then follows from (2) in \Cref{thm:stable_envelope} and
-        \missing{$e^{T\times \Chbar}(N_Z^-)=[X_{B^*_+,B^*_-}]$}
+        Let $\varphi:p_B\rightarrow \MM_{\chi,0}$, which factors through $p_B\xrightarrow[]{\psi}X_{B^*_+,B^*_-}\xrightarrow[]{f}\MM_{\chi,0}$. By the above discussion, we have
+        \[
+            [X_{B^*_+,B^*_-}]|_{p_B}=
+        \psi^*([X_{B^*_+,B^*_-}])=\varphi^*f^*f_*(1)=\varphi^*(e(\mathcal{N}_{X_{B^*_+,B^*_-}}))=e(\mathcal{N}_{X_{B^*_+,B^*_-}}|_{p_B}).
+        \]
+        Note that $\mathcal{N}_{X_{B^*_+,B^*_-}}|_{p_B}=\mathcal{N}_{\overline{\Attr(p_B)}}|_{p_B}=\mathcal{N}^-|_{p_B}$ by \Cref{pps:attr_nnegative}.
+        On the other hand,
+        by \Cref{pps:tautological_line_bundle_T_weight}, the $T$-weights of $\NN^+_{p_B}$ and $\NN^{1/2}_{p_B}$ are $\CB{\fundcyclewithtree{i}}_{i\in B^*_+}\cup \CB{-\fundcyclewithtree{i}}_{i\in B^*_-}$ and $\CB{\fundcyclewithtree{i}}_{i\in B^*}$ respectively.
+        The proof then follows from (2) in \Cref{thm:stable_envelope}.
     \end{proof}
 \end{proposition}
 
@@ -1028,7 +1112,7 @@ Attracting cells of a fixed point $p_B$ is just a cone in the hyperplane arrange
 \appendix
 
 
-%\bibliographystyle{alpha}
-%\bibliography{ref}
+\bibliographystyle{alpha}
+\bibliography{ref_hypertoric_arose_from_graphs}
 
 \end{document}
