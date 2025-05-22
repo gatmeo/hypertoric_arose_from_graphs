@@ -393,9 +393,7 @@ The reason why it is geometric is because of the following theorem:
   Back to \Cref{exp:GIT_P1_Proj},  for $\chi:G\rightarrow \mathbb{C}^\times $ be the identity, every points $p$ except $(0,0)$ exists a homogeous function $f:(x,y)\mapsto x+y$ and $r=1$ that does not vanish at $p$. One need to then check that a good categorical quotient of $\mathbb{C}^2\setminus \{0\}$ is $\mathbb{P}^1$. For trivial $\chi$ on the other hand, constant function serve as the required homogenous function for every point. $G$ orbits of in $\mathbb{C}^2$ are lines removing the origin. All their closure intersect at origin. The categorical quotient on $\mathbb{C}^2$ is hence $\Spec \mathbb{C}[x_1,x_2]^G=\CB{\textnormal{pt}}$.
 \end{example}
 
-\subsection{Relating Symplectic Reduction and GIT}
-
-\missing{Frances Kirwan's thesis}
+\missing{Relating Symplectic Reduction and GIT: Frances Kirwan's thesis}
 %http://www.cms.zju.edu.cn/UploadFiles/AttachFiles/201096185821505.pdf
 
 \section{Hypertoric Varieties}
@@ -530,7 +528,8 @@ In particular, we associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ i
 
 \subsection{Graph: Exact Sequence of Tori}
 
-When we study hyperkahler geometry, the two main families are hypertoric varieties and quiver varieties (see \Cref{sec:quiver_variety}). They intersect at the case where we can associated with it a graph, or a quiver. One main reason why we used associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ is the dual representation is to ensure the hypertoric variety we get agree with the quiver variety associated with the same graph.
+Hypertoric varieties give an important family of hyperkahler geometry.
+They intersect at the case where we can associated with it a graph, or a quiver. One main reason why we used associate with \ref{eq:exact_seq_tori} a matroid where $\pi$ is the dual representation is to ensure the hypertoric variety we get agree with the quiver variety associated with the same graph.
 
 On the other hand, it is difficult to visualize representable matroids besides working out the linear algebra of $\pi$. For those who are not familiar with matroids, it is a good idea to focus on exact sequence of tori arising from graphs, and describe the geometry using graph terminologies. 
 
@@ -668,6 +667,7 @@ A pair of parameters $(\chi,\lambda)\in \mathfrak{g}^*_{\mathbb{Z}}\times \mathf
 \end{proposition}
 
 \subsection{Hyperplane Arrangement: Stability Condition \mathintitle{\lambda=0}}
+\label{sec:hyperplane_arrangement}
 
 There is a pictorial way to describe the $\mathbb{R}_{\geq 0}$ condition in the stability condition using half planes of hyperplane arrangement.
 For $\lambda=0$, we often encode the data of the exact sequence of tori and $\chi$ in the hyperplane arrangement. 
@@ -701,7 +701,7 @@ Let $\alpha\in \mathfrak{d}^*_\mathbb{Z}$, one can define tautological line bund
 \left[\iota(g)z,\iota(g)^{-1}w,a\right]=\left[z,w,\alpha(\iota(g))^{-1}a\right].
 \]
 It carries a $(D\times \Chbar)$-action by $(d,\kappa)\cdot [z,w,a]=\left[dz,\kappa d^{-1}w,\alpha(d)a\right]$.
-This construction gives a $\mathbb{Z}$-linear map $\mathfrak{d}^*_\mathbb{Z}\rightarrow \textnormal{Pic}^{T\times \Chbar}(\MM_{\chi,\lambda})$. Write $L_i=L_{e_i}$ for $i\in 1,\dots ,n$.
+This construction gives a $\mathbb{Z}$-linear map $\mathfrak{d}^*_\mathbb{Z}\rightarrow \textnormal{Pic}^{T\times \Chbar}(\MM_{\chi,\lambda})$. Write $L_i=L_{e^*_i}$ for $i\in 1,\dots ,n$.
 We have the following observations.
 \begin{proposition}[pps:]{}
     For $\gamma\in \mathfrak{t}^*_\mathbb{Z}$, $L_{\pi^*(\gamma)}\simeq \underline{\mathbb{C}}_{\gamma}$.
@@ -711,7 +711,7 @@ We have the following observations.
     $[z,w]\mapsto [z,w,z_i]$ and $[z,w]\mapsto [z,w,w_i]$ are $(T\times \Chbar)$-equivariant sections of $L_i$ and $L_i\otimes\underline{\mathbb{C}}_{\hbar}$ respectively.
 \end{proposition}
 
-\begin{proposition}[pps:]{}
+\begin{proposition}[pps:ktheory_hypertoric]{}
     $[T{\MM_{\chi,\lambda}}]=\left(\sum_{i=1}^{n}[L_i]-k\right)+\hbar\left(\sum_{i=1}^{n}[L_i]^{-1}-k\right)$ in $K_{T\times \Chbar}(\MM_{\chi,\lambda})$.
     \begin{proof}
         Starting with the prequotient, we have
@@ -735,25 +735,6 @@ We have the following observations.
         \[
             \pi^*[T\MM_{\chi,\lambda}]=\left[T(\mu^{-1}(0)^{\sstab})\right]-\left[\ker(d\pi)\right]=\sum_{}^{}\left([L_i]-\hbar[L_i]^{-1}\right)-\hbar k - k.
         \]
-
-        Note that if we have $f:X\rightarrow Y$ a submersion, i.e. $df$ is surjective. Let $y\in Y$ and pick $x\in f^{-1}(y)$. We have the following exact sequence
-        \[
-            0\rightarrow \ker(df|_x)=T_xf^{-1}(y)\xrightarrow[]{g} T_xX\xrightarrow[]{df}T_yY\rightarrow 0.
-        \]
-        Since we have the above exact sequence for each $x\in f^{-1}(y)$ with $T_yY$, of dimension $\dim Y$, on the right hand side. Hence if extending the above exact sequence over the whole $f^{-1}(y)$, we have
-        \[
-            0\rightarrow Tf^{-1}(y)\xrightarrow[]{}TX|_{f^{-1}y}\xrightarrow[]{}f^{-1}(y)\times T_yY\rightarrow 0.
-        \]
-        Hence $[TX]|_{f^{-1}(y)}=[Tf^{-1}(y))]+(\dim Y)\alpha$ in $K_T(f^{-1}(y))$, where $\alpha$ is the $T$ weight of $T_yY$.
-        In the case of $\mu:T^*\mathbb{C}^n\rightarrow \mathfrak{g}^*$, 
-        \[
-            [T(T^*\mathbb{C}^n)]|_{\mu^{-1}(0)}=[T(\mu^{-1}(0))] + k\hbar \in K_{T\times \Chbar}(\mu^{-1}(0)).
-        \]
-        Similarly, consider $g:X\rightarrow X\GIT G$ as a quotient map. For each $[x]\in X\GIT G$, and for each $x\in [x]$, we have
-        \[
-            0\rightarrow T_x(G\cdot x)\rightarrow T_xX\rightarrow T_{[x]}(X\GIT G)\rightarrow 0.
-        \]
-        <++>
     \end{proof}
 \end{proposition}
 
@@ -818,10 +799,45 @@ Note that when $\lambda=0$, $p_B=X_{B^*\cup B^+,B^*\cup B^-}$.
   Moreover, $\kappa\cdot p_{B,\lambda}=p_{B,\kappa\lambda}$ for $\kappa\in \Chbar$. In particular, $p_{B,0}$ is a $T\times \Chbar$ fixed point.
   \begin{proof}
     $d\cdot (z_B,w_B)=\sigma_B(\pi(d))\iota(\rho_B(d))\cdot (z_B,w_B)$. Since the coordinate of $p_B$ in $B$ is $0$, $\sigma_B$ acts trivially. Hence $d\cdot (z_B,w_B)=\iota(\rho_B(d))\cdot (z_B,w_B)$ is fixed by $T$.
+    More precisely, define
+    \[
+        \varphi_B:D\times \Chbar\rightarrow \iota(G)\subseteq D,\quad 
+        (d,\kappa)\mapsto \prod_{i\in B^+}^{}\iota(\fundbondwithtree{i}(d_i))\prod_{i\in B^-}^{}\iota(\fundbondwithtree{i}(\kappa^{-1}d_i))=\prod_{i\in B^+}^{}\iota(\fundbondwithtree{i}(\kappa))^{-1}\iota(\rho_B(d)).
+    \]
+    Then $(d,\kappa)\cdot \tilde{p}_B=\varphi_B(d,\kappa)\cdot \tilde{p}_B$.
 
-    For $\kappa\in \Chbar$, $\kappa(z_B,w_B,\lambda)=\rho_B(\kappa_{i\in B^-},1\textnormal{ else })^{-1}(z_B,w_B,\kappa\lambda))$.
+    For $\kappa\in \Chbar$, $\kappa(z_B,w_B,\lambda)=\rho_B(\kappa_{i\in B^-},1\textnormal{ else })^{-1}(z_B,w_B,\kappa\lambda)$.
   \end{proof}
 \end{proposition}
+
+\begin{corollary}[crl:]{}
+  Let $B\in \binom{E}{k}$ be a spanning tree. Then $\left.L_i\right|_{p_B}$ has weight $\fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar$ if $i\in B^*$, $0$ if $i\in B^+$, and $\hbar$ if $i\in B^-$.
+      \begin{proof}
+          The weight is given by 
+          \[
+              e_i^*-(e_i^*\circ \varphi_B)=e_i^*-\sum_{j\in B}^{}\iota(\fundbondwithtree{j})_ie_j^*+\sum_{j\in B^-}^{}\iota(\fundbondwithtree{j})_i\hbar.
+          \]
+          One can also show by direct calculation:
+          \begin{alignat*}{1}
+              (d,\kappa)\cdot [z_B,w_B,a]
+              &=\left[(0,0)_{i\in B^*}, (d_j,-)_{j\in B^+}, (-,\kappa d_i^{-1})_{i\in B^-}, d_ia\right]\\
+              &= \textstyle\left[z_B,w_B,d_i\iota(\rho_B(d))^{-1}_i\left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i\right)a\right].
+          \end{alignat*}
+      \end{proof}
+\end{corollary}
+
+\begin{corollary}[crl:tautological_bundle_tchbar_weight]{}
+  The induced $T\times \Chbar$ action on $T^*\mathbb{C}^{B^*}$ has weights 
+  \[
+    \left(
+      \fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar,\qquad 
+    -\fundcyclewithtree{i}+(1+\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j)\hbar
+  \right)_{i\in B^*}.
+  \]
+  \begin{proof}
+      It follows from \Cref{pps:ktheory_hypertoric} and the previous corollary.
+  \end{proof}
+\end{corollary}
 
 Define 
 \[
@@ -852,148 +868,45 @@ Note that when $\lambda=0$, $U_I=N_{I_+\cup I^c,I_-\cup I^c}$ when $\lambda=0$.
   \end{proof}
 \end{proposition}
 
-\begin{proposition}[pps:]{}
-  The induced $T\times \Chbar$ action on $T^*\mathbb{C}^{B^*}$ has weights 
-  \[
-    \left(
-      \fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar,\qquad 
-    -\fundcyclewithtree{i}+(1+\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j)\hbar
-  \right)_{i\in B^*}.
-  \]
-  \begin{proof}
-      Using the isomorphism $T^*\mathbb{C}^{B^*}\simeq U_B$, which $D\times \Chbar$ acts on, we have the following:
-      \begin{alignat*}{1}
-          (d,\kappa)\cdot (z,w)
-          &\mapsto 
-          \left[
-              \begin{cases}
-                  (d_iz_i,\kappa d_i^{-1}w_i)&i\in B^*\\
-                  (d_i, \kappa d_i^{-1}\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j) &i\in B^+\\
-                  (d_i(\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j),\kappa d_i^{-1}) &i\in B^-\\
-              \end{cases}
-          \right]\\
-          &\mapsto
-          \begin{pmatrix}
-              \left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i\right)\left(d_i\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))^{-1}_i\right)z_i, \\
-              \kappa\left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i^{-1}\right)\left(d_i^{-1}\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))_i\right)w_i 
-          \end{pmatrix}
-          _{i\in B^*}
-      \end{alignat*}
-      The proof concludes by noticing $d_i\iota(\rho_B(d))^{-1}_i=d_i\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))^{-1}_i=d_i\prod_{j\in B}^{}\pi^*(\fundcyclewithtree{i})_j=\fundcyclewithtree{i}(d)$, treating $\fundcyclewithtree{i}$ as a character of $D$.
-  \end{proof}
-\end{proposition}
-
-\section{Tautological Bundles and Curves}
-
-Let $\alpha\in \mathfrak{d}^*_\mathbb{Z}$, one can define tautological line bundle on $\MM_{\chi,\lambda}$ as 
-\[
-    L_\alpha:=\mu^{-1}(\lambda)^{\chi-\sstab}\times_G\underline{\mathbb{C}}_{\iota^*(\alpha)},\qquad 
-\left[\iota(g)z,\iota(g)^{-1}w,a\right]=\left[z,w,\alpha(\iota(g))^{-1}a\right].
-\]
-It carries a $(D\times \Chbar)$-action by $(d,\kappa)\cdot [z,w,a]=\left[dz,\kappa d^{-1}w,\alpha(d)a\right]$.
-This construction gives a $\mathbb{Z}$-linear map $\mathfrak{d}^*_\mathbb{Z}\rightarrow \textnormal{Pic}^{T\times \Chbar}(\MM_{\chi,\lambda})$. Write $L_i=L_{e_i}$ for $i\in [n]$.
-We have the following observations.
-\begin{proposition}[pps:]{}
-    For $\gamma\in \mathfrak{t}^*_\mathbb{Z}$, $L_{\pi^*(\gamma)}\simeq \underline{\mathbb{C}}_{\gamma}$.
-\end{proposition}
-
-\begin{proposition}[pps:tautological_line_bundle_T_weight]{}
-  Let $B\in \binom{E}{k}$ be a spanning tree. Then $\left.L_i\right|_{p_B}$ has weight $\fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar$ if $i\in B^*$, $0$ if $i\in B^+$, and $\hbar$ if $i\in B^-$.
-      \begin{proof}
-          One can show by direct calculation:
-          \begin{alignat*}{1}
-              (d,\kappa)\cdot [z_B,w_B,a]
-              &=\left[(0,0)_{i\in B^*}, (d_j,-)_{j\in B^+}, (-,\kappa d_i^{-1})_{i\in B^-}, d_ia\right]\\
-              &= \textstyle\left[z_B,w_B,d_i\iota(\rho_B(d))^{-1}_i\left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i\right)a\right].
-          \end{alignat*}
-      \end{proof}
-      \missing{Is it need $\lambda=0$}
-\end{proposition}
-
-\begin{corollary}[crl:]{}
-    $[T_{\MM_{\chi,\lambda}}]=\left(\sum_{i=1}^{n}[L_i]-k\right)+\hbar\left(\sum_{i=1}^{n}[L_i]^{-1}-k\right)$ in $K_{T\times \Chbar}(\MM_{\chi,\lambda})$.
-    \missing{Proof}
-\end{corollary}
-
-\begin{proposition}[pps:]{}
-    $[z,w]\mapsto [z,w,z_i]$ and $[z,w]\mapsto [z,w,w_i]$ are $(T\times \Chbar)$-equivariant sections of $L_i$ and $L_i\otimes\underline{\mathbb{C}}_{\hbar}$ respectively.
-\end{proposition}
-
-\subsection{Primitive Effective Curve Classes and Bonds}
-
-By the definition of bonds, we have the following:
-\begin{proposition}[pps:]{}
-    If $S\subseteq E$ is a bond, then there exist unique primitive element $\beta_S\in \mathfrak{g}_\mathbb{Z}$ s.t. $\iota(\beta_S)\in (\mathbb{Z}\setminus \CB{0})^I$ and $\AB{\beta_S,\chi}>0$.
-\end{proposition}
-
-For $S$ bond, we can partition $S$ as follows:
-\[
-    S^+=\CB{i\in S\mid \iota(\beta_S)_i>0}\textnormal{ and }S^-=\CB{i\in S\mid \iota(\beta_S)_i<0}.
-\]
-
-%\missing{implies $\bigcap_{i\in S^+}H_i^+\cap \bigcap_{i\in S^-}H_i^-=\emptyset $}
-
-\begin{corollary}[crl:]{}
-    $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\sstab}$ iff $\not\exists$ bond $S\subseteq E$ s.t. $z_i=0\ \forall\ i\in S^+$ and $w_i=0\ \forall\ i\in S^-$.
-    \begin{proof}
-        Assume contrary that there exist $a_i,b_i\in \mathbb{N}$ s.t. $\iota^*(\alpha:=((-b_i)_{i\in S^+},(a_i)_{i\in S^-}))=\chi$. Then
-        \[
-            \AB{\beta_S,\chi}=\AB{\iota(\beta_S),\alpha}=\AB{\iota(\beta_S)|_{S^+},\alpha|_{S^+}}+\AB{\iota(\beta_S)|_{S^-},\alpha|_{S^-}}\leq 0.
-        \]
-    \end{proof}
-\end{corollary}
-
-\begin{theorem}[thm:]{\cite{mcbreen2012quantum}}
-    $\CB{\beta_S}_{S\textnormal{ bond }}$ is the set of primitive effective curve classes in $\HH_2(\MM_{\chi,0},\mathbb{Z})\simeq \mathfrak{t}_{\mathbb{Z}}$.
-\end{theorem}
-
-\subsection{Curves \mathintitle{\lambda=0}}
-
-Curves in hypertoric are labelled by a pair of spanning trees differ by an exchange.
-More precisely, when $\lambda=0$, the connecting $\mathbb{P}^1$s can be seen from the hyperplane arrangement: fix points are the intersection points of the hyperplane arrangement and the connecting $\mathbb{P}^1$ are the line segments connecting the intersection points.
-
-Let $B_1,B_2\in \binom{E}{k}$ be distinct spanning trees such that $B_2=B_1\del b_1\cup b_2$ for some $b_1,b_2\in E$. 
-Write $\delta_{1/2}=\left[b_{1/2}\in B_{2/1}^-\right]$ and $\varepsilon_{1/2}=(-1)^{\delta_{1/2}}$. Let $\overline{B}=E\del (B_1\cup B_2)$, $\overline{B}^{\pm}:=B_1^{\pm}\del\{b_2\}=B_2^{\pm}\del\{b_1\}$.
-By matroid axioms, $\fundcyclewithtree{b_2}[B_1]=\fundcyclewithtree{b_1}[B_2]$.
-Define $\gamma:=\varepsilon_2\fundcyclewithtree{b_2}[B_1]=-\varepsilon_1\fundcyclewithtree{b_1}[B_2]$.
-\missing{why}
-We take the sign to ensure the curve is pointing from $B_1$ to $B_2$ in the following sense:
-\missing{}
-\begin{proposition}[pps:]{}
-    $\mathcal{O}_C(p_{B_1})|_{p_{B_1}}$ has weight $\gamma-\left(\sum_{j\in \overline{B}}^{}\pi^*(\gamma)_j+\delta_2-\delta_1\right)\hbar$, and $\mathcal{O}_C(p_{B_2})|_{p_{B_2}}$ has weight $-\gamma+\left(\sum_{j\in \overline{B}}^{}\pi^*(\gamma)_j+\delta_2-\delta_1\right)\hbar$.
-\end{proposition}
-
-\begin{proposition}[pps:]{}
-    $L_i|_{C}$ is isomorphic to
-    \[
-        \begin{cases}
-            \mathcal{O}(\varepsilon_1\iota(\fundbondwithtree{b_1}[B_2])_ip_{B_1})\otimes L_i|_{p_{B_2}} & \textnormal{ if } i\in B_1\cap B_2 \\
-            \mathcal{O}_C(\varepsilon_1p_{B_1})\otimes\underline{\mathbb{C}}_{\delta_1\hbar} & \textnormal{ if } i=b_1\\
-            \mathcal{O}_C(\varepsilon_2p_{B_2})\otimes\underline{\mathbb{C}}_{\delta_2\hbar} & \textnormal{ if } i=b_2\\
-            \underline{\mathbb{C}} & \textnormal{ if } i\in \overline{B}^+\\
-            \underline{\mathbb{C}}_\hbar & \textnormal{ if } i\in \overline{B}^-\\
-        \end{cases}
-        .
-    \]
-\end{proposition}
-
-\begin{corollary}[crl:]{}
-    $[C]\in \HH_2(\MM_{\chi,0},\mathbb{Z})$ corresponds to $\varepsilon_1\fundbondwithtree{b_1}[B_2]=\varepsilon_2\fundbondwithtree{b_2}[B_1]\in \mathfrak{g}_\mathbb{Z}$.
-\end{corollary}
-
-\begin{remark}
-    $\varepsilon_1=-1$ iff $b_1\in B_2^-$ iff $\rho^*_{B_2}(\chi)_{B_1}=\AB{\fundbondwithtree{b_1}[B_2],\chi}<0$. So we always have $\AB{\varepsilon_1\fundbondwithtree{b_1}[B_2],\chi}>0$.
-\end{remark}
-
-\subsection{GKM Graph and Matroid Polytope}
-\missing{}
+%\begin{proposition}[pps:]{}
+%  The induced $T\times \Chbar$ action on $T^*\mathbb{C}^{B^*}$ has weights 
+%  \[
+%    \left(
+%      \fundcyclewithtree{i}-\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j\hbar,\qquad 
+%    -\fundcyclewithtree{i}+(1+\sum_{j\in B^-}^{}\pi^*(\fundcyclewithtree{i})_j)\hbar
+%  \right)_{i\in B^*}.
+%  \]
+%  \begin{proof}
+%      Using the isomorphism $T^*\mathbb{C}^{B^*}\simeq U_B$, which $D\times \Chbar$ acts on, we have the following:
+%      \begin{alignat*}{1}
+%          (d,\kappa)\cdot (z,w)
+%          &\mapsto 
+%          \left[
+%              \begin{cases}
+%                  (d_iz_i,\kappa d_i^{-1}w_i)&i\in B^*\\
+%                  (d_i, \kappa d_i^{-1}\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j) &i\in B^+\\
+%                  (d_i(\AB{\fundbondwithtree{i},\lambda}-\sum_{j\in B^*}^{}z_jw_j\iota(\fundbondwithtree{i})_j),\kappa d_i^{-1}) &i\in B^-\\
+%              \end{cases}
+%          \right]\\
+%          &\mapsto
+%          \begin{pmatrix}
+%              \left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i\right)\left(d_i\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))^{-1}_i\right)z_i, \\
+%              \kappa\left(\prod_{j\in B^-}^{}\iota(\fundbondwithtree{j}(\kappa))_i^{-1}\right)\left(d_i^{-1}\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))_i\right)w_i 
+%          \end{pmatrix}
+%          _{i\in B^*}
+%      \end{alignat*}
+%      The proof concludes by noticing $d_i\iota(\rho_B(d))^{-1}_i=d_i\prod_{j\in B}^{}\iota(\fundbondwithtree{j}(d_j))^{-1}_i=d_i\prod_{j\in B}^{}\pi^*(\fundcyclewithtree{i})_j=\fundcyclewithtree{i}(d)$, treating $\fundcyclewithtree{i}$ as a character of $D$.
+%  \end{proof}
+%\end{proposition}
 
 \section{Cohomology}
-\begin{theorem}[thm:cohomology_hypertoric]{}
+
+The $T\times \Chbar$-equivariant cohomology of hypertoric has the following nice description.
+\begin{theorem}[thm:cohomology_hypertoric]{\cite{konno2001equivariant}}
     $\HH^*_{T\times \Chbar}(\MM_{\chi,\lambda})\simeq \mathbb{C}[u_1,\dots ,u_n,\hbar]/\AB{\prod_{i\in S_+}^{}u_i\prod_{i\in S^-}^{}(\hbar-u_i)\mid S\subseteq E\textnormal{ bond }}$.
 \begin{remark}
     Here, 
-    $u_i=c_1(L_i)=[\CB{z_i=0}]$, $\hbar=c_1(\underline{\mathbb{C}}_\hbar)$ are of degree 2. And $\hbar-u_i=c_1(L_i^*\otimes\underline{\mathbb{C}}_\hbar)=[\CB{w_i=0}]$.
+    $u_i=c_1(L_i)=[\CB{z_i=0}]$, $\hbar=c_1(\underline{\mathbb{C}}_\hbar)$ are of degree 2. And $\hbar-u_i=c_1(L_i^*\otimes\underline{\mathbb{C}}_\hbar)=[\CB{w_i=0}]$. By the hyperplane arrangement perspective \Cref{sec:hyperplane_arrangement}, the bond condition is equivalent to the empty intersection of the corresponding half planes $H^+_i$ for $w_i=0$ and $H^-_i$ for $z_i=0$.
 \end{remark}
 \begin{remark}
     $\HH^*_{T\times \Chbar}(pt)\simeq \textnormal{Sym}^*(\mathfrak{t}^*\oplus\mathbb{C}_\hbar)\rightarrow \HH^*_{T\times \Chbar}(\MM_{\chi,\lambda})$ is given by $\gamma\mapsto \sum_{i=1}^{n}\pi^*(\gamma)_iu_i$, $\hbar\mapsto \hbar$.
@@ -1072,7 +985,7 @@ Given a global polarization $T^{1/2}$, one can define $\varepsilon_Z:=e^T(\NN_{Z
 
 A \vocab{stable envelope}, $\Stab:\HH^*_{T\times \Chbar}(X^T)\rightarrow \HH^*_{T\times \Chbar}(X)$, is a map of $\HH^*_{T\times \Chbar}$-modules that satisfies the following properties, stated as a theorem:
 
-\begin{theorem}[thm:stable_envelope]{}
+\begin{theorem}[thm:stable_envelope]{\cite{maulik2012quantum}}
     There exist unique stable envelope such that for all $Z\in \pi_0(X^T)$, $\alpha\in \HH^*_{T\times \Chbar}(Z)$,
     \begin{enumerate}
         \item $\supp(\Stab(\alpha))\subseteq \fAttr(Z)$,
@@ -1126,18 +1039,13 @@ The Gysin maps satisfy functoriality and naturality. When $f:X\hookrightarrow M$
         \]
         Note that $\mathcal{N}_{X_{B^*_+,B^*_-}}|_{p_B}=\mathcal{N}_{\overline{\Attr(p_B)}}|_{p_B}=\mathcal{N}^-|_{p_B}$ by \Cref{pps:attr_nnegative}.
         On the other hand,
-        by \Cref{pps:tautological_line_bundle_T_weight}, the $T$-weights of $\NN^+_{p_B}$ and $\NN^{1/2}_{p_B}$ are $\CB{\fundcyclewithtree{i}}_{i\in B^*_+}\cup \CB{-\fundcyclewithtree{i}}_{i\in B^*_-}$ and $\CB{\fundcyclewithtree{i}}_{i\in B^*}$ respectively.
+        by \Cref{crl:tautological_bundle_tchbar_weight}, the $T$-weights of $\NN^+_{p_B}$ and $\NN^{1/2}_{p_B}$ are $\CB{\fundcyclewithtree{i}}_{i\in B^*_+}\cup \CB{-\fundcyclewithtree{i}}_{i\in B^*_-}$ and $\CB{\fundcyclewithtree{i}}_{i\in B^*}$ respectively.
         The proof then follows from (2) in \Cref{thm:stable_envelope}.
     \end{proof}
 \end{proposition}
 
 
-\section{Steinberg Correspondences}
-\subsection{Primitive Coroots and Hyperplane}
-\subsection{Steinberg Varieties}
-
-\section{Comparing Stability Condition with Quiver Varieties}
-\label{sec:quiver_variety}
+\missing{Comparing Stability Condition with Quiver Varieties}
 \appendix
 
 
