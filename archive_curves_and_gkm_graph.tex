@@ -1,0 +1,71 @@
+\section{Curves and GKM Graph}
+
+\subsection{Primitive Effective Curve Classes and Bonds}
+
+By the definition of bonds, we have the following:
+\begin{proposition}[pps:]{}
+    If $S\subseteq E$ is a bond, then there exist unique primitive element $\beta_S\in \mathfrak{g}_\mathbb{Z}$ s.t. $\iota(\beta_S)\in (\mathbb{Z}\setminus \CB{0})^I$ and $\AB{\beta_S,\chi}>0$.
+\end{proposition}
+
+For $S$ bond, we can partition $S$ as follows:
+\[
+    S^+=\CB{i\in S\mid \iota(\beta_S)_i>0}\textnormal{ and }S^-=\CB{i\in S\mid \iota(\beta_S)_i<0}.
+\]
+
+%\missing{implies $\bigcap_{i\in S^+}H_i^+\cap \bigcap_{i\in S^-}H_i^-=\emptyset $}
+
+\begin{corollary}[crl:]{}
+    $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\sstab}$ iff $\not\exists$ bond $S\subseteq E$ s.t. $z_i=0\ \forall\ i\in S^+$ and $w_i=0\ \forall\ i\in S^-$.
+    \begin{proof}
+        Assume contrary that there exist $a_i,b_i\in \mathbb{N}$ s.t. $\iota^*(\alpha:=((-b_i)_{i\in S^+},(a_i)_{i\in S^-}))=\chi$. Then
+        \[
+            \AB{\beta_S,\chi}=\AB{\iota(\beta_S),\alpha}=\AB{\iota(\beta_S)|_{S^+},\alpha|_{S^+}}+\AB{\iota(\beta_S)|_{S^-},\alpha|_{S^-}}\leq 0.
+        \]
+    \end{proof}
+\end{corollary}
+
+\begin{theorem}[thm:]{\cite{mcbreen2012quantum}}
+    $\CB{\beta_S}_{S\textnormal{ bond }}$ is the set of primitive effective curve classes in $\HH_2(\MM_{\chi,0},\mathbb{Z})\simeq \mathfrak{t}_{\mathbb{Z}}$.
+\end{theorem}
+
+\subsection{Curves \mathintitle{\lambda=0}}
+
+Curves in hypertoric are labelled by a pair of spanning trees differ by an exchange.
+More precisely, when $\lambda=0$, the connecting $\mathbb{P}^1$s can be seen from the hyperplane arrangement: fix points are the intersection points of the hyperplane arrangement and the connecting $\mathbb{P}^1$ are the line segments connecting the intersection points.
+
+Let $B_1,B_2\in \binom{E}{k}$ be distinct spanning trees such that $B_2=B_1\del b_1\cup b_2$ for some $b_1,b_2\in E$. 
+Write $\delta_{1/2}=\left[b_{1/2}\in B_{2/1}^-\right]$ and $\varepsilon_{1/2}=(-1)^{\delta_{1/2}}$. Let $\overline{B}=E\del (B_1\cup B_2)$, $\overline{B}^{\pm}:=B_1^{\pm}\del\{b_2\}=B_2^{\pm}\del\{b_1\}$.
+By matroid axioms, $\fundcyclewithtree{b_2}[B_1]=\fundcyclewithtree{b_1}[B_2]$.
+Define $\gamma:=\varepsilon_2\fundcyclewithtree{b_2}[B_1]=-\varepsilon_1\fundcyclewithtree{b_1}[B_2]$.
+\missing{why}
+We take the sign to ensure the curve is pointing from $B_1$ to $B_2$ in the following sense:
+\missing{}
+\begin{proposition}[pps:]{}
+    $\mathcal{O}_C(p_{B_1})|_{p_{B_1}}$ has weight $\gamma-\left(\sum_{j\in \overline{B}}^{}\pi^*(\gamma)_j+\delta_2-\delta_1\right)\hbar$, and $\mathcal{O}_C(p_{B_2})|_{p_{B_2}}$ has weight $-\gamma+\left(\sum_{j\in \overline{B}}^{}\pi^*(\gamma)_j+\delta_2-\delta_1\right)\hbar$.
+\end{proposition}
+
+\begin{proposition}[pps:]{}
+    $L_i|_{C}$ is isomorphic to
+    \[
+        \begin{cases}
+            \mathcal{O}(\varepsilon_1\iota(\fundbondwithtree{b_1}[B_2])_ip_{B_1})\otimes L_i|_{p_{B_2}} & \textnormal{ if } i\in B_1\cap B_2 \\
+            \mathcal{O}_C(\varepsilon_1p_{B_1})\otimes\underline{\mathbb{C}}_{\delta_1\hbar} & \textnormal{ if } i=b_1\\
+            \mathcal{O}_C(\varepsilon_2p_{B_2})\otimes\underline{\mathbb{C}}_{\delta_2\hbar} & \textnormal{ if } i=b_2\\
+            \underline{\mathbb{C}} & \textnormal{ if } i\in \overline{B}^+\\
+            \underline{\mathbb{C}}_\hbar & \textnormal{ if } i\in \overline{B}^-\\
+        \end{cases}
+        .
+    \]
+\end{proposition}
+
+\begin{corollary}[crl:]{}
+    $[C]\in \HH_2(\MM_{\chi,0},\mathbb{Z})$ corresponds to $\varepsilon_1\fundbondwithtree{b_1}[B_2]=\varepsilon_2\fundbondwithtree{b_2}[B_1]\in \mathfrak{g}_\mathbb{Z}$.
+\end{corollary}
+
+\begin{remark}
+    $\varepsilon_1=-1$ iff $b_1\in B_2^-$ iff $\rho^*_{B_2}(\chi)_{B_1}=\AB{\fundbondwithtree{b_1}[B_2],\chi}<0$. So we always have $\AB{\varepsilon_1\fundbondwithtree{b_1}[B_2],\chi}>0$.
+\end{remark}
+
+\subsection{GKM Graph and Matroid Polytope}
+\missing{}
+
