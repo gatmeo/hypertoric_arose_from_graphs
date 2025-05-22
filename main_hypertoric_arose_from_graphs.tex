@@ -235,7 +235,7 @@ If $G$ is abelian, then any shift $\mu+\alpha$, $\alpha\in\mathfrak{g}^*$, is al
 
 It is easy to check that $\mu^{-1}(\xi) \subseteq M$ for any $\xi$ in the center of $\mathfrak{g^*}$ is $G$-invariant. Choose $\xi=0$, we define $M\GIT G=\mu^{-1}(0)\GIT G$ to be the symplectic reduction of $M$ by $G$ if $G$ acts on $\mu^{-1}(0)$ is free. In particular, if $G$ is abelian, we can do the reduction at different moment map level $\mu^{-1}(\xi)$.
 
-\begin{theorem}{Marsden-Weinstein-Meyer Theorem}
+\begin{theorem}{\cite[Theorem 23.1]{silva2001lectures} Marsden-Weinstein-Meyer Theorem}
     Assume that the restricted action $G $ on $ \mu^{-1}(0)$ is free. Let $\iota:\mu^{-1}(0)\rightarrow M$. Then,
     \begin{enumerate}
         \item $M \GIT G$ is a smooth manifold and $\pi:\mu^{-1}(0) \to M \GIT G$ is a principal bundle, and
@@ -274,7 +274,7 @@ Let $\pi:\mathbb{Z}^n\rightarrow \mathbb{Z}^d$ be the $\mathbb{Z}$-linear map wh
 
 Unimodularity also implies that the maximal minors of the matrix $\left[a_1|\dots|a_n\right]$ for $\pi$ are $0,\pm1$. In fact, one can check that the RREF of $\left[a_1|\dots|a_n\right]$ is totally unimodular, i.e. all minors are $0,\pm1$.
 
-\begin{theorem}{}
+\begin{theorem}{\cite[Theorem 28.2]{silva2001lectures}}
   There is a one-to-one correspondence between Delzant polytopes and symplectic toric manifolds $(M, \omega, \mathbb{T}^d, \mu)$. In particular, $\im(\mu) \subseteq (\mathbb{R}^d)^*$ is a Delzant polytope. 
   \begin{proof}
     With the notation above, we claim that with a Delzant polytope $\Delta$, we can associate a symplectic toric manifold $M=\mathbb{C}^n \GIT \mathbb{T}^k$.
@@ -355,7 +355,7 @@ Write $G=(\mathbb{C}^\times )^k$, let character $\chi:G\rightarrow \mathbb{C}^\t
 Let $L_{\chi^r}$ to be the linearized line bundle with character $\chi$, i.e. the sheaf of sections of $\mathbb{C}^n\times \mathbb{C}$ with $G$ action $g(p,t)=(g\cdot p,\chi(g)t)$.
 Define the GIT quotient
 \[
-  \mathbb{C}^n\GIT_\chi:=\textnormal{Proj}\bigoplus _{r=0}^{\infty }\HH^0(\mathbb{C}^n,L_{\chi^r})^G=\textnormal{Proj}\bigoplus _{r=0}^{\infty }\CB{f\in \mathbb{C}[x_i]\mid f(g\cdot p)=\chi(g)^rf(p)\ \forall\ g\in G}.
+  \mathbb{C}^n\GIT_\chi G:=\textnormal{Proj}\bigoplus _{r=0}^{\infty }\HH^0(\mathbb{C}^n,L_{\chi^r})^G=\textnormal{Proj}\bigoplus _{r=0}^{\infty }\CB{f\in \mathbb{C}[x_i]\mid f(g\cdot p)=\chi(g)^rf(p)\ \forall\ g\in G}.
 \]
 The Proj construction is defined on graded ring $S=\bigoplus _{n=0}^{\infty }S_n$ where $S_nS_m=S_{n+m}$. Let $S_+=\bigoplus _{n>0}S_n$. We denote $\textnormal{Proj}S\subseteq \textnormal{Spec}S$ to be the set of homogeous prime ideal $\mathfrak{p}$ s.t. $S_+\not\subseteq \mathfrak{p}$. Here, $\chi$ gives the grading on $\mathbb{C}[x_i]$ to talk about homogenousity.
 
@@ -383,9 +383,10 @@ A geometric way to understand GIT is by stability.
   Denote $(\mathbb{C}^n)^{\chi-\sstab}$ and $(\mathbb{C}^n)^{\chi-\stab}$ to be the set of semistable points and stable points respectively.
 \end{definition}
 The reason why it is geometric is because of the following theorem:
-\begin{theorem}[thm:]{}
+\begin{theorem}[thm:]{\cite[Proposition 14.1.12]{cox2024toric}}
   Let $G\subseteq (\mathbb{C}^\times )^n$.
-  $\mathbb{C}^n\GIT_\chi G=(\mathbb{C}^n)^{\chi-\sstab}\GIT G:=\Spec(\mathbb{C}[(\mathbb{C}^n)^{\chi-\sstab}]^G)$.
+  Then
+  $\mathbb{C}^n\GIT_\chi G=(\mathbb{C}^n)^{\chi-\sstab}\GIT G$, where the second quotient is a good categorical quotient.
 \end{theorem}
 
 \begin{example}[exp:]{}
@@ -485,14 +486,12 @@ Similar to above, $\iota:G\rightarrow D$ and a choice of $ \lambda \in \mathfrak
   We can also alternatively use the Proj construction. Using a different convention of action $\mathbb{C}^\times $ on $T^*\mathbb{C}^2$ by $\lambda\cdot (z_0,w_0,z_1,w_1)=(\lambda^{-1}z_0,\lambda w_0,\lambda z_1,\lambda^{-1}w_1)$. $S=\mathbb{C}[z_0w_0=z_1w_1]=\mathbb{C}[z_0,w_0,z_1,w_1]/\AB{z_0w_0=z_1w_1}$, where $S_0=\AB{z_0w_0=z_1w_1, z_0z_1,w_0w_1}$, where $(z_0z_1)(w_0w_1)=(z_0w_0)^2$. $\Proj S$ is covered by $w_0\neq 0$ and $z_1\neq 0$. For $w_0\neq 0$, we get $\Spec \mathbb{C}[z_1/w_0,w_0w_1]$. For $z_1\neq 0$, we get $\Spec\mathbb{C}[w_0/z_1,z_0z_1]$.
 \end{example}
 
+\missing{
 There is a remaining $T$-action on the quotient with a moment map $ \nu : \mathcal{M}_{\chi, \lambda} \to \mathfrak{t}^* $.
 Indeed, $\mathcal{A}_\chi$ is the real moment map image in the following sense:
-\missing{}
+}
 
-
-\subsection{As Hyperkahler Reduction}
-
-Recall in \Cref{sec:symplectic_reduction_as_git} that we can realize the GIT quotient of complex torus as the symplectic reduction of the real torus. One can alternatively define hypertoric varieties as the hyperkahler quotient of $T^*\mathbb{C}^n$ by $G_\mathbb{R}$ at the value $(\chi,\textnormal{Re }\lambda,\textnormal{Im }\lambda)$, which is naturally diffeomorphic to $\MM_{\chi,\lambda}$.
+Recall in \Cref{sec:symplectic_reduction_as_git} that we can realize the GIT quotient of complex torus as the symplectic reduction of the real torus. One can alternatively define hypertoric varieties as the hyperkahler quotient of $T^*\mathbb{C}^n$ by $G_\mathbb{R}$ at the value $(\chi,\textnormal{Re }\lambda,\textnormal{Im }\lambda)$ \cite{hitchin1987hyperkahler}, which is naturally diffeomorphic to $\MM_{\chi,\lambda}$.
 
 \section{Combinatorial Description}
 
@@ -501,7 +500,9 @@ In fact, we will see that the topology of the hypertoric variety, such as cohomo
 
 \subsection{Matroids}
 
+For a more detailed introduction to matroids, see \cite{oxley2006matroid}.
 Matroid has multiple equivalent definitions. One of them uses the basis axiom. 
+
 \begin{definition}[def:]{}
   A \vocab{matroid} $M$ is an ordered pair $(E,\BB)$ consisting of a finite set $E$ and a collection $\BB$ of subsets of $E$ having the following properties:
   \begin{enumerate}
@@ -615,14 +616,14 @@ To check if a point $(z,w)$ is $\chi$-semistable, we need a homogenous function 
 
 Furthermore, we have the following for polystable and stable points.
 
-\begin{proposition}[pps:]{}
+\begin{proposition}[pps:polystable_hypertoric]{}
   $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\pstab}$  iff $\chi\in \mathbb{R}_{> 0}\AB{\iota^{*}(e_i)\mid z_i\neq 0}+\sum_{}^{}\mathbb{R}_{< 0}\AB{\iota^{*}(e_i)\mid w_i\neq 0}$.
   \begin{proof}
-    See Konno, 2008, Lemma 3.4(2).
+      See \cite[Lemma 3.4.2]{konno2003variation}.
   \end{proof}
 \end{proposition}
 
-\begin{proposition}[pps:]{}
+\begin{proposition}[pps:stable_hypertoric]{}
   $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\stab}$ iff $(z,w)\in (T^*\mathbb{C}^n)^{\chi-\pstab}$ and $\CB{i\in [n]\mid z_i=w_i=0}$ is coindependent.
   \begin{proof}
       In the case of GIT quotient by complex torus, finite stablelizer means $\dim(\textnormal{Stab}_G)=0$. Let $I=\CB{i\in [n] \mid z_i=w_i=0}$, $\textnormal{Stab}_G(z,w)=\iota^{-1}((\mathbb{C}^\times )^I)$. Since $G=\ker(\pi:D\rightarrow T)$, $\dim\textnormal{Stab}_G(z,w)=|I|-\cork(I)=0$ iff $\cork(I)=|I|$.
@@ -636,12 +637,24 @@ A pair of parameters $(\chi,\lambda)\in \mathfrak{g}^*_{\mathbb{Z}}\times \mathf
   \begin{proof}
     ($\Rightarrow $) Suppose $\chi=\sum_{i\notin S}^{}(a_i-b_i)\iota^*(e_i)$ and $\lambda=\sum_{i\notin S}c_i\iota^*(e_i)$ for some bond $S$, $a_i,b_i\in \mathbb{N}$, and $c_i\in \mathbb{C}$. Define $(z_i,w_i)=(c_i,1)$ for $i\notin S$ and $(0,0)$ for $i\in S$. Then $(z,w)\in \mu^{-1}(\lambda)^{\chi-\sstab}\del\mu^{-1}(\lambda)^{\chi-\stab}$.
 
-    ($\Leftarrow $) Let $(z,w)\in \mu^{-1}(\lambda)^{\chi-\sstab}$, i.e. there exist non fanishing $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$ where $a_i,b_i\in \mathbb{N}$ such that $\chi=\sum_{z_i\neq 0}^{}a_i\iota^*(e_i)-\sum_{w_i\neq 0}^{}b_i\iota^*(e_i)$ and $\lambda=\sum_{}^{}z_i,w_i\iota^*(e_i)$. By assumption, if $\chi\in \iota^*((\mathbb{Z}\times \mathbb{C})^{E\del S})$ for some $S$, then $S$ is coindependent, i.e. 
+    ($\Leftarrow $) Let $(z,w)\in \mu^{-1}(\lambda)^{\chi-\sstab}$, i.e. there exist non fanishing $f=\prod_{}^{}z_i^{a_i}w_i^{b_i}$ where $a_i,b_i\in \mathbb{N}$ and $r\in \mathbb{N}_{>0}$ such that $r\chi=\sum_{z_i\neq 0}^{}a_i\iota^*(e_i)-\sum_{w_i\neq 0}^{}b_i\iota^*(e_i)$ and $\lambda=\sum_{}^{}z_i,w_i\iota^*(e_i)$. Dividing the equation by $r$, we can treat $a_i$ and $b_i$ in $\mathbb{Q}_{\geq 0}$.
+    By assumption, if $\chi\in \iota^*((\mathbb{Q}\times \mathbb{C})^{E\del S})$ for some $S$, then 
     \[
-      \CB{i\in E\mid z_i=w_i=0\textnormal{ or }(z_i\neq 0,w_i=0,a_i=0)\textnormal{ or }(z_i=0,w_i\neq 0,b_i=0)}
+      S=\CB{i\in E\mid z_i=w_i=0\textnormal{ or }(z_i\neq 0,w_i=0,a_i=0)\textnormal{ or }(z_i=0,w_i\neq 0,b_i=0)}
     \]
     is coindependent.
-    \missing{We can alter a representation of $\chi$}
+    %We want to alter the representation of $\chi$ such that $a_i>0$ for $z_i\neq 0$ and $b_i>0$ for $w_i\neq 0$. 
+    Pick a spanning cotree $B$ containining $S$.
+    Define 
+    \[
+        k_i=\sum_{a_j=0}^{}\pi^*(\fundcyclewithtree{j})_i-\sum_{b_j=0}^{}\pi^*(\fundcyclewithtree{j})_i.
+    \]
+    Let $\varepsilon\in \mathbb{Q}_{\geq 0}$ small and define $a_i'=a_i+\varepsilon c_i$ for $z_i\neq 0$, $b_i'=b_i-\varepsilon c_i$ for $z_i=0,w_i\neq 0$, and $a_i'=a_i$, $b_i'=b_i$ otherwise.
+    Then $a'_i>0$ for $z_i\neq 0$ and $b'_i>0$ for $w_i\neq 0$. Also, 
+    \[
+        \sum_{z_i\neq 0}^{}a_i'\iota^*(e_i)-\sum_{w_i\neq 0}^{}b_i'\iota^*(e_i)=\sum_{z_i\neq 0}^{}a_i\iota^*(e_i)-\sum_{w_i\neq 0}^{}b_i\iota^*(e_i) + \sum_{z_i\neq 0\textnormal{ or }w_i\neq 0}^{}c_i\iota^*(e_i^*)=\chi
+    \]
+    as $\iota^*\circ \pi^*=0$. By \Cref{pps:polystable_hypertoric} and \Cref{pps:stable_hypertoric}, $(z,w)\in \mu^{-1}(\lambda)^{\chi-\stab}$.
   \end{proof}
 \end{proposition}
 
@@ -651,7 +664,6 @@ A pair of parameters $(\chi,\lambda)\in \mathfrak{g}^*_{\mathbb{Z}}\times \mathf
     ($\Rightarrow $) Suppose $\lambda=\sum_{i\notin S}^{}c_i\iota^*(e_i)$ for some bond $S$. Let $\chi\in (\mathfrak{^*}_\mathbb{R}\setminus \iota^*(\mathbb{R}^{E\del B})) \cap \mathfrak{g}^*_\mathbb{Z}$. Define $(z_i,w_i)=(c_i,1)$ for $i\notin S$, $(0,0)$ for $i\in S$. Then $(z,w)\in \mu^{-1}(\lambda)\setminus \mu^{-1}(\lambda)^{\chi-\sstab}$.
 
     ($\Leftarrow $) Let $(z,w)\in \mu^{-1}(\lambda)$, i.e. $\lambda=\sum_{}^{}z_iw_i\iota^*(e_i)$. By assumption, $S=\CB{i\in E\mid z_iw_i\neq 0}$ is of full rank, i.e. $S$ contains a spanning tree. $\CB{i\in E\mid z_i=w_i=0}\subseteq E\del S\subseteq E\del T$ is coindependent.
-    \missing{double checki}
   \end{proof}
 \end{proposition}
 
@@ -707,6 +719,23 @@ We have the following observations.
             T(T^*\mathbb{C}^n)=T^*\mathbb{C}^n\oplus T^*\mathbb{C}^n=\bigoplus T^*\mathbb{C}^n\times \underline{\mathbb{C}}_{z_i}\oplus\bigoplus T^*\mathbb{C}^n\times \underline{\mathbb{C}}_{w_i},
         \]
         i.e. $[T(T^*\mathbb{C}^n)]=\sum_{}^{}[L_i]+\hbar\sum_{}^{}[L_i]^{-1}$.
+        For $\iota:\mu^{-1}(0)\rightarrow T^*\mathbb{C}^n$ and $\mu:T^*\mathbb{C}^n\rightarrow \mathfrak{g}^*$, we have
+        \[
+            0\rightarrow T(\mu^{-1}(0))\rightarrow \iota^*\left(T(T^*\mathbb{C}^n)\right)\xrightarrow[]{\iota^*(d\mu)}\iota^*\mu^*T\mathfrak{g}^*\rightarrow 0.
+        \]
+        Since $\iota^*\mu^*T\mathfrak{g}^*=\mu^{-1}(0)\times T_0\mathfrak{g}^*$ with weight $\hbar$, we have
+        \[
+            [T(\mu^{-1}(0))]=\iota^*\left[T(T^*\mathbb{C}^n)\right]-[\iota^*\mu^*T\mathfrak{g}^*]=\sum_{}^{}\left([L_i]-\hbar[L_i]^{-1}\right)-\hbar k.
+        \]
+        On the other hand, for $\pi:\mu^{-1}(0)^{\sstab}\rightarrow \mu^{-1}(0)^{\sstab}\GIT G = \MM_{\chi,\lambda}$, we have
+        \[
+            0\rightarrow \ker(d\pi)\rightarrow T(\mu^{-1}(0)^{\sstab})\xrightarrow[]{d\pi}\pi^*T\MM_{\chi,\lambda}\rightarrow 0.
+        \]
+        One can check that $\ker(d\pi)=\mu^{-1}(0)^{\sstab}\times \mathfrak{g}$. Hence
+        \[
+            \pi^*[T\MM_{\chi,\lambda}]=\left[T(\mu^{-1}(0)^{\sstab})\right]-\left[\ker(d\pi)\right]=\sum_{}^{}\left([L_i]-\hbar[L_i]^{-1}\right)-\hbar k - k.
+        \]
+
         Note that if we have $f:X\rightarrow Y$ a submersion, i.e. $df$ is surjective. Let $y\in Y$ and pick $x\in f^{-1}(y)$. We have the following exact sequence
         \[
             0\rightarrow \ker(df|_x)=T_xf^{-1}(y)\xrightarrow[]{g} T_xX\xrightarrow[]{df}T_yY\rightarrow 0.
@@ -757,10 +786,9 @@ Define
   \end{proof}
 \end{proposition}
 
-\begin{theorem}[thm:]{}
+\missing{
   $N_{I,J}\rightarrow X_{I,J}$ is isomorphic to the normal bundle of $X_{I,J}$ in $\chi_{\chi,0}$ as a $T\times \Chbar$ vector bundle over $X_{I,J}$.
-  \missing{Proof}
-\end{theorem}
+}
 
 \subsection{Fix Point}
 
@@ -779,7 +807,10 @@ Define $p_{B,\lambda}:=[z_{B,\lambda},w_{B,\lambda}]\in \MM_{\chi,\lambda}$ by
     (0,0) & e\in B^*.
   \end{cases}
 \]
-By construction, $p_{B,\lambda}$ is $\chi$--semistable as one can define the homogenous function on it by $f=\prod_{i\in B^+}^{}z_i^{\rho_B^*(\chi)_e}\prod_{i\in B^-}^{}w_i^{\rho_B^*(\chi)_e}$.
+By construction, $p_{B,\lambda}$ is $\chi$--semistable as one can define the homogenous function on it by 
+\[
+f=\prod_{i\in B^+}^{}z_i^{\rho_B^*(\chi)_e}\prod_{i\in B^-}^{}w_i^{\rho_B^*(\chi)_e}.
+\]
 Note that when $\lambda=0$, $p_B=X_{B^*\cup B^+,B^*\cup B^-}$.
 
 \begin{proposition}[pps:]{}
@@ -912,9 +943,8 @@ For $S$ bond, we can partition $S$ as follows:
     \end{proof}
 \end{corollary}
 
-\begin{theorem}[thm:]{}
-    $\CB{\beta_S}_{S\textnormal{ bond }}$ is the set of primitive effective curve classes in $\HH_2(\MM_{\chi,0},\mathbb{Z})\simeq \mathfrak{g}_{\mathbb{Z}}$.
-    \missing{Proof/Justification}
+\begin{theorem}[thm:]{\cite{mcbreen2012quantum}}
+    $\CB{\beta_S}_{S\textnormal{ bond }}$ is the set of primitive effective curve classes in $\HH_2(\MM_{\chi,0},\mathbb{Z})\simeq \mathfrak{t}_{\mathbb{Z}}$.
 \end{theorem}
 
 \subsection{Curves \mathintitle{\lambda=0}}
